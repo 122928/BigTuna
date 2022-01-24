@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "945131858197",
+    "project_id": "bigtuna-bc49a",
+    "storage_bucket": "bigtuna-bc49a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:945131858197:android:2113de5e2a47b2a532e11c",
+        "android_client_info": {
+          "package_name": "com.kanyi.bigtuna"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "945131858197-3cths4bqop1s35cb4ehglnojh9roujp5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD74HyKYKaBArGWJhyDBgn-fN27s6yUE-A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "945131858197-3cths4bqop1s35cb4ehglnojh9roujp5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
