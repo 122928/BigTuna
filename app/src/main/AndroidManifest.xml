@@ -17,6 +17,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BigTuna.NoActionBar">
         <activity
+            android:name=".ProfileEditUserActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ProfileEditSellerActivity"
+            android:exported="false" />
+        <activity
             android:name=".LoginActivity"
             android:exported="false" />
         <activity
