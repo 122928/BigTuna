@@ -88,7 +88,8 @@
                 android:hint="Full Name"
                 android:inputType="textPersonName"
                 android:padding="10dp"
-                android:textColor="@color/colorBlack"/>
+                android:textColor="@color/colorPrimary"
+                android:textColorHint="@color/colorGray"/>
             <EditText
                 android:id="@+id/companyNameEt"
                 android:layout_width="match_parent"
@@ -107,7 +108,8 @@
                 android:hint="Company Name"
                 android:inputType="textPersonName"
                 android:padding="10dp"
-                android:textColor="@color/colorBlack"/>
+                android:textColor="@color/colorPrimary"
+                android:textColorHint="@color/colorGray"/>
 
 
             <EditText
@@ -123,7 +125,8 @@
                 android:layout_margin="5dp"
                 android:inputType="phone"
                 android:background="@drawable/shape_rect02"
-                android:textColor="@color/colorBlack"/>
+                android:textColor="@color/colorPrimary"
+                android:textColorHint="@color/colorGray"/>
             <EditText
                 android:id="@+id/deliveryFeeEt"
                 android:layout_below="@+id/phoneEt"
@@ -137,7 +140,8 @@
                 android:layout_margin="5dp"
                 android:inputType="numberDecimal"
                 android:background="@drawable/shape_rect02"
-                android:textColor="@color/colorBlack"/>
+                android:textColor="@color/colorPrimary"
+                android:textColorHint="@color/colorGray"/>
 
 
             <LinearLayout
@@ -162,7 +166,8 @@
                     android:inputType="textPostalAddress"
                     android:layout_weight="1"
                     android:background="@drawable/shape_rect02"
-                    android:textColor="@color/colorBlack"/>
+                    android:textColor="@color/colorPrimary"
+                    android:textColorHint="@color/colorGray"/>
 
                 <EditText
                     android:id="@+id/stateEt"
@@ -177,7 +182,8 @@
                     android:layout_margin="5dp"
                     android:inputType="phone"
                     android:background="@drawable/shape_rect02"
-                    android:textColor="@color/colorBlack"/>
+                    android:textColor="@color/colorPrimary"
+                    android:textColorHint="@color/colorGray"/>
 
                 <EditText
                     android:id="@+id/cityEt"
@@ -192,7 +198,8 @@
                     android:layout_margin="5dp"
                     android:inputType="phone"
                     android:background="@drawable/shape_rect02"
-                    android:textColor="@color/colorBlack"/>
+                    android:textColor="@color/colorPrimary"
+                    android:textColorHint="@color/colorGray"/>
 
             </LinearLayout>
 
@@ -209,7 +216,8 @@
                 android:layout_margin="5dp"
                 android:inputType="phone"
                 android:background="@drawable/shape_rect02"
-                android:textColor="@color/colorBlack"/>
+                android:textColor="@color/colorPrimary"
+                android:textColorHint="@color/colorGray"/>
 
 
             <EditText
@@ -225,7 +233,8 @@
                 android:layout_margin="5dp"
                 android:inputType="textEmailAddress"
                 android:background="@drawable/shape_rect02"
-                android:textColor="@color/colorBlack"/>
+                android:textColor="@color/colorPrimary"
+                android:textColorHint="@color/colorGray"/>
 
             <EditText
                 android:id="@+id/passwordEt"
@@ -245,7 +254,8 @@
                 android:hint="Password"
                 android:inputType="textPassword"
                 android:padding="10dp"
-                android:textColor="@color/colorBlack"/>
+                android:textColor="@color/colorPrimary"
+                android:textColorHint="@color/colorGray"/>
             <EditText
                 android:id="@+id/cPasswordEt"
                 android:layout_width="match_parent"
@@ -264,7 +274,8 @@
                 android:hint="Confirm Password"
                 android:inputType="textPassword"
                 android:padding="10dp"
-                android:textColor="@color/colorBlack"/>
+                android:textColor="@color/colorPrimary"
+                android:textColorHint="@color/colorGray"/>
 
 
             <Button
@@ -281,8 +292,6 @@
         </RelativeLayout>
 
     </ScrollView>
-
-
 
 
 </RelativeLayout>

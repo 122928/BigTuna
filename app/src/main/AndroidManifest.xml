@@ -17,6 +17,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BigTuna.NoActionBar">
         <activity
+            android:name=".MainUserActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MainSellerActivity"
+            android:exported="false" />
+        <activity
             android:name=".ForgotPasswordActivity"
             android:exported="false" />
         <activity

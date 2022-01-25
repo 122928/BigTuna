@@ -50,16 +50,25 @@
         android:padding="5dp"
         android:layout_marginBottom="20dp"
         android:layout_centerHorizontal="true"/>
-    <com.blogspot.atifsoftwares.circularimageview.CircularImageView
-        android:id="@+id/profileIv"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_below="@+id/iconIv"
-        android:layout_centerHorizontal="true"
-        app:c_border="true"
-        app:c_border_color="@color/colorPrimary"
-        app:c_border_width="1dp"
-        android:src="@drawable/ic_person_gray"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/iconIv">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <com.blogspot.atifsoftwares.circularimageview.CircularImageView
+                android:id="@+id/profileIv"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_below="@+id/iconIv"
+                android:layout_centerHorizontal="true"
+                app:c_border="true"
+                app:c_border_color="@color/colorPrimary"
+                app:c_border_width="1dp"
+                android:src="@drawable/ic_person_gray"
+                tools:ignore="NotSibling" />
 
     <EditText
         android:id="@+id/nameEt"
@@ -79,7 +88,8 @@
         android:hint="Full Name"
         android:inputType="textPersonName"
         android:padding="10dp"
-        android:textColor="@color/colorBlack"/>
+        android:textColor="@color/colorPrimary"
+        android:textColorHint="@color/colorGray"/>
 
     <EditText
         android:id="@+id/phoneEt"
@@ -94,7 +104,8 @@
         android:layout_margin="5dp"
         android:inputType="phone"
         android:background="@drawable/shape_rect02"
-        android:textColor="@color/colorBlack"/>
+        android:textColor="@color/colorPrimary"
+        android:textColorHint="@color/colorGray"/>
 
     <LinearLayout
         android:id="@+id/addressLl"
@@ -118,7 +129,8 @@
             android:inputType="textPostalAddress"
             android:layout_weight="1"
             android:background="@drawable/shape_rect02"
-            android:textColor="@color/colorBlack"/>
+            android:textColor="@color/colorPrimary"
+            android:textColorHint="@color/colorGray"/>
 
         <EditText
             android:id="@+id/stateEt"
@@ -133,7 +145,8 @@
             android:layout_margin="5dp"
             android:inputType="phone"
             android:background="@drawable/shape_rect02"
-            android:textColor="@color/colorBlack"/>
+            android:textColor="@color/colorPrimary"
+            android:textColorHint="@color/colorGray"/>
 
         <EditText
             android:id="@+id/cityEt"
@@ -148,7 +161,8 @@
             android:layout_margin="5dp"
             android:inputType="phone"
             android:background="@drawable/shape_rect02"
-            android:textColor="@color/colorBlack"/>
+            android:textColor="@color/colorPrimary"
+            android:textColorHint="@color/colorGray"/>
 
     </LinearLayout>
 
@@ -165,7 +179,8 @@
         android:layout_margin="5dp"
         android:inputType="phone"
         android:background="@drawable/shape_rect02"
-        android:textColor="@color/colorBlack"/>
+        android:textColor="@color/colorPrimary"
+        android:textColorHint="@color/colorGray"/>
 
 
     <EditText
@@ -181,7 +196,8 @@
         android:layout_margin="5dp"
         android:inputType="textEmailAddress"
         android:background="@drawable/shape_rect02"
-        android:textColor="@color/colorBlack"/>
+        android:textColor="@color/colorPrimary"
+        android:textColorHint="@color/colorGray"/>
 
     <EditText
         android:id="@+id/passwordEt"
@@ -201,7 +217,8 @@
         android:hint="Password"
         android:inputType="textPassword"
         android:padding="10dp"
-        android:textColor="@color/colorBlack"/>
+        android:textColor="@color/colorPrimary"
+        android:textColorHint="@color/colorGray"/>
     <EditText
         android:id="@+id/cPasswordEt"
         android:layout_width="match_parent"
@@ -220,7 +237,8 @@
         android:hint="Confirm Password"
         android:inputType="textPassword"
         android:padding="10dp"
-        android:textColor="@color/colorBlack"/>
+        android:textColor="@color/colorPrimary"
+        android:textColorHint="@color/colorGray"/>
 
 
     <Button
@@ -233,15 +251,25 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/cPasswordEt"/>
 
-    <TextView
-        android:id="@+id/registerSellerTv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:text="Are you a Seller? Register as Seller"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
-        android:textColor="@color/colorBlack"/>
+            <TextView
+                android:id="@+id/registerSellerTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_below= "@id/registerBtn"
+                android:text="Are you a Seller? Register as Seller"
+                android:textColor="@color/colorAccent" />
+
+        </RelativeLayout>
+
+    </ScrollView>
 
 
 
