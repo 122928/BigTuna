@@ -47,7 +47,8 @@
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:inputType="textEmailAddress"
-        android:background="@drawable/shape_rect02"/>
+        android:background="@drawable/shape_rect02"
+        android:textColor="@color/colorBlack"/>
 
     <EditText
         android:id="@+id/passwordEt"
@@ -66,7 +67,8 @@
         android:drawablePadding="5dp"
         android:hint="Password"
         android:inputType="textPassword"
-        android:padding="10dp" />
+        android:padding="10dp"
+        android:textColor="@color/colorBlack"/>
     <TextView
         android:id="@+id/forgotTv"
         android:layout_width="wrap_content"
@@ -75,7 +77,8 @@
         android:text="Forgot Password?"
         android:layout_below="@+id/passwordEt"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true" />
+        android:layout_alignParentRight="true"
+        android:textColor="@color/colorBlack"/>
 
     <Button
         android:id="@+id/loginBtn"
@@ -94,7 +97,8 @@
         android:layout_margin="5dp"
         android:text="Don't have an account? Register"
         android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"/>
+        android:layout_alignParentBottom="true"
+        android:textColor="@color/colorBlack"/>
 
 
 
