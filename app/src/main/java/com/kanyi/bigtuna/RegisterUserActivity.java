@@ -102,6 +102,10 @@ public class RegisterUserActivity extends AppCompatActivity implements LocationL
         progressDialog = new ProgressDialog ( this );
         progressDialog.setTitle ( "Please Wait..." );
         progressDialog.setCanceledOnTouchOutside ( false );
+         // permissions
+        locationPermissions = new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
+        cameraPermissions = new String[]{Manifest.permission.CAMERA , Manifest.permission.WRITE_EXTERNAL_STORAGE};
+        storagePermissions = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
 
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -408,7 +412,7 @@ public class RegisterUserActivity extends AppCompatActivity implements LocationL
             // for ActivityCompat#requestPermissions for more details.
             return;
         }
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
+        locationManager.requestLocationUpdates ( LocationManager.GPS_PROVIDER,0,0,this );
 
     }
     private void findAddress() {
@@ -428,11 +432,6 @@ public class RegisterUserActivity extends AppCompatActivity implements LocationL
             stateEt.setText(state);
             cityEt.setText(city);
             addressEt.setText(address);
-
-
-
-
-
 
         }
         catch (Exception e){

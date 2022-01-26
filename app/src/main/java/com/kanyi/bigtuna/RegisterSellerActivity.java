@@ -21,6 +21,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Looper;
 import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Patterns;
@@ -68,9 +69,10 @@ public class RegisterSellerActivity extends AppCompatActivity implements Locatio
     //image picked uri
     private Uri image_uri;
 
-    private double latitude = 0.0, longitude = 0.0;
+    private double latitude, longitude;
 
     private LocationManager locationManager;
+
 
     private FirebaseAuth firebaseAuth;
     private ProgressDialog progressDialog;
@@ -416,7 +418,7 @@ public class RegisterSellerActivity extends AppCompatActivity implements Locatio
             // for ActivityCompat#requestPermissions for more details.
             return;
         }
-        locationManager.requestLocationUpdates ( LocationManager.GPS_PROVIDER , 0 , 0 , this );
+        locationManager.requestLocationUpdates( LocationManager.GPS_PROVIDER , 0 ,0 , this);
 
     }
 
