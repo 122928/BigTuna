@@ -19,16 +19,17 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:src="@drawable/ic_back_white"
-            android:background="@null"/>
+            android:background="@null"
+            android:contentDescription="BackButton" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:text="Register Seller"
-            android:textStyle="bold"
+            android:textColor="@color/colorWhite"
             android:textSize="20sp"
-            android:textColor="@color/colorBlack"/>
+            android:textStyle="bold" />
         <ImageButton
             android:id="@+id/gpsBtn"
             android:layout_width="30dp"
@@ -58,16 +59,17 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <com.blogspot.atifsoftwares.circularimageview.CircularImageView
                 android:id="@+id/profileIv"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_below="@+id/iconIv"
                 android:layout_centerHorizontal="true"
+                android:src="@drawable/ic_person_gray"
                 app:c_border="true"
                 app:c_border_color="@color/colorPrimary"
                 app:c_border_width="1dp"
-                android:src="@drawable/ic_person_gray"
                 tools:ignore="NotSibling" />
 
             <EditText
