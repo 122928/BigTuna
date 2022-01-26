@@ -17,7 +17,7 @@
             android:id="@+id/backBtn"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:src="@drawables/ic_black_white"
+            android:src="@drawable/ic_back_white"
             android:background="@null"/>
 
         <TextView
@@ -33,7 +33,7 @@
             android:id="@+id/gpsBtn"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:src="@drawable/ic_gps-white"
+            android:src="@drawable/ic_gps_white"
             android:layout_alignParentEnd="true"
             android:background="@null"
             android:layout_alignParentRight="true" />
@@ -49,7 +49,7 @@
         android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true"
         app:c_border="true"
-        app:c_border_color="color/colorPrimary"
+        app:c_border_color="@color/colorPrimary"
         app:c_border_width="1dp"
         android:src="@drawable/ic_person_gray"/>
 
@@ -64,7 +64,7 @@
         android:layout_marginEnd="5dp"
         android:layout_marginRight="5dp"
         android:layout_marginBottom="5dp"
-        android:background="@drawable/shapre_rect02"
+        android:background="@drawable/shape_rect02"
         android:drawableStart="@drawable/ic_person_gray"
         android:drawableLeft="@drawable/ic_person_gray"
         android:drawablePadding="5dp"
@@ -83,7 +83,7 @@
         android:layout_marginEnd="5dp"
         android:layout_marginRight="5dp"
         android:layout_marginBottom="5dp"
-        android:background="@drawable/shapre_rect02"
+        android:background="@drawable/shape_rect02"
         android:drawableStart="@drawable/ic_store_gray"
         android:drawableLeft="@drawable/ic_store_gray"
         android:drawablePadding="5dp"
@@ -102,7 +102,7 @@
         android:layout_marginEnd="5dp"
         android:layout_marginRight="5dp"
         android:layout_marginBottom="5dp"
-        android:background="@drawable/shapre_rect02"
+        android:background="@drawable/shape_rect02"
         android:drawableStart="@drawable/ic_person_gray"
         android:drawableLeft="@drawable/ic_person_gray"
         android:drawablePadding="5dp"
@@ -121,7 +121,7 @@
         android:layout_marginEnd="5dp"
         android:layout_marginRight="5dp"
         android:layout_marginBottom="5dp"
-        android:background="@drawable/shapre_rect02"
+        android:background="@drawable/shape_rect02"
         android:drawableStart="@drawable/ic_store_gray"
         android:drawableLeft="@drawable/ic_store_gray"
         android:drawablePadding="5dp"
@@ -142,7 +142,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:layout_weight="1"
-            android:background="@drawable/shapre_rect02"
+            android:background="@drawable/shape_rect02"
             android:drawableStart="@drawable/ic_location_gray"
             android:drawablePadding="5dp"
             android:hint="Country"
@@ -156,7 +156,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:layout_weight="1"
-            android:background="@drawable/ishapre_rect02"
+            android:background="@drawable/shape_rect02"
             android:drawableStart="@drawable/ic_location_gray"
             android:drawablePadding="5dp"
             android:hint="State"
@@ -170,7 +170,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:layout_weight="1"
-            android:background="@drawable/ishapre_rect02"
+            android:background="@drawable/shape_rect02"
             android:drawableStart="@drawable/ic_location_gray"
             android:drawablePadding="5dp"
             android:hint="City"
@@ -179,7 +179,6 @@
             android:drawableLeft="@drawable/ic_location_gray" />
 
     </LinearLayout>
-
 
     <EditText
         android:id="@+id/addressEt"
@@ -192,7 +191,7 @@
         android:layout_marginEnd="5dp"
         android:layout_marginRight="5dp"
         android:layout_marginBottom="5dp"
-        android:background="@drawable/shapre_rect02"
+        android:background="@drawable/shape_rect02"
         android:drawableStart="@drawable/ic_location_gray"
         android:drawableLeft="@drawable/ic_location_gray"
         android:drawablePadding="5dp"
@@ -216,6 +215,5 @@
         android:layout_below="@id/shopOpenSwitch"
         android:layout_centerHorizontal="true"
         android:text="Update"/>
-
 
 </RelativeLayout>

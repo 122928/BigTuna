@@ -29,6 +29,7 @@
             android:textStyle="bold"
             android:textSize="20sp"
             android:textColor="@color/colorBlack"/>
+
         <ImageButton
             android:id="@+id/gpsBtn"
             android:layout_width="30dp"
@@ -182,7 +183,6 @@
         android:textColor="@color/colorPrimary"
         android:textColorHint="@color/colorGray"/>
 
-
     <EditText
         android:id="@+id/emailEt"
         android:layout_below="@+id/addressEt"
@@ -219,6 +219,7 @@
         android:padding="10dp"
         android:textColor="@color/colorPrimary"
         android:textColorHint="@color/colorGray"/>
+
     <EditText
         android:id="@+id/cPasswordEt"
         android:layout_width="match_parent"
@@ -239,7 +240,6 @@
         android:padding="10dp"
         android:textColor="@color/colorPrimary"
         android:textColorHint="@color/colorGray"/>
-
 
     <Button
         android:id="@+id/registerBtn"
@@ -270,7 +270,5 @@
         </RelativeLayout>
 
     </ScrollView>
-
-
 
 </RelativeLayout>

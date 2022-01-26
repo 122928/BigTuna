@@ -43,6 +43,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
 import java.util.List;
@@ -197,7 +198,6 @@ public class ProfileEditSellerActivity extends AppCompatActivity implements Loca
                         }
                     });
         }else{
-
             String filePathAndName = "profile_image/"+""+ firebaseAuth.getUid();
 
             StorageReference storageReference = FirebaseStorage.getInstance().getReference(filePathAndName);
@@ -271,7 +271,6 @@ public class ProfileEditSellerActivity extends AppCompatActivity implements Loca
         }
 
     private void loadMyInfo() {
-
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
         ref.orderByChild("uid").equalTo(firebaseAuth.getUid())
                 .addValueEventListener(new ValueEventListener() {
@@ -354,8 +353,8 @@ public class ProfileEditSellerActivity extends AppCompatActivity implements Loca
                         }
                     }
                 }).show();
-    }
 
+    }
     private void requestStoragePermission() {
         ActivityCompat.requestPermissions(this,storagePermission,STORAGE_REQUEST_CODE);
 
@@ -373,7 +372,6 @@ public class ProfileEditSellerActivity extends AppCompatActivity implements Loca
         return result;
 
     }
-
     private boolean checkCameraPermission() {
         boolean result = ContextCompat.checkSelfPermission(this,Manifest.permission.CAMERA)==(PackageManager.PERMISSION_GRANTED);
 
@@ -381,19 +379,18 @@ public class ProfileEditSellerActivity extends AppCompatActivity implements Loca
         return result && result1;
 
     }
-
     private boolean checkLocationPermission() {
         boolean result = ContextCompat.checkSelfPermission(this,Manifest.permission.ACCESS_FINE_LOCATION) ==(PackageManager.PERMISSION_GRANTED);
 
         return result;
-    }
 
+    }
     private void pickFromGallery() {
         Intent intent = new Intent(Intent.ACTION_PICK);
         intent.setType("image/*");
         startActivityForResult(intent, IMAGE_PICK_GALLERY_CODE);
-    }
 
+    }
     private void pickFromCamera() {
         ContentValues contentValues = new ContentValues();
         contentValues.put(MediaStore.Images.Media.TITLE,"Image Title");
@@ -406,7 +403,6 @@ public class ProfileEditSellerActivity extends AppCompatActivity implements Loca
         startActivityForResult(intent,IMAGE_PICK_CAMERA_CODE);
 
     }
-
     private void detectLocation() {
         Toast.makeText(this, "Please wait...", Toast.LENGTH_SHORT).show();
 
@@ -422,8 +418,8 @@ public class ProfileEditSellerActivity extends AppCompatActivity implements Loca
             return;
         }
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
-    }
 
+    }
     private void findAddress() {
         Geocoder geocoder;
         List<Address> addresses;
@@ -446,15 +442,14 @@ public class ProfileEditSellerActivity extends AppCompatActivity implements Loca
         }
 
     }
-
     @Override
     public void onLocationChanged(@NonNull Location location) {
         latitude = location.getLatitude();
         longitude = location.getLongitude();
 
         findAddress();
-    }
 
+    }
     @Override
     public void onStatusChanged(String provider, int status, Bundle extras){
 
@@ -468,7 +463,6 @@ public class ProfileEditSellerActivity extends AppCompatActivity implements Loca
         Toast.makeText(this,"Location is disabled...",Toast.LENGTH_SHORT).show();
 
     }
-
     @Override
     public void onRequestPermissionsResult(int requestCode,@NonNull String[] permissions,@NonNull int[] grantResults){
         switch (requestCode) {

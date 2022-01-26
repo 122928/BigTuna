@@ -90,6 +90,7 @@
                 android:padding="10dp"
                 android:textColor="@color/colorPrimary"
                 android:textColorHint="@color/colorGray"/>
+
             <EditText
                 android:id="@+id/companyNameEt"
                 android:layout_width="match_parent"
@@ -111,7 +112,6 @@
                 android:textColor="@color/colorPrimary"
                 android:textColorHint="@color/colorGray"/>
 
-
             <EditText
                 android:id="@+id/phoneEt"
                 android:layout_below="@+id/companyNameEt"
@@ -127,6 +127,7 @@
                 android:background="@drawable/shape_rect02"
                 android:textColor="@color/colorPrimary"
                 android:textColorHint="@color/colorGray"/>
+
             <EditText
                 android:id="@+id/deliveryFeeEt"
                 android:layout_below="@+id/phoneEt"
@@ -142,7 +143,6 @@
                 android:background="@drawable/shape_rect02"
                 android:textColor="@color/colorPrimary"
                 android:textColorHint="@color/colorGray"/>
-
 
             <LinearLayout
                 android:id="@+id/addressLl"
@@ -219,7 +219,6 @@
                 android:textColor="@color/colorPrimary"
                 android:textColorHint="@color/colorGray"/>
 
-
             <EditText
                 android:id="@+id/emailEt"
                 android:layout_below="@+id/addressEt"
@@ -256,6 +255,7 @@
                 android:padding="10dp"
                 android:textColor="@color/colorPrimary"
                 android:textColorHint="@color/colorGray"/>
+
             <EditText
                 android:id="@+id/cPasswordEt"
                 android:layout_width="match_parent"
@@ -277,7 +277,6 @@
                 android:textColor="@color/colorPrimary"
                 android:textColorHint="@color/colorGray"/>
 
-
             <Button
                 android:id="@+id/registerBtn"
                 android:text="Register"
@@ -292,6 +291,5 @@
         </RelativeLayout>
 
     </ScrollView>
-
 
 </RelativeLayout>
