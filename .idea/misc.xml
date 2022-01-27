@@ -3,6 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/NelsonLobor/AndroidStudioProjects/BigTuna/app/src/main/res/drawable/shape_rect03.xml" value="0.15" />
+        <entry key="..\:/Users/NelsonLobor/AndroidStudioProjects/BigTuna/app/src/main/res/drawable/shape_rect04.xml" value="0.1155" />
+        <entry key="..\:/Users/NelsonLobor/AndroidStudioProjects/BigTuna/app/src/main/res/drawable/shape_rect06.xml" value="0.1155" />
+        <entry key="..\:/Users/NelsonLobor/AndroidStudioProjects/BigTuna/app/src/main/res/layout/activity_main_seller.xml" value="0.1" />
+        <entry key="..\:/Users/NelsonLobor/AndroidStudioProjects/BigTuna/app/src/main/res/layout/row_product_seller.xml" value="0.25" />
         <entry key="..\:/Users/Sidney Kanyi/AndroidStudioProjects/BigTuna/app/src/main/res/drawable/shape_circle01.xml" value="0.1" />
         <entry key="..\:/Users/Sidney Kanyi/AndroidStudioProjects/BigTuna/app/src/main/res/drawable/shape_rect01.xml" value="0.1" />
         <entry key="..\:/Users/Sidney Kanyi/AndroidStudioProjects/BigTuna/app/src/main/res/drawable/shape_rect02.xml" value="0.1" />

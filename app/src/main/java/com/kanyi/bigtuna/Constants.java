@@ -11,5 +11,14 @@ public class Constants {
 
     };
 
+    public static final String[] productCategories1 = {
+            "All",
+            "Domestic(3000L-5000L)",
+            "Functions/Events",
+            "Dispensed Water",
+            "Other related products"
+
+    };
+
 
 }
