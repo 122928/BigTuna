@@ -125,11 +125,8 @@ public class RegisterUserActivity extends AppCompatActivity implements LocationL
                     //not allowed, request
                     requestLocationPermission();
 
-
                 }
-
             }
-
 
         });
         profileIv.setOnClickListener(new View.OnClickListener() {
@@ -333,7 +330,6 @@ public class RegisterUserActivity extends AppCompatActivity implements LocationL
         }
     }
 
-
     private void showImagePickDialog() {
         //options to display in dialog
         String[] options = {"Camera", "Gallery"};
@@ -373,7 +369,6 @@ public class RegisterUserActivity extends AppCompatActivity implements LocationL
                 })
                 .show();
 
-
     }
 
     private void pickFromGallery() {
@@ -394,9 +389,7 @@ public class RegisterUserActivity extends AppCompatActivity implements LocationL
         intent.putExtra(MediaStore.EXTRA_OUTPUT, image_uri);
         startActivityForResult(intent, IMAGE_PICK_CAMERA_CODE);
 
-
     }
-
 
     private void detectLocation() {
         Toast.makeText(this, "Please wait...", Toast.LENGTH_LONG).show();
@@ -478,9 +471,6 @@ public class RegisterUserActivity extends AppCompatActivity implements LocationL
 
     }
 
-
-
-
     @Override
     public void onLocationChanged(Location location) {
         //location detected
@@ -489,11 +479,7 @@ public class RegisterUserActivity extends AppCompatActivity implements LocationL
 
         findAddress();
 
-
-
     }
-
-
 
     @Override
     public void onStatusChanged(String provider, int status, Bundle extras) {
@@ -519,7 +505,6 @@ public class RegisterUserActivity extends AppCompatActivity implements LocationL
                     if (locationAccepted) {
                         //permission allowed
                         detectLocation();
-
 
                     } else {
                         //permission denied
@@ -553,7 +538,6 @@ public class RegisterUserActivity extends AppCompatActivity implements LocationL
                     if (storageAccepted) {
                         //permission allowed
                         pickFromGallery();
-
 
                     } else {
                         //permission denied

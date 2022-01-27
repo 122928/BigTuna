@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,7 +26,7 @@ import java.util.HashMap;
 public class MainSellerActivity extends AppCompatActivity {
 
     private TextView nameTv;
-    private ImageButton logoutBtn;
+    private ImageButton logoutBtn,editProfileBtn;
 
     private FirebaseAuth firebaseAuth;
     private ProgressDialog progressDialog;
@@ -38,7 +37,8 @@ public class MainSellerActivity extends AppCompatActivity {
         setContentView ( R.layout.activity_main_seller );
 
         nameTv = findViewById ( R.id.nameTv );
-        logoutBtn = findViewById ( R.id.logoutBtn );
+        logoutBtn = findViewById ( R.id.logoutBtn);
+        editProfileBtn = findViewById ( R.id.editProfileBtn);
 
         firebaseAuth = FirebaseAuth.getInstance ();
         progressDialog = new ProgressDialog ( this );
@@ -55,6 +55,15 @@ public class MainSellerActivity extends AppCompatActivity {
                 makeMeOffline();
             }
         } );
+
+        editProfileBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                startActivity(new Intent(MainSellerActivity.this, ProfileEditSellerActivity.class));
+
+            }
+        });
     }
 
     private void makeMeOffline() {
@@ -105,7 +114,7 @@ public class MainSellerActivity extends AppCompatActivity {
                             String name = ""+ds.child ( "name" ).getValue ();
                             String accountType = ""+ds.child ( "accountType" ).getValue ();
 
-                            nameTv.setText ( name+"("+accountType+")" );
+                            nameTv.setText (name);
                         }
                     }
 
