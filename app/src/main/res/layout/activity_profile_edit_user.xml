@@ -25,7 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:text="Edit Seller"
+            android:text="Edit User"
             android:textStyle="bold"
             android:textSize="20sp"
             android:textColor="@color/colorWhite"/>
@@ -63,6 +63,8 @@
         android:drawableStart="@drawable/ic_person_gray"
         android:drawablePadding="5dp"
         android:hint="Full Name"
+        android:textColorHint="@color/colorGray"
+        android:textColor="@color/colorPrimary"
         android:inputType="textPersonName|textCapWords"
         android:padding="10dp"
         android:drawableLeft="@drawable/ic_person_gray" />
@@ -77,6 +79,8 @@
         android:drawableStart="@drawable/ic_person_gray"
         android:drawablePadding="5dp"
         android:hint="Phone"
+        android:textColorHint="@color/colorGray"
+        android:textColor="@color/colorPrimary"
         android:inputType="phone"
         android:padding="10dp"
         android:drawableLeft="@drawable/ic_person_gray" />
@@ -98,6 +102,8 @@
             android:drawableStart="@drawable/ic_location_gray"
             android:drawablePadding="5dp"
             android:hint="Country"
+            android:textColorHint="@color/colorGray"
+            android:textColor="@color/colorPrimary"
             android:inputType="textPostalAddress"
             android:padding="10dp"
             android:drawableLeft="@drawable/ic_location_gray" />
@@ -112,6 +118,8 @@
             android:drawableStart="@drawable/ic_location_gray"
             android:drawablePadding="5dp"
             android:hint="State"
+            android:textColorHint="@color/colorGray"
+            android:textColor="@color/colorPrimary"
             android:inputType="textPostalAddress"
             android:padding="10dp"
             android:drawableLeft="@drawable/ic_location_gray" />
@@ -126,6 +134,8 @@
             android:drawableStart="@drawable/ic_location_gray"
             android:drawablePadding="5dp"
             android:hint="City"
+            android:textColorHint="@color/colorGray"
+            android:textColor="@color/colorPrimary"
             android:inputType="textPostalAddress"
             android:padding="10dp"
             android:drawableLeft="@drawable/ic_location_gray" />
@@ -148,6 +158,8 @@
         android:drawableLeft="@drawable/ic_person_gray"
         android:drawablePadding="5dp"
         android:hint="Address"
+        android:textColorHint="@color/colorGray"
+        android:textColor="@color/colorPrimary"
         android:inputType="textPostalAddress|textMultiLine"
         android:padding="10dp" />
 

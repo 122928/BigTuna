@@ -23,7 +23,13 @@
             android:name=".MainUserActivity"
             android:exported="false" />
         <activity
+            android:name=".ProfileEditUserActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainSellerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ProfileEditSellerActivity"
             android:exported="false" />
         <activity
             android:name=".ForgotPasswordActivity"
@@ -40,6 +46,7 @@
         <activity
             android:name=".SplashActivity"
             android:exported="true">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
