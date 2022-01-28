@@ -137,6 +137,7 @@
             android:drawablePadding="10dp"
             android:padding="10dp"
             android:hint="Search"
+            android:textColor="@color/colorPrimary"
             android:textColorHint="@color/colorGray"/>
 
         <!--filter-->
