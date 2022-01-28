@@ -21,7 +21,6 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Looper;
 import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Patterns;
@@ -69,7 +68,7 @@ public class RegisterSellerActivity extends AppCompatActivity implements Locatio
     //image picked uri
     private Uri image_uri;
 
-    private double latitude, longitude;
+    private double latitude=0.0, longitude=0.0;
 
     private LocationManager locationManager;
 
@@ -96,10 +95,11 @@ public class RegisterSellerActivity extends AppCompatActivity implements Locatio
         addressEt = findViewById ( R.id.addressEt );
         emailEt = findViewById ( R.id.emailEt );
         passwordEt = findViewById ( R.id.passwordEt );
+        cPasswordEt = findViewById(R.id.cPasswordEt);
         registerBtn = findViewById ( R.id.registerBtn );
 
         //init permissions array
-        locationPermissions = new String[]{Manifest.permission.ACCESS_FINE_LOCATION};
+        locationPermissions = new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
         cameraPermissions = new String[]{Manifest.permission.CAMERA , Manifest.permission.WRITE_EXTERNAL_STORAGE};
         storagePermissions = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
 

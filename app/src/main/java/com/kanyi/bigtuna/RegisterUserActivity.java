@@ -54,9 +54,6 @@ public class RegisterUserActivity extends AppCompatActivity implements LocationL
     private Button registerBtn;
     private TextView registerSellerTv;
 
-    private FirebaseAuth firebaseAuth;
-    private ProgressDialog progressDialog;
-
     //permission constants
     private static final int LOCATION_REQUEST_CODE = 100;
     private static final int CAMERA_REQUEST_CODE = 200;
@@ -75,6 +72,9 @@ public class RegisterUserActivity extends AppCompatActivity implements LocationL
     private double latitude=0.0, longitude=0.0;
 
     private LocationManager locationManager;
+
+    private FirebaseAuth firebaseAuth;
+    private ProgressDialog progressDialog;
 
 
     @Override
@@ -102,6 +102,8 @@ public class RegisterUserActivity extends AppCompatActivity implements LocationL
         progressDialog = new ProgressDialog ( this );
         progressDialog.setTitle ( "Please Wait..." );
         progressDialog.setCanceledOnTouchOutside ( false );
+
+
          // permissions
         locationPermissions = new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
         cameraPermissions = new String[]{Manifest.permission.CAMERA , Manifest.permission.WRITE_EXTERNAL_STORAGE};
