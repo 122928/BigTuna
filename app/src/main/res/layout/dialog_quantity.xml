@@ -87,7 +87,7 @@
             android:textColor="@color/colorBlack"/>
 
         <TextView
-            android:id="@+id/finalTv"
+            android:id="@+id/finalPriceTv"
             android:layout_width="wrap_content"
             android:padding="10dp"
             android:layout_alignParentEnd="true"

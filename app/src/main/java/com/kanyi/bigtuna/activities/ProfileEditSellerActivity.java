@@ -54,8 +54,8 @@ public class ProfileEditSellerActivity extends AppCompatActivity implements Loca
 
     private ImageButton backBtn, gpsBtn;
     private ImageView profileIv;
-    private EditText nameEt, shopNameEt, deliveryFeeEt, phoneEt, countryEt, stateEt, cityEt, addressEt;
-    private SwitchCompat shopOpenSwitch;
+    private EditText nameEt, companyNameEt, deliveryFeeEt, phoneEt, countryEt, stateEt, cityEt, addressEt;
+    private SwitchCompat companyOpenSwitch;
     private Button updateBtn;
 
     private static final int LOCATION_REQUEST_CODE = 100;
@@ -87,14 +87,14 @@ public class ProfileEditSellerActivity extends AppCompatActivity implements Loca
         gpsBtn = findViewById(R.id.gpsBtn);
         profileIv = findViewById(R.id.profileIv);
         nameEt = findViewById(R.id.nameEt);
-        shopNameEt = findViewById(R.id.shopNameEt);
+        companyNameEt = findViewById(R.id.companyNameEt);
         phoneEt = findViewById(R.id.phoneEt);
         deliveryFeeEt = findViewById(R.id.deliveryFeeEt);
         countryEt = findViewById(R.id.countryEt);
         stateEt = findViewById(R.id.stateEt);
         cityEt = findViewById(R.id.cityEt);
         addressEt = findViewById(R.id.addressEt);
-        shopOpenSwitch = findViewById(R.id.shopOpenSwitch);
+        companyOpenSwitch = findViewById(R.id.companyOpenSwitch);
         updateBtn = findViewById(R.id.updateBtn);
 
         locationPermission = new String[]{Manifest.permission.ACCESS_FINE_LOCATION};
@@ -146,19 +146,19 @@ public class ProfileEditSellerActivity extends AppCompatActivity implements Loca
         });
 
     }
-    private String name, shopName, phone, deliveryFee, country, state, city, address;
-    private boolean shopOpen;
+    private String name, companyName, phone, deliveryFee, country, state, city, address;
+    private boolean companyOpen;
 
     private void inputData() {
         name = nameEt.getText().toString().trim();
-        shopName = shopNameEt.getText().toString().trim();
+        companyName = companyNameEt.getText().toString().trim();
         phone = phoneEt.getText().toString().trim();
         deliveryFee = deliveryFeeEt.getText().toString().trim();
         country = countryEt.getText().toString().trim();
         state = stateEt.getText().toString().trim();
         city = cityEt.getText().toString().trim();
         address = addressEt.getText().toString().trim();
-        shopOpen = shopOpenSwitch.isChecked();
+        companyOpen = companyOpenSwitch.isChecked();
 
         updateProfile();
     }
@@ -170,7 +170,7 @@ public class ProfileEditSellerActivity extends AppCompatActivity implements Loca
         if(image_uri == null){
             HashMap<String, Object> hashMap = new HashMap<>();
             hashMap.put("name",""+name);
-            hashMap.put("shopName",""+shopName);
+            hashMap.put("companyName",""+companyName);
             hashMap.put("phone",""+phone);
             hashMap.put("deliveryFee",""+deliveryFee);
             hashMap.put("country",""+country);
@@ -179,7 +179,7 @@ public class ProfileEditSellerActivity extends AppCompatActivity implements Loca
             hashMap.put("address",""+address);
             hashMap.put("latitude",""+latitude);
             hashMap.put("longitude",""+longitude);
-            hashMap.put("shopOpen",""+shopOpen);
+            hashMap.put("companyOpen",""+companyOpen);
 
             DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
             ref.child(firebaseAuth.getUid()).updateChildren(hashMap)
@@ -216,7 +216,7 @@ public class ProfileEditSellerActivity extends AppCompatActivity implements Loca
 
                         HashMap<String, Object> hashMap = new HashMap<>();
                         hashMap.put("name",""+name);
-                        hashMap.put("shopName",""+shopName);
+                        hashMap.put("companyName",""+companyName);
                         hashMap.put("phone",""+phone);
                         hashMap.put("deliveryFee",""+deliveryFee);
                         hashMap.put("country",""+country);
@@ -225,7 +225,7 @@ public class ProfileEditSellerActivity extends AppCompatActivity implements Loca
                         hashMap.put("address",""+address);
                         hashMap.put("latitude",""+latitude);
                         hashMap.put("longitude",""+longitude);
-                        hashMap.put("shopOpen",""+shopOpen);
+                        hashMap.put("companyOpen",""+companyOpen);
                         hashMap.put("profileImage",""+downloadImageUri);
 
                         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
@@ -292,8 +292,8 @@ public class ProfileEditSellerActivity extends AppCompatActivity implements Loca
                             String phone = "" + ds.child("phone").getValue();
                             String profileImage = "" + ds.child("profileImage").getValue();
                             String timestamp = "" + ds.child("timestamp").getValue();
-                            String shopName = "" + ds.child("shopName ").getValue();
-                            String shopOpen = "" + ds.child("shopOpen ").getValue();
+                            String companyName = "" + ds.child("companyName ").getValue();
+                            String companyOpen = "" + ds.child("companyOpen ").getValue();
                             String uid = "" + ds.child("uid ").getValue();
 
                             nameEt.setText(name);
@@ -302,14 +302,14 @@ public class ProfileEditSellerActivity extends AppCompatActivity implements Loca
                             stateEt.setText(state);
                             cityEt.setText(city);
                             addressEt.setText(address);
-                            shopNameEt.setText(shopName);
+                            companyNameEt.setText(companyName);
                             deliveryFeeEt.setText(deliveryFee);
 
-                            if(shopOpen.equals("true")){
-                                shopOpenSwitch.setChecked(true);
+                            if(companyOpen.equals("true")){
+                                companyOpenSwitch.setChecked(true);
                             }
                             else{
-                                shopOpenSwitch.setChecked(false);
+                                companyOpenSwitch.setChecked(false);
 
                             }
                             try {

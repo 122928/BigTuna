@@ -1,6 +1,7 @@
 package com.kanyi.bigtuna.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.kanyi.bigtuna.R;
+import com.kanyi.bigtuna.activities.ShopDetailsActivity;
 import com.kanyi.bigtuna.models.ModelShop;
 import com.squareup.picasso.Picasso;
 
@@ -50,14 +52,14 @@ public class AdapterShop extends RecyclerView.Adapter<AdapterShop.HolderShop>{
         String online = modelShop.getOnline();
         String name = modelShop.getName();
         String phone = modelShop.getPhone();
-        String uid = modelShop.getUid();
+        final String uid = modelShop.getUid();
         String timestamp = modelShop.getTimestamp();
         String companyOpen = modelShop.getCompanyOpen();
         String state = modelShop.getState();
         String profileImage = modelShop.getProfileImage();
         String companyName = modelShop.getCompanyName();
 
-        holder.shopNameTv.setText(companyName);
+        holder.companyNameTv.setText(companyName);
         holder.phoneTv.setText(phone);
         holder.addressTv.setText(address);
         if (online.equals("true")){
@@ -84,6 +86,17 @@ public class AdapterShop extends RecyclerView.Adapter<AdapterShop.HolderShop>{
 
         }
 
+        // handle click listener for shop details
+
+        holder.itemView.setOnClickListener ( new View.OnClickListener ( ) {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent ( context, ShopDetailsActivity.class );
+                intent.putExtra ( "shopUid",uid );
+                context.startActivity ( intent );
+            }
+        } );
+
     }
 
     @Override
@@ -94,7 +107,7 @@ public class AdapterShop extends RecyclerView.Adapter<AdapterShop.HolderShop>{
     class HolderShop extends RecyclerView.ViewHolder{
 
         private ImageView shopIv,onlineIv;
-        private TextView shopClosedTv, shopNameTv, phoneTv,addressTv;
+        private TextView shopClosedTv, companyNameTv, phoneTv,addressTv;
         private RatingBar ratingBar;
 
         public HolderShop(@NonNull View itemView) {
@@ -103,7 +116,7 @@ public class AdapterShop extends RecyclerView.Adapter<AdapterShop.HolderShop>{
             shopIv = itemView.findViewById(R.id.shopIv);
             onlineIv = itemView.findViewById(R.id.onlineIv);
             shopClosedTv = itemView.findViewById(R.id.shopClosedTv);
-            shopNameTv = itemView.findViewById(R.id.shopNameTv);
+            companyNameTv = itemView.findViewById(R.id.companyNameTv);
             phoneTv = itemView.findViewById(R.id.phoneTv);
             addressTv = itemView.findViewById(R.id.addressTv);
             ratingBar = itemView.findViewById(R.id.ratingBar);

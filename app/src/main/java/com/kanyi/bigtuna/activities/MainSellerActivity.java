@@ -39,7 +39,7 @@ import java.util.HashMap;
 
 public class MainSellerActivity extends AppCompatActivity {
 
-    private TextView nameTv, shopNameTv, emailTv, tabProductsTv, tabOrdersTv,filteredProductsTv;
+    private TextView nameTv, companyNameTv, emailTv, tabProductsTv, tabOrdersTv,filteredProductsTv;
     private EditText searchProductEt;
     private ImageButton logoutBtn,editProfileBtn, addProductBtn,filterProductsBtn ;
     private ImageView profileIv;
@@ -58,7 +58,7 @@ public class MainSellerActivity extends AppCompatActivity {
         setContentView ( R.layout.activity_main_seller );
 
         nameTv = findViewById ( R.id.nameTv );
-        shopNameTv = findViewById ( R.id.shopNameTv);
+        companyNameTv = findViewById ( R.id.companyNameTv);
         emailTv = findViewById ( R.id.emailTv );
         tabProductsTv = findViewById ( R.id.tabProductsTv );
         tabOrdersTv = findViewById ( R.id.tabOrdersTv );
@@ -307,12 +307,12 @@ public class MainSellerActivity extends AppCompatActivity {
                             String name = ""+ds.child ( "name" ).getValue ();
                             String accountType = ""+ds.child ( "accountType" ).getValue ();
                             String email = ""+ds.child ( "email" ).getValue ();
-                            String shopName = ""+ds.child ( "shopName" ).getValue ();
+                            String companyName = ""+ds.child ( "companyName" ).getValue ();
                             String profileImage = ""+ds.child ( "profileImage" ).getValue ();
 
                             //set data to UI
                             nameTv.setText (name);
-                            shopNameTv.setText(shopName);
+                            companyNameTv.setText(companyName);
                             emailTv.setText(email);
                             try {
                                 Picasso.get().load(profileImage).placeholder(R.drawable.ic_store_gray).into(profileIv);
