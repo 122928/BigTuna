@@ -1,4 +1,4 @@
-package com.kanyi.bigtuna;
+package com.kanyi.bigtuna.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,6 +16,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.kanyi.bigtuna.R;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -55,13 +56,12 @@ public class SplashActivity extends AppCompatActivity {
         // if user is buyer,start user main screen
 
         DatabaseReference ref = FirebaseDatabase.getInstance ().getReference ("Users");
-        ref.orderByChild ( "uid" ).equalTo ( firebaseAuth.getUid () )
+        ref.child(firebaseAuth.getUid ())
                 .addListenerForSingleValueEvent ( new ValueEventListener ( ) {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        for (DataSnapshot ds: dataSnapshot.getChildren ()){
-                            String accountType = ""+ds.child ( "accountType" ).getValue ();
-                            if(accountType.equals ( "seller" )) {
+                            String accountType = ""+dataSnapshot.child ( "accountType" ).getValue ();
+                            if (accountType.equals ( "seller" )) {
                                 //user is seller
                                 startActivity ( new Intent ( SplashActivity.this, MainSellerActivity.class ) );
                                 finish ();
@@ -72,7 +72,6 @@ public class SplashActivity extends AppCompatActivity {
                                 finish ();
                             }
                         }
-                    }
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {

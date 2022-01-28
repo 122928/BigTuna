@@ -20,7 +20,7 @@
             android:name=".AddProductActivity"
             android:exported="false" />
         <activity
-            android:name=".EditProductActivity"
+            android:name=".activities.EditProductActivity"
             android:exported="false" />
         <activity
             android:name=".MainUserActivity"

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorWhite"
-    tools:context=".LoginActivity">
+    tools:context=".activities.LoginActivity">
 
     <!--Toolbar-->
     <RelativeLayout
@@ -83,13 +83,13 @@
 
     <Button
         android:id="@+id/loginBtn"
-        android:text="Login"
         style="@style/Widget.AppCompat.Button.Colored"
-        android:minWidth="120dp"
-        android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/forgotTv"/>
+        android:layout_below="@id/forgotTv"
+        android:layout_centerHorizontal="true"
+        android:minWidth="120dp"
+        android:text="Login" />
 
     <TextView
         android:id="@+id/noAccountTv"
