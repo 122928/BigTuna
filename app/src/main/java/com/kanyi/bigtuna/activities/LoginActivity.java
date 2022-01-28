@@ -1,4 +1,4 @@
-package com.kanyi.bigtuna;
+package com.kanyi.bigtuna.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,6 +23,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.kanyi.bigtuna.R;
 
 import java.util.HashMap;
 

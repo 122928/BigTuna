@@ -1,4 +1,4 @@
-package com.kanyi.bigtuna;
+package com.kanyi.bigtuna.adapters;
 
 import android.content.Context;
 import android.graphics.Paint;
@@ -13,6 +13,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.kanyi.bigtuna.FilterProduct;
+import com.kanyi.bigtuna.R;
+import com.kanyi.bigtuna.models.ModelProduct;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;

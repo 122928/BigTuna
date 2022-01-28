@@ -1,4 +1,4 @@
-package com.kanyi.bigtuna;
+package com.kanyi.bigtuna.activities;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,7 +17,6 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.provider.Telephony;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -37,8 +36,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.kanyi.bigtuna.Constants;
+import com.kanyi.bigtuna.R;
 
-import java.security.PrivilegedAction;
 import java.util.HashMap;
 
 public class AddProductActivity extends AppCompatActivity {

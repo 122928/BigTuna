@@ -1,4 +1,4 @@
-package com.kanyi.bigtuna;
+package com.kanyi.bigtuna.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.kanyi.bigtuna.R;
 
 public class ForgotPasswordActivity extends AppCompatActivity {
 

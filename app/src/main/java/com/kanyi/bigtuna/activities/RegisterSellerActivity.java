@@ -1,4 +1,4 @@
-package com.kanyi.bigtuna;
+package com.kanyi.bigtuna.activities;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -29,7 +29,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -42,17 +41,18 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.kanyi.bigtuna.R;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
-public class RegisterUserActivity extends AppCompatActivity implements LocationListener {
+public class RegisterSellerActivity extends AppCompatActivity implements LocationListener {
+
     private ImageButton backBtn, gpsBtn;
     private ImageView profileIv;
-    private EditText nameEt, phoneEt, countryEt, stateEt, cityEt, addressEt, emailEt, passwordEt, cPasswordEt;
+    private EditText nameEt, companyNameEt, phoneEt, deliveryFeeEt, countryEt, stateEt, cityEt, addressEt, emailEt, passwordEt, cPasswordEt;
     private Button registerBtn;
-    private TextView registerSellerTv;
 
     //permission constants
     private static final int LOCATION_REQUEST_CODE = 100;
@@ -73,95 +73,91 @@ public class RegisterUserActivity extends AppCompatActivity implements LocationL
 
     private LocationManager locationManager;
 
+
     private FirebaseAuth firebaseAuth;
     private ProgressDialog progressDialog;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register_user);
+        super.onCreate ( savedInstanceState );
+        setContentView ( R.layout.activity_register_seller );
 
-        //init UI views
-        backBtn = findViewById(R.id.backBtn);
-        gpsBtn = findViewById(R.id.gpsBtn);
-        profileIv = findViewById(R.id.profileIv);
-        nameEt = findViewById(R.id.nameEt);
-        phoneEt = findViewById(R.id.phoneEt);
-        countryEt = findViewById(R.id.countryEt);
-        stateEt = findViewById(R.id.stateEt);
-        cityEt = findViewById(R.id.cityEt);
-        addressEt = findViewById(R.id.addressEt);
-        emailEt = findViewById(R.id.emailEt);
-        passwordEt = findViewById(R.id.passwordEt);
+        backBtn = findViewById ( R.id.backBtn );
+        gpsBtn = findViewById ( R.id.gpsBtn );
+        profileIv = findViewById ( R.id.profileIv );
+        nameEt = findViewById ( R.id.nameEt );
+        companyNameEt = findViewById ( R.id.companyNameEt );
+        phoneEt = findViewById ( R.id.phoneEt );
+        deliveryFeeEt = findViewById ( R.id.deliveryFeeEt );
+        countryEt = findViewById ( R.id.countryEt );
+        stateEt = findViewById ( R.id.stateEt );
+        cityEt = findViewById ( R.id.cityEt );
+        addressEt = findViewById ( R.id.addressEt );
+        emailEt = findViewById ( R.id.emailEt );
+        passwordEt = findViewById ( R.id.passwordEt );
         cPasswordEt = findViewById(R.id.cPasswordEt);
-        registerBtn = findViewById(R.id.registerBtn);
-        registerSellerTv = findViewById(R.id.registerSellerTv);
+        registerBtn = findViewById ( R.id.registerBtn );
 
-        firebaseAuth = FirebaseAuth.getInstance ();
+        //init permissions array
+        locationPermissions = new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
+        cameraPermissions = new String[]{Manifest.permission.CAMERA , Manifest.permission.WRITE_EXTERNAL_STORAGE};
+        storagePermissions = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
+
+        firebaseAuth = FirebaseAuth.getInstance ( );
         progressDialog = new ProgressDialog ( this );
         progressDialog.setTitle ( "Please Wait..." );
         progressDialog.setCanceledOnTouchOutside ( false );
 
 
-         // permissions
-        locationPermissions = new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
-        cameraPermissions = new String[]{Manifest.permission.CAMERA , Manifest.permission.WRITE_EXTERNAL_STORAGE};
-        storagePermissions = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
-
-        backBtn.setOnClickListener(new View.OnClickListener() {
+        backBtn.setOnClickListener ( new View.OnClickListener ( ) {
             @Override
             public void onClick(View v) {
-                onBackPressed();
+                onBackPressed ( );
             }
-        });
-        gpsBtn.setOnClickListener(new View.OnClickListener() {
+        } );
+        gpsBtn.setOnClickListener ( new View.OnClickListener ( ) {
             @Override
             public void onClick(View v) {
                 //detect current location
-                if (checkLocationPermission()) {
+                if (checkLocationPermission ( )) {
                     //already allowed
-                    detectLocation();
+                    detectLocation ( );
 
                 } else {
                     //not allowed, request
-                    requestLocationPermission();
+                    requestLocationPermission ( );
+
 
                 }
-            }
 
-        });
-        profileIv.setOnClickListener(new View.OnClickListener() {
+            }
+        } );
+        profileIv.setOnClickListener ( new View.OnClickListener ( ) {
             @Override
             public void onClick(View v) {
                 //pick image
-                showImagePickDialog();
+                showImagePickDialog ( );
 
             }
-        });
-        registerBtn.setOnClickListener(new View.OnClickListener() {
+        } );
+        registerBtn.setOnClickListener ( new View.OnClickListener ( ) {
             @Override
             public void onClick(View v) {
                 //register user
-                inputData ();
+                inputData ( );
             }
-        });
-        registerSellerTv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //open register seller activity
-                startActivity(new Intent(RegisterUserActivity.this, RegisterSellerActivity.class ));
-
-            }
-        });
+        } );
     }
 
-    private String fullName,phoneNumber, country, state, city, address, email, password, confirmPassword;
+    private String fullName, companyName, phoneNumber, deliveryFee, country, state, city, address, email, password, confirmPassword;
 
     private void inputData() {
         //input data
         fullName = nameEt.getText ( ).toString ( ).trim ( );
+        companyName = companyNameEt.getText ( ).toString ( ).trim ( );
         phoneNumber = phoneEt.getText ( ).toString ( ).trim ( );
+        deliveryFee = deliveryFeeEt.getText ( ).toString ( ).trim ( );
         country = countryEt.getText ( ).toString ( ).trim ( );
         state = stateEt.getText ( ).toString ( ).trim ( );
         city = cityEt.getText ( ).toString ( ).trim ( );
@@ -175,8 +171,15 @@ public class RegisterUserActivity extends AppCompatActivity implements LocationL
         if (TextUtils.isEmpty ( fullName )) {
             Toast.makeText ( this , "Enter name..." , Toast.LENGTH_SHORT ).show ( );
         }
+        if (TextUtils.isEmpty ( companyName )) {
+            Toast.makeText ( this , " Enter company name..." , Toast.LENGTH_SHORT ).show ( );
+        }
+
         if (TextUtils.isEmpty ( phoneNumber )) {
             Toast.makeText ( this , "Enter phone number..." , Toast.LENGTH_SHORT ).show ( );
+        }
+        if (TextUtils.isEmpty ( deliveryFee )) {
+            Toast.makeText ( this , "Enter delivery fee..." , Toast.LENGTH_SHORT ).show ( );
         }
         if (latitude == 0.0 || longitude == 0.0) {
             Toast.makeText ( this , "Please click GPS button to detect location..." , Toast.LENGTH_SHORT ).show ( );
@@ -211,7 +214,7 @@ public class RegisterUserActivity extends AppCompatActivity implements LocationL
             public void onFailure(@NonNull Exception e) {
                 // failed creating account
                 progressDialog.dismiss ( );
-                Toast.makeText ( RegisterUserActivity.this , "" + e.getMessage ( ) , Toast.LENGTH_SHORT ).show ( );
+                Toast.makeText ( RegisterSellerActivity.this , "" + e.getMessage ( ) , Toast.LENGTH_SHORT ).show ( );
             }
         } );
     }
@@ -229,7 +232,9 @@ public class RegisterUserActivity extends AppCompatActivity implements LocationL
             hashMap.put ( "uid" , "" + firebaseAuth.getUid ( ) );
             hashMap.put ( "email" , "" + email );
             hashMap.put ( "name" , "" + fullName );
+            hashMap.put ( "companyName" , "" + companyName );
             hashMap.put ( "phone" , "" + phoneNumber );
+            hashMap.put ( "deliveryFee" , "" + deliveryFee );
             hashMap.put ( "country" , "" + country );
             hashMap.put ( "city" , "" + city );
             hashMap.put ( "state" , "" + state );
@@ -237,8 +242,9 @@ public class RegisterUserActivity extends AppCompatActivity implements LocationL
             hashMap.put ( "latitude" , "" + latitude );
             hashMap.put ( "longitude" , "" + longitude );
             hashMap.put ( "timestamp" , "" + timestamp );
-            hashMap.put ( "accountType" , "User" );
+            hashMap.put ( "accountType" , "Seller" );
             hashMap.put ( "online" , "true" );
+            hashMap.put ( "companyOpen" , "true" );
             hashMap.put ( "profileImage" , "" );
 
             // save to db
@@ -249,7 +255,7 @@ public class RegisterUserActivity extends AppCompatActivity implements LocationL
                 public void onSuccess(Void unused) {
                     // db updated
                     progressDialog.dismiss ();
-                    startActivity ( new Intent ( RegisterUserActivity.this, MainUserActivity.class ) );
+                    startActivity ( new Intent ( RegisterSellerActivity.this, MainSellerActivity.class ) );
                     finish();
                 }
             } )
@@ -258,7 +264,7 @@ public class RegisterUserActivity extends AppCompatActivity implements LocationL
                         public void onFailure(@NonNull Exception e) {
                             // failed updating db
                             progressDialog.dismiss ();
-                            startActivity ( new Intent ( RegisterUserActivity.this, MainUserActivity.class ) );
+                            startActivity ( new Intent ( RegisterSellerActivity.this, MainSellerActivity.class ) );
                             finish();
                         }
                     } );
@@ -285,7 +291,9 @@ public class RegisterUserActivity extends AppCompatActivity implements LocationL
                                 hashMap.put ( "uid" , "" + firebaseAuth.getUid ( ) );
                                 hashMap.put ( "email" , "" + email );
                                 hashMap.put ( "name" , "" + fullName );
+                                hashMap.put ( "companyName" , "" + companyName );
                                 hashMap.put ( "phone" , "" + phoneNumber );
+                                hashMap.put ( "deliveryFee" , "" + deliveryFee );
                                 hashMap.put ( "country" , "" + country );
                                 hashMap.put ( "city" , "" + city );
                                 hashMap.put ( "state" , "" + state );
@@ -293,8 +301,9 @@ public class RegisterUserActivity extends AppCompatActivity implements LocationL
                                 hashMap.put ( "latitude" , "" + latitude );
                                 hashMap.put ( "longitude" , "" + longitude );
                                 hashMap.put ( "timestamp" , "" + timestamp );
-                                hashMap.put ( "accountType" , "User" );
+                                hashMap.put ( "accountType" , "Seller" );
                                 hashMap.put ( "online" , "true" );
+                                hashMap.put ( "companyOpen" , "true" );
                                 hashMap.put ( "profileImage" , ""+downloadImageUri );
 
                                 // save to db
@@ -305,7 +314,7 @@ public class RegisterUserActivity extends AppCompatActivity implements LocationL
                                     public void onSuccess(Void unused) {
                                         // db updated
                                         progressDialog.dismiss ();
-                                        startActivity ( new Intent ( RegisterUserActivity.this, MainUserActivity.class ) );
+                                        startActivity ( new Intent ( RegisterSellerActivity.this, MainSellerActivity.class ) );
                                         finish();
                                     }
                                 } )
@@ -314,7 +323,7 @@ public class RegisterUserActivity extends AppCompatActivity implements LocationL
                                             public void onFailure(@NonNull Exception e) {
                                                 // failed updating db
                                                 progressDialog.dismiss ();
-                                                startActivity ( new Intent ( RegisterUserActivity.this, MainUserActivity.class ) );
+                                                startActivity ( new Intent ( RegisterSellerActivity.this, MainSellerActivity.class ) );
                                                 finish();
                                             }
                                         } );
@@ -326,7 +335,7 @@ public class RegisterUserActivity extends AppCompatActivity implements LocationL
                         @Override
                         public void onFailure(@NonNull Exception e) {
                             progressDialog.dismiss ();
-                            Toast.makeText ( RegisterUserActivity.this,""+e.getMessage (),Toast.LENGTH_SHORT ).show ();
+                            Toast.makeText ( RegisterSellerActivity.this,""+e.getMessage (),Toast.LENGTH_SHORT ).show ();
                         }
                     } );
         }
@@ -334,70 +343,73 @@ public class RegisterUserActivity extends AppCompatActivity implements LocationL
 
     private void showImagePickDialog() {
         //options to display in dialog
-        String[] options = {"Camera", "Gallery"};
+        String[] options = {"Camera" , "Gallery"};
         //dialog
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Pick Image")
-                .setItems(options, new DialogInterface.OnClickListener() {
+        AlertDialog.Builder builder = new AlertDialog.Builder ( this );
+        builder.setTitle ( "Pick Image" )
+                .setItems ( options , new DialogInterface.OnClickListener ( ) {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
+                    public void onClick(DialogInterface dialog , int which) {
                         if (which == 0) {
                             //camera clicked
-                            if (checkCameraPermission()) {
+                            if (checkCameraPermission ( )) {
                                 //camera permissions allowed
-                                pickFromCamera();
+                                pickFromCamera ( );
 
                             } else {
                                 //not allowed, request
-                                requestCameraPermission();
+                                requestCameraPermission ( );
 
                             }
 
                         } else {
                             //gallery clicked
-                            if (checkStoragePermission()) {
+                            if (checkStoragePermission ( )) {
                                 //storage permissions allowed
-                                pickFromGallery();
+                                pickFromGallery ( );
 
                             } else {
                                 //not allowed, request
-                                requestStoragePermission();
+                                requestStoragePermission ( );
 
                             }
 
                         }
 
                     }
-                })
-                .show();
+                } )
+                .show ( );
+
 
     }
 
     private void pickFromGallery() {
-        Intent intent = new Intent(Intent.ACTION_PICK);
-        intent.setType("image/*");
-        startActivityForResult(intent, IMAGE_PICK_GALLERY_CODE);
+        Intent intent = new Intent ( Intent.ACTION_PICK );
+        intent.setType ( "image/*" );
+        startActivityForResult ( intent , IMAGE_PICK_GALLERY_CODE );
 
     }
 
     private void pickFromCamera() {
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(MediaStore.Images.Media.TITLE, "Temp_Image Title");
-        contentValues.put(MediaStore.Images.Media.DESCRIPTION, "Temp_Image Description");
+        ContentValues contentValues = new ContentValues ( );
+        contentValues.put ( MediaStore.Images.Media.TITLE , "Temp_Image Title" );
+        contentValues.put ( MediaStore.Images.Media.DESCRIPTION , "Temp_Image Description" );
 
-        image_uri = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues);
+        image_uri = getContentResolver ( ).insert ( MediaStore.Images.Media.EXTERNAL_CONTENT_URI , contentValues );
 
-        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, image_uri);
-        startActivityForResult(intent, IMAGE_PICK_CAMERA_CODE);
+        Intent intent = new Intent ( MediaStore.ACTION_IMAGE_CAPTURE );
+        intent.putExtra ( MediaStore.EXTRA_OUTPUT , image_uri );
+        startActivityForResult ( intent , IMAGE_PICK_CAMERA_CODE );
+
 
     }
 
-    private void detectLocation() {
-        Toast.makeText(this, "Please wait...", Toast.LENGTH_LONG).show();
 
-        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+    private void detectLocation() {
+        Toast.makeText ( this , "Please wait..." , Toast.LENGTH_LONG ).show ( );
+
+        locationManager = (LocationManager) getSystemService ( Context.LOCATION_SERVICE );
+        if (ActivityCompat.checkSelfPermission ( this , Manifest.permission.ACCESS_FINE_LOCATION ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission ( this , Manifest.permission.ACCESS_COARSE_LOCATION ) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
             // here to request the missing permissions, and then overriding
@@ -407,110 +419,118 @@ public class RegisterUserActivity extends AppCompatActivity implements LocationL
             // for ActivityCompat#requestPermissions for more details.
             return;
         }
-        locationManager.requestLocationUpdates ( LocationManager.GPS_PROVIDER,0,0,this );
+        locationManager.requestLocationUpdates( LocationManager.GPS_PROVIDER , 0 ,0 , this);
 
     }
+
     private void findAddress() {
         Geocoder geocoder;
-        List<Address> addresses;
-        geocoder = new Geocoder(this, Locale.getDefault());
+        List < Address > addresses;
+        geocoder = new Geocoder ( this , Locale.getDefault ( ) );
         try {
-            addresses = geocoder.getFromLocation(latitude, longitude, 1);
+            addresses = geocoder.getFromLocation ( latitude , longitude , 1 );
 
-            String address = addresses.get(0).getAddressLine(0); //complete address
-            String city = addresses.get(0).getLocality();
-            String state = addresses.get(0).getAdminArea();
-            String country = addresses.get(0).getCountryName();
+            String address = addresses.get ( 0 ).getAddressLine ( 0 ); //complete address
+            String city = addresses.get ( 0 ).getLocality ( );
+            String state = addresses.get ( 0 ).getAdminArea ( );
+            String country = addresses.get ( 0 ).getCountryName ( );
 
             //set addresses
-            countryEt.setText(country);
-            stateEt.setText(state);
-            cityEt.setText(city);
-            addressEt.setText(address);
+            countryEt.setText ( country );
+            stateEt.setText ( state );
+            cityEt.setText ( city );
+            addressEt.setText ( address );
 
-        }
-        catch (Exception e){
-            Toast.makeText(this,""+e.getMessage(), Toast.LENGTH_SHORT).show();
+
+        } catch (Exception e) {
+            Toast.makeText ( this , "" + e.getMessage ( ) , Toast.LENGTH_SHORT ).show ( );
         }
 
     }
 
     private boolean checkLocationPermission() {
-        boolean result = ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == (PackageManager.PERMISSION_GRANTED);
+        boolean result = ContextCompat.checkSelfPermission ( this , Manifest.permission.ACCESS_FINE_LOCATION ) == (PackageManager.PERMISSION_GRANTED);
         return result;
 
     }
 
     private void requestLocationPermission() {
-        ActivityCompat.requestPermissions(this, locationPermissions, LOCATION_REQUEST_CODE);
+        ActivityCompat.requestPermissions ( this , locationPermissions , LOCATION_REQUEST_CODE );
     }
 
-    private boolean checkStoragePermission(){
-        boolean result = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) ==
+    private boolean checkStoragePermission() {
+        boolean result = ContextCompat.checkSelfPermission ( this , Manifest.permission.WRITE_EXTERNAL_STORAGE ) ==
                 (PackageManager.PERMISSION_GRANTED);
 
         return result;
     }
 
-    private void requestStoragePermission(){
-        ActivityCompat.requestPermissions(this, storagePermissions, STORAGE_REQUEST_CODE );
+    private void requestStoragePermission() {
+        ActivityCompat.requestPermissions ( this , storagePermissions , STORAGE_REQUEST_CODE );
 
 
     }
-    private boolean checkCameraPermission(){
-        boolean result = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) ==
+
+    private boolean checkCameraPermission() {
+        boolean result = ContextCompat.checkSelfPermission ( this , Manifest.permission.CAMERA ) ==
                 (PackageManager.PERMISSION_GRANTED);
 
-        boolean result1 = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) ==
+        boolean result1 = ContextCompat.checkSelfPermission ( this , Manifest.permission.WRITE_EXTERNAL_STORAGE ) ==
                 (PackageManager.PERMISSION_GRANTED);
 
         return result && result1;
     }
 
-    private void requestCameraPermission(){
-        ActivityCompat.requestPermissions(this, cameraPermissions, CAMERA_REQUEST_CODE );
+    private void requestCameraPermission() {
+        ActivityCompat.requestPermissions ( this , cameraPermissions , CAMERA_REQUEST_CODE );
 
 
     }
+
 
     @Override
     public void onLocationChanged(Location location) {
         //location detected
-        latitude = location.getLatitude();
-        longitude = location.getLongitude();
+        latitude = location.getLatitude ( );
+        longitude = location.getLongitude ( );
 
-        findAddress();
+        findAddress ( );
+
 
     }
+
 
     @Override
-    public void onStatusChanged(String provider, int status, Bundle extras) {
+    public void onStatusChanged(String provider , int status , Bundle extras) {
 
     }
+
     @Override
     public void onProviderEnabled(String provider) {
 
     }
+
     @Override
     public void onProviderDisabled(String provider) {
         //gps/location disabled
-        Toast.makeText(this, "Please turn on location", Toast.LENGTH_SHORT).show();
+        Toast.makeText ( this , "Please turn on location" , Toast.LENGTH_SHORT ).show ( );
 
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode , @NonNull String[] permissions , @NonNull int[] grantResults) {
         switch (requestCode) {
             case LOCATION_REQUEST_CODE: {
                 if (grantResults.length > 0) {
                     boolean locationAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
                     if (locationAccepted) {
                         //permission allowed
-                        detectLocation();
+                        detectLocation ( );
+
 
                     } else {
                         //permission denied
-                        Toast.makeText(this, "Location permission is necessary...", Toast.LENGTH_SHORT).show();
+                        Toast.makeText ( this , "Location permission is necessary..." , Toast.LENGTH_SHORT ).show ( );
 
                     }
                 }
@@ -522,12 +542,12 @@ public class RegisterUserActivity extends AppCompatActivity implements LocationL
                     boolean storageAccepted = grantResults[1] == PackageManager.PERMISSION_GRANTED;
                     if (cameraAccepted && storageAccepted) {
                         //permission allowed
-                        pickFromCamera();
+                        pickFromCamera ( );
 
 
                     } else {
                         //permission denied
-                        Toast.makeText(this, "Camera permissions are necessary...", Toast.LENGTH_SHORT).show();
+                        Toast.makeText ( this , "Camera permissions are necessary..." , Toast.LENGTH_SHORT ).show ( );
 
                     }
                 }
@@ -539,11 +559,12 @@ public class RegisterUserActivity extends AppCompatActivity implements LocationL
                     boolean storageAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
                     if (storageAccepted) {
                         //permission allowed
-                        pickFromGallery();
+                        pickFromGallery ( );
+
 
                     } else {
                         //permission denied
-                        Toast.makeText(this, "Storage permission is necessary...", Toast.LENGTH_SHORT).show();
+                        Toast.makeText ( this , "Storage permission is necessary..." , Toast.LENGTH_SHORT ).show ( );
 
                     }
                 }
@@ -551,26 +572,24 @@ public class RegisterUserActivity extends AppCompatActivity implements LocationL
             break;
         }
 
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        super.onRequestPermissionsResult ( requestCode , permissions , grantResults );
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if (resultCode==RESULT_OK){
-            if (requestCode == IMAGE_PICK_GALLERY_CODE){
+    protected void onActivityResult(int requestCode , int resultCode , @Nullable Intent data) {
+        if (resultCode == RESULT_OK) {
+            if (requestCode == IMAGE_PICK_GALLERY_CODE) {
 
-                image_uri = data.getData();
+                image_uri = data.getData ( );
 
-                profileIv.setImageURI(image_uri);
+                profileIv.setImageURI ( image_uri );
 
-            }
-            else if (requestCode == IMAGE_PICK_CAMERA_CODE){
-                profileIv.setImageURI(image_uri);
+            } else if (requestCode == IMAGE_PICK_CAMERA_CODE) {
+                profileIv.setImageURI ( image_uri );
             }
         }
-        super.onActivityResult(requestCode, resultCode, data);
+        super.onActivityResult ( requestCode , resultCode , data );
     }
 }
-
 
 

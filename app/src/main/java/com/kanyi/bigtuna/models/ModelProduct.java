@@ -1,4 +1,4 @@
-package com.kanyi.bigtuna;
+package com.kanyi.bigtuna.models;
 
 public class ModelProduct {
     private String productId, productTitle,productDescription,productCategory,productQuantity,productIcon,

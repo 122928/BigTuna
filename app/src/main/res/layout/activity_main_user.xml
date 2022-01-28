@@ -4,97 +4,94 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainUserActivity">
+    tools:context=".activities.MainUserActivity">
 
     <!--Toolbar-->
     <RelativeLayout
         android:id="@+id/toolbarRl"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:padding="10dp"
-        android:background="@drawable/shape_rect01">
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_rect01"
+        android:padding="10dp">
 
         <ImageButton
             android:id="@+id/logoutBtn"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:src="@drawable/ic_logout_white"
             android:layout_alignParentEnd="true"
-            android:background="@null"
             android:layout_alignParentRight="true"
-            android:contentDescription="LogoutButton" />
+            android:background="@null"
+            android:contentDescription="LogoutButton"
+            android:src="@drawable/ic_logout_white" />
 
         <ImageButton
             android:id="@+id/editProfileBtn"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:src="@drawable/ic_edit_white"
             android:layout_toStartOf="@id/logoutBtn"
-            android:background="@null" />
+            android:background="@null"
+            android:src="@drawable/ic_edit_white" />
 
-        <ImageButton
-            android:id="@+id/addProductBtn"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/ic_edit_white"
-            android:layout_toStartOf="@id/logoutBtn"
-            android:background="@null" />
 
         <com.blogspot.atifsoftwares.circularimageview.CircularImageView
+            android:id="@+id/profileIv"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:id="@+id/profileIv"
             android:layout_marginEnd="10dp"
+            android:src="@drawable/ic_store_gray"
             app:c_border="true"
-            app:c_border_color="@color/colorWhite"
-            android:src="@drawable/ic_store_gray"/>
+            app:c_border_color="@color/white" />
 
         <TextView
             android:id="@+id/nameTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/profileIv"
             android:text="Name"
-            android:layout_toEndOf="@+id/profileIv"
-            android:textStyle="bold"
-            android:textColor="@color/colorWhite"/>
+            android:textColor="@color/colorWhite"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/emailTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/nameTv"
+            android:layout_below="@id/nameTv"
+            android:layout_toEndOf="@id/profileIv"
             android:text="Email"
-            android:layout_toEndOf="@+id/profileIv"
-            android:textColor="@color/colorWhite"/>
+            android:textColor="@color/colorWhite" />
 
         <TextView
             android:id="@+id/phoneTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/emailTv"
+            android:layout_below="@id/emailTv"
+            android:layout_toEndOf="@id/profileIv"
             android:text="Phone"
-            android:layout_toEndOf="@+id/profileIv"
-            android:textStyle="bold"
-            android:textColor="@color/colorWhite"/>
+            android:textColor="@color/colorWhite" />
+
+        <!-- Tabs for Products and Orders-->
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_below="@id/profileIv"
-            android:layout_weight="1"
+            android:layout_marginTop="5dp"
             android:background="@drawable/shape_rect03"
             android:orientation="horizontal"
-            android:layout_marginTop="5dp">
+            android:padding="5dp">
 
+            <!--Shops-->
             <TextView
                 android:id="@+id/tabShopsTv"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:background="@drawable/shape_rect04"
                 android:gravity="center"
                 android:text="Shops"
-                android:textColor="@color/colorBlack"/>
+                android:textColor="@color/colorBlack" />
 
+            <!--Orders-->
             <TextView
                 android:id="@+id/tabOrdersTv"
                 android:layout_width="wrap_content"
@@ -102,7 +99,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="Orders"
-                android:textColor="@color/colorWhite"/>
+                android:textColor="@color/colorWhite" />
 
         </LinearLayout>
 
@@ -113,6 +110,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/toolbarRl">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/shopsRv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/row_shop"/>
 
     </RelativeLayout>
 
