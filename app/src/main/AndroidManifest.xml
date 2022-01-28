@@ -17,36 +17,38 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BigTuna.NoActionBar">
         <activity
-            android:name=".activities.AddProductActivity"
+            android:name=".AddProductActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.MainUserActivity"
+            android:name=".EditProductActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.ProfileEditUserActivity"
+            android:name=".MainUserActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.MainSellerActivity"
+            android:name=".ProfileEditUserActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.ProfileEditSellerActivity"
+            android:name=".MainSellerActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.ForgotPasswordActivity"
+            android:name=".ProfileEditSellerActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.RegisterUserActivity"
+            android:name=".ForgotPasswordActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.RegisterSellerActivity"
+            android:name=".RegisterUserActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.LoginActivity"
+            android:name=".RegisterSellerActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.SplashActivity"
+            android:name=".LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SplashActivity"
             android:exported="true">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
