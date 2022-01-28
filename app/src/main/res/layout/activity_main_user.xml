@@ -116,7 +116,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/row_shop"/>
+            tools:listitem="@layout/row_shop" />
 
     </RelativeLayout>
 

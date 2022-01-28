@@ -24,7 +24,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.kanyi.bigtuna.R;
-import com.kanyi.bigtuna.adapters.AdapterShop;
+import com.kanyi.bigtuna.adapter.AdapterShop;
 import com.kanyi.bigtuna.models.ModelShop;
 import com.squareup.picasso.Picasso;
 

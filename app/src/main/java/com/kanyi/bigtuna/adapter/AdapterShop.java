@@ -1,4 +1,4 @@
-package com.kanyi.bigtuna.adapters;
+package com.kanyi.bigtuna.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;

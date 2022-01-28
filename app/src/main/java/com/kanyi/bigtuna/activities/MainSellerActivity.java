@@ -28,10 +28,10 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.kanyi.bigtuna.adapters.AdapterProductSeller;
 import com.kanyi.bigtuna.Constants;
-import com.kanyi.bigtuna.models.ModelProduct;
 import com.kanyi.bigtuna.R;
+import com.kanyi.bigtuna.adapter.AdapterProductSeller;
+import com.kanyi.bigtuna.models.ModelProduct;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;

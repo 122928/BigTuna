@@ -2,7 +2,7 @@ package com.kanyi.bigtuna;
 
 import android.widget.Filter;
 
-import com.kanyi.bigtuna.adapters.AdapterProductSeller;
+import com.kanyi.bigtuna.adapter.AdapterProductSeller;
 import com.kanyi.bigtuna.models.ModelProduct;
 
 import java.util.ArrayList;
