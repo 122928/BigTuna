@@ -20,6 +20,9 @@
             android:name=".AddProductActivity"
             android:exported="false" />
         <activity
+            android:name=".EditProductActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainUserActivity"
             android:exported="false" />
         <activity
@@ -46,7 +49,6 @@
         <activity
             android:name=".SplashActivity"
             android:exported="true">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

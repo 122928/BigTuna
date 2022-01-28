@@ -2,4 +2,10 @@
     <string name="app_name">BigTuna</string>
     <string name="name">Name</string>
     <string name="login">Login</string>
+    <string name="_10_off">10% OFF</string>
+    <string name="product_title">product title</string>
+    <string name="product_description">product description</string>
+    <string name="category">category</string>
+    <string name="quantity">quantity</string>
+    <string name="ksh_10">ksh.10</string>
 </resources>
