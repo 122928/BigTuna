@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,8 +26,9 @@ import java.util.HashMap;
 
 public class MainUserActivity extends AppCompatActivity {
 
-    private TextView nameTv;
+    private TextView nameTv, emailTv;
     private ImageButton logoutBtn,editProfileBtn;
+    private ImageView profileIv;
 
     private FirebaseAuth firebaseAuth;
     private ProgressDialog progressDialog;
@@ -37,8 +39,10 @@ public class MainUserActivity extends AppCompatActivity {
         setContentView ( R.layout.activity_main_user );
 
         nameTv = findViewById ( R.id.nameTv );
+        emailTv = findViewById ( R.id.emailTv );
         logoutBtn = findViewById ( R.id.logoutBtn );
         editProfileBtn = findViewById ( R.id.editProfileBtn);
+        profileIv = findViewById(R.id.profileIv);
 
         firebaseAuth = FirebaseAuth.getInstance ();
         progressDialog = new ProgressDialog ( this );
