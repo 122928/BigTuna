@@ -29,7 +29,6 @@ import p32929.androideasysql_library.EasyDB;
 
 public class AdapterProductUser extends RecyclerView.Adapter< AdapterProductUser.HolderProductUser > implements Filterable {
 
-
     private Context context;
     public ArrayList< ModelProduct > productsList, filterList;
     private FilterProductUser filter;
@@ -198,7 +197,6 @@ public class AdapterProductUser extends RecyclerView.Adapter< AdapterProductUser
 
                 }
 
-
             }
         } );
 
@@ -280,8 +278,6 @@ public class AdapterProductUser extends RecyclerView.Adapter< AdapterProductUser
             addToCartTv = itemView.findViewById ( R.id.addToCartTv );
             discountedPriceTv = itemView.findViewById ( R.id.discountedPriceTv );
             originalPriceTv = itemView.findViewById ( R.id.originalPriceTv );
-
-
 
         }
     }

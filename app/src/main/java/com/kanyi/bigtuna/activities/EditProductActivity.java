@@ -73,7 +73,6 @@ public class EditProductActivity extends AppCompatActivity {
 
     private ProgressDialog progressDialog;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -105,7 +104,6 @@ public class EditProductActivity extends AppCompatActivity {
         progressDialog = new ProgressDialog(this);
         progressDialog.setTitle("Please wait");
         progressDialog.setCanceledOnTouchOutside(false);
-
 
         //init permission arrays
         cameraPermissions = new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
@@ -141,8 +139,6 @@ public class EditProductActivity extends AppCompatActivity {
                 showImagePickDialog();
 
             }
-
-
         });
 
         categoryTv.setOnClickListener(new View.OnClickListener() {
@@ -162,7 +158,6 @@ public class EditProductActivity extends AppCompatActivity {
                 //Validate data
                 //update data to db
                 inputData();
-
 
             }
         });
@@ -200,17 +195,14 @@ public class EditProductActivity extends AppCompatActivity {
                 return;
             }
 
-
         } else {
             //product is without discount
             discountPrice = "0";
             discountNote = "";
 
-
         }
 
         updateProduct();
-
 
     }
 
@@ -241,13 +233,11 @@ public class EditProductActivity extends AppCompatActivity {
                             discountedPriceEt.setVisibility(View.VISIBLE);
                             discountedNoteEt.setVisibility(View.VISIBLE);
 
-
                         } else {
                             discountSwitch.setChecked(false);
 
                             discountedPriceEt.setVisibility(View.GONE);
                             discountedNoteEt.setVisibility(View.GONE);
-
 
                         }
 
@@ -274,11 +264,6 @@ public class EditProductActivity extends AppCompatActivity {
                     }
                 });
     }
-
-    
-
-
-
 
     private void updateProduct() {
         //show progress
@@ -310,7 +295,6 @@ public class EditProductActivity extends AppCompatActivity {
                             progressDialog.dismiss();
                             Toast.makeText(EditProductActivity.this, "Updated...", Toast.LENGTH_SHORT).show();
 
-
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
@@ -322,8 +306,6 @@ public class EditProductActivity extends AppCompatActivity {
 
                         }
                     });
-
-
 
         }
         else {
@@ -367,7 +349,6 @@ public class EditProductActivity extends AppCompatActivity {
                                                 progressDialog.dismiss();
                                                 Toast.makeText(EditProductActivity.this, "Updated...", Toast.LENGTH_SHORT).show();
 
-
                                             }
                                         })
                                         .addOnFailureListener(new OnFailureListener() {
@@ -381,9 +362,6 @@ public class EditProductActivity extends AppCompatActivity {
                                         });
 
                             }
-
-
-
 
                         }
                     })
@@ -452,7 +430,6 @@ public class EditProductActivity extends AppCompatActivity {
                 .show();
     }
 
-
     private void pickFromGallery() {
         //intent to pick image from gallery
         Intent intent = new Intent(Intent.ACTION_PICK);
@@ -464,7 +441,6 @@ public class EditProductActivity extends AppCompatActivity {
         //intent to pick image from camera
 
         //using media store to pick high/original quality image
-
 
         ContentValues contentValues = new ContentValues();
         contentValues.put(MediaStore.Images.Media.TITLE, "Temp_Image_Title");
@@ -496,7 +472,6 @@ public class EditProductActivity extends AppCompatActivity {
 
     private void requestCameraPermission() {
         ActivityCompat.requestPermissions(this, cameraPermissions, CAMERA_REQUEST_CODE);
-
 
     }
 

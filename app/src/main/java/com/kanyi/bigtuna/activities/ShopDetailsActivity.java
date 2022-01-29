@@ -292,7 +292,6 @@ public class ShopDetailsActivity extends AppCompatActivity {
                     Toast.makeText(ShopDetailsActivity.this, "No item in cart", Toast.LENGTH_SHORT).show();
                     return;//don't proceed further
 
-
                 }
                 submitOrder();
             }
@@ -309,6 +308,7 @@ public class ShopDetailsActivity extends AppCompatActivity {
         String timestamp = ""+System.currentTimeMillis();
 
         String cost = allTotalPriceTv.getText().toString().trim().replace("Ksh","");
+
         //setup order data
         HashMap<String, String> hashMap = new HashMap<>();
         hashMap.put("orderId", ""+timestamp);
@@ -317,15 +317,17 @@ public class ShopDetailsActivity extends AppCompatActivity {
         hashMap.put("orderCost", ""+cost);
         hashMap.put("orderBy", ""+firebaseAuth.getUid());
         hashMap.put("orderTo", ""+shopUid);
+        hashMap.put("latitude", ""+myLatitude);
+        hashMap.put("longitude", ""+myLongitude);
 
         //add to db
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users").child(shopUid).child("Orders");
+        final DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users").child(shopUid).child("Orders");
         ref.child(timestamp).setValue(hashMap)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
                         //order info added now add order items
-                        for (int i=0; i<cartItemsList.size(); i++){
+                        for (int i = 0; i < cartItemsList.size(); i++) {
                             String pId = cartItemsList.get(i).getpId();
                             String id = cartItemsList.get(i).getId();
                             String cost = cartItemsList.get(i).getCost();
@@ -333,7 +335,7 @@ public class ShopDetailsActivity extends AppCompatActivity {
                             String price = cartItemsList.get(i).getPrice();
                             String quantity = cartItemsList.get(i).getQuantity();
 
-                            HashMap<String,String> hashMap1 = new HashMap<>();
+                            HashMap<String, String> hashMap1 = new HashMap<>();
                             hashMap1.put("pId", pId);
                             hashMap1.put("name", name);
                             hashMap1.put("cost", cost);
@@ -346,7 +348,10 @@ public class ShopDetailsActivity extends AppCompatActivity {
                         progressDialog.dismiss();
                         Toast.makeText(ShopDetailsActivity.this, "Order Placed Successfully...", Toast.LENGTH_SHORT).show();
 
-
+                        Intent intent = new Intent(ShopDetailsActivity.this, OrderDetailsUsersActivity.class);
+                        intent.putExtra("orderTo", shopUid);
+                        intent.putExtra("orderId", timestamp);
+                        startActivity(intent);
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {

@@ -195,7 +195,6 @@ public class AdapterProductSeller extends RecyclerView.Adapter<AdapterProductSel
                                 //delete
                                 deleteProduct(id);//product id
 
-
                             }
                         })
                         .setNegativeButton("NO", new DialogInterface.OnClickListener() {
@@ -207,7 +206,6 @@ public class AdapterProductSeller extends RecyclerView.Adapter<AdapterProductSel
                             }
                         })
                         .show();
-
             }
         });
         //back click
@@ -219,9 +217,6 @@ public class AdapterProductSeller extends RecyclerView.Adapter<AdapterProductSel
 
             }
         });
-
-
-
 
     }
 

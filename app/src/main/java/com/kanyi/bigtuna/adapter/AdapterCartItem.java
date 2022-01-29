@@ -41,7 +41,6 @@ public class AdapterCartItem extends RecyclerView.Adapter<AdapterCartItem.Holder
     @Override
     public void onBindViewHolder(@NonNull HolderCartItem holder, @SuppressLint("RecyclerView") int position) {
 
-
         ModelCartItem modelCartItem = cartItems.get(position);
         String id = modelCartItem.getId();
         String getpId = modelCartItem.getpId();
@@ -84,7 +83,7 @@ public class AdapterCartItem extends RecyclerView.Adapter<AdapterCartItem.Holder
                 ((ShopDetailsActivity)context).sTotalTv.setText("Ksh"+String.format("%.2f", sTotalPrice));
                 ((ShopDetailsActivity)context).allTotalPriceTv.setText("Ksh"+String.format("%.2f", Double.parseDouble(String.format("%.2f", totalPrice))));
 
-
+                ((ShopDetailsActivity)context).cartCount();
 
             }
         });

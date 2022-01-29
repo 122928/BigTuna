@@ -1,6 +1,7 @@
 package com.kanyi.bigtuna.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.kanyi.bigtuna.R;
+import com.kanyi.bigtuna.activities.OrderDetailsUsersActivity;
 import com.kanyi.bigtuna.models.ModelOrderUser;
 
 import java.text.DateFormat;
@@ -53,7 +55,6 @@ public class AdapterOrderUser extends RecyclerView.Adapter<AdapterOrderUser.Hold
         //get shop info
         loadShopInfo(modelOrderUser, holder);
 
-
         //set data
         holder.amountTv.setText("Amount: Ksh" +orderCost);
         holder.statusTv.setText(orderStatus);
@@ -74,6 +75,19 @@ public class AdapterOrderUser extends RecyclerView.Adapter<AdapterOrderUser.Hold
         calendar.setTimeInMillis(Long.parseLong(orderTime));
         String formatDate = DateFormat.getDateInstance().format("dd/MM/yyyy").toString();
 
+        holder.dateTv.setText(formatDate);
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(context, OrderDetailsUsersActivity.class);
+                intent.putExtra("orderTo", orderTo);
+                intent.putExtra("orderId", orderId);
+                context.startActivity(intent);
+
+            }
+        });
 
     }
 
@@ -104,7 +118,6 @@ public class AdapterOrderUser extends RecyclerView.Adapter<AdapterOrderUser.Hold
 
         //views of layout
         private TextView orderIdTv, dateTv, shopNameTv, amountTv, statusTv;
-
 
         public HolderOrderUser(@NonNull View itemView) {
             super(itemView);

@@ -67,7 +67,6 @@ public class AddProductActivity extends AppCompatActivity {
 
     private ProgressDialog progressDialog;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -95,7 +94,6 @@ public class AddProductActivity extends AppCompatActivity {
         progressDialog = new ProgressDialog(this);
         progressDialog.setTitle("Please wait");
         progressDialog.setCanceledOnTouchOutside(false);
-
 
         //init permission arrays
         cameraPermissions = new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
@@ -131,7 +129,6 @@ public class AddProductActivity extends AppCompatActivity {
                 showImagePickDialog();
 
             }
-
 
         });
 
@@ -192,17 +189,14 @@ public class AddProductActivity extends AppCompatActivity {
                 return;
             }
 
-
         } else {
             //product is without discount
             discountPrice = "0";
             discountNote = "";
 
-
         }
 
         addProduct();
-
 
     }
 
@@ -249,7 +243,6 @@ public class AddProductActivity extends AppCompatActivity {
 
                         }
                     });
-
 
         } else {
             //upload with image
@@ -310,7 +303,6 @@ public class AddProductActivity extends AppCompatActivity {
                                         });
                             }
 
-
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
@@ -322,7 +314,6 @@ public class AddProductActivity extends AppCompatActivity {
 
                         }
                     });
-
         }
 
     }
@@ -393,7 +384,6 @@ public class AddProductActivity extends AppCompatActivity {
                 .show();
     }
 
-
     private void pickFromGallery() {
         //intent to pick image from gallery
         Intent intent = new Intent(Intent.ACTION_PICK);
@@ -405,7 +395,6 @@ public class AddProductActivity extends AppCompatActivity {
         //intent to pick image from camera
 
         //using media store to pick high/original quality image
-
 
         ContentValues contentValues = new ContentValues();
         contentValues.put(MediaStore.Images.Media.TITLE, "Temp_Image_Title");
@@ -438,7 +427,6 @@ public class AddProductActivity extends AppCompatActivity {
     private void requestCameraPermission() {
         ActivityCompat.requestPermissions(this, cameraPermissions, CAMERA_REQUEST_CODE);
 
-
     }
 
     //handle permission results
@@ -456,7 +444,6 @@ public class AddProductActivity extends AppCompatActivity {
                         //both or one of permissions denied
                         Toast.makeText(this, "Camera & Storage permissions are required...", Toast.LENGTH_SHORT).show();
                     }
-
                 }
             }
             case STORAGE_REQUEST_CODE: {

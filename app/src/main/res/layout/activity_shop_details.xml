@@ -164,7 +164,6 @@
             android:textColor="@color/colorWhite"
             android:textSize="8sp" />
 
-
     </RelativeLayout>
 
     <!--Products-->
