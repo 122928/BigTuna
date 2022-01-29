@@ -12,7 +12,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -28,7 +30,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.kanyi.bigtuna.Constants;
 import com.kanyi.bigtuna.R;
+import com.kanyi.bigtuna.adapter.AdapterCartItem;
 import com.kanyi.bigtuna.adapter.AdapterProductUser;
+import com.kanyi.bigtuna.models.ModelCartItem;
 import com.kanyi.bigtuna.models.ModelProduct;
 import com.squareup.picasso.Picasso;
 
@@ -46,14 +50,15 @@ public class ShopDetailsActivity extends AppCompatActivity {
     private RecyclerView productsRv;
 
     private String shopUid;
-
     private String myLatitude, myLongitude;
     private String companyName, shopEmail, shopPhone, shopAddress, shopLatitude, shopLongitude;
 
     private FirebaseAuth firebaseAuth;
     private AdapterProductUser adapterProductUser;
-
     private ArrayList< ModelProduct > productsList;
+
+    private ArrayList<ModelCartItem> cartItemsList;
+    private AdapterCartItem adapterCartItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,6 +122,7 @@ public class ShopDetailsActivity extends AppCompatActivity {
         cartBtn.setOnClickListener ( new View.OnClickListener ( ) {
             @Override
             public void onClick(View v) {
+                showCartDialog();
 
             }
         } );
@@ -158,6 +164,21 @@ public class ShopDetailsActivity extends AppCompatActivity {
 
             }
         } );
+    }
+
+    public double allTotalPrice = 0.00;
+    public TextView sTotalTv, dFeeTv, allTotalPriceTv;
+
+    private void showCartDialog() {
+        View view = LayoutInflater.from(this).inflate(R.layout.dialog_cart, null);
+
+        TextView shopNameTv = view.findViewById(R.id.shopNameTv);
+        RecyclerView cartItemsRv = view.findViewById(R.id.cartItemsRv);
+        sTotalTv = view.findViewById(R.id.sTotalTv);
+        dFeeTv = view.findViewById(R.id.dFeeTv);
+        allTotalPriceTv = view.findViewById(R.id.totalTv);
+        Button checkBtn = view.findViewById(R.id.checkBtn);
+
     }
 
     private void openMap() {

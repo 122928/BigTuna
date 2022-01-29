@@ -112,9 +112,6 @@ public class AdapterProductSeller extends RecyclerView.Adapter<AdapterProductSel
         //set view to bottom sheet
         bottomSheetDialog.setContentView(view);
 
-
-
-
         //init views of bottom sheet
         ImageButton backBtn = view.findViewById(R.id.backBtn);
         ImageButton deleteBtn = view.findViewById(R.id.deleteBtn);
