@@ -88,6 +88,22 @@ public class MainUserActivity extends AppCompatActivity {
 
             }
         });
+
+        tabShopsTv.setOnClickListener ( new View.OnClickListener ( ) {
+            @Override
+            public void onClick(View v) {
+                // show shops
+                showShopsUI ();
+            }
+        } );
+
+        tabOrdersTv.setOnClickListener ( new View.OnClickListener ( ) {
+            @Override
+            public void onClick(View v) {
+                // show shops
+                showOrdersUI ();
+            }
+        } );
     }
 
     private void showShopsUI() {
@@ -109,8 +125,8 @@ public class MainUserActivity extends AppCompatActivity {
         tabShopsTv.setTextColor(getResources().getColor(R.color.colorWhite));
         tabShopsTv.setBackgroundColor(getResources().getColor(android.R.color.transparent));
 
-        tabOrdersTv.setTextColor(getResources().getColor(R.color.colorWhite));
-        tabOrdersTv.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+        tabOrdersTv.setTextColor(getResources().getColor(R.color.colorBlack));
+        tabOrdersTv.setBackgroundResource(R.drawable.shape_rect04);
 
     }
 
@@ -187,10 +203,10 @@ public class MainUserActivity extends AppCompatActivity {
                 } );
     }
 
-    private void loadShops(String city) {
+    private void loadShops(String myCity) {
         shopsList = new ArrayList<>();
        DatabaseReference ref =FirebaseDatabase.getInstance().getReference("Users");
-ref.   orderByChild("accountType").equalTo("seller")
+    ref.orderByChild("accountType").equalTo("Seller")
         .addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -201,9 +217,12 @@ ref.   orderByChild("accountType").equalTo("seller")
 
                     String shopCity = ""+ds.child("city").getValue();
 
-                    if (shopCity.equals(city)){
+                    if (shopCity.equals(myCity)){
                         shopsList.add(modelShop);
                     }
+
+                    // if you want to see all shops, skip the if statement and this
+                    // shopsList.add(modelShop);
                 }
                 adapterShop = new AdapterShop(MainUserActivity.this, shopsList);
 

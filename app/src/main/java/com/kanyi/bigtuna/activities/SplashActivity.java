@@ -61,7 +61,7 @@ public class SplashActivity extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             String accountType = ""+dataSnapshot.child ( "accountType" ).getValue ();
-                            if (accountType.equals ( "seller" )) {
+                            if (accountType.equals ( "Seller" )) {
                                 //user is seller
                                 startActivity ( new Intent ( SplashActivity.this, MainSellerActivity.class ) );
                                 finish ();

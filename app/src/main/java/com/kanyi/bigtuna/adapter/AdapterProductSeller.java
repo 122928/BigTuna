@@ -86,6 +86,7 @@ public class AdapterProductSeller extends RecyclerView.Adapter<AdapterProductSel
             // product is not on discount
             holder.discountedPriceTv.setVisibility ( View.GONE );
             holder.discountedNoteTv.setVisibility ( View.GONE );
+            holder.originalPriceTv.setPaintFlags ( 0 );
         }
         try {
             Picasso.get ().load ( icon ).placeholder ( R.drawable.ic_shopping_cart_primary ).into ( holder.productIconIv );

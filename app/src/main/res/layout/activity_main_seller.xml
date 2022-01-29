@@ -64,7 +64,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/shopNameTv"
+            android:id="@+id/companyNameTv"
             android:text="Shop Name"
             android:textColor="@color/colorWhite"
             android:layout_width="wrap_content"
@@ -79,7 +79,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toEndOf="@id/profileIv"
-            android:layout_below="@id/shopNameTv"/>
+            android:layout_below="@id/companyNameTv"/>
 
         <!-- Tabs for Products and Orders-->
 

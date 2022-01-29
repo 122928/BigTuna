@@ -189,7 +189,7 @@ public class RegisterUserActivity extends AppCompatActivity implements LocationL
         if (password.length ( ) < 6) {
             Toast.makeText ( this , "Password should be at least 6 characters long..." , Toast.LENGTH_SHORT ).show ( );
         }
-        if (password.equals ( confirmPassword )) {
+        if (!password.equals ( confirmPassword )) {
             Toast.makeText ( this , "Password doesn't match..." , Toast.LENGTH_SHORT ).show ( );
         }
 

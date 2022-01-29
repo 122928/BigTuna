@@ -76,7 +76,7 @@
         android:padding="10dp" />
 
     <EditText
-        android:id="@+id/shopNameEt"
+        android:id="@+id/companyNameEt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/nameEt"
@@ -100,7 +100,7 @@
         android:id="@+id/phoneEt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/shopNameEt"
+        android:layout_below="@id/companyNameEt"
         android:layout_marginStart="5dp"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="5dp"
@@ -217,7 +217,7 @@
         android:padding="10dp" />
 
     <androidx.appcompat.widget.SwitchCompat
-        android:id="@+id/shopOpenSwitch"
+        android:id="@+id/companyOpenSwitch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/addressEt"
@@ -229,7 +229,7 @@
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/shopOpenSwitch"
+        android:layout_below="@id/companyOpenSwitch"
         android:layout_centerHorizontal="true"
         android:text="Update"/>
 
