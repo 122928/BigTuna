@@ -81,6 +81,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:hint="Category"
+            android:textColor="@color/colorPrimary"
             android:textColorHint="@color/colorGray"
             android:drawableEnd="@drawable/ic_down_gray"
             android:background="@drawable/shape_rect02"
