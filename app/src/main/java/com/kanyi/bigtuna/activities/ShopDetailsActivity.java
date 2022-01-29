@@ -44,7 +44,7 @@ public class ShopDetailsActivity extends AppCompatActivity {
 
     private ImageView shopIv;
     private TextView companyNameTv, phoneTv,emailTv, openClosedTv,
-            deliveryFeeTv, addressTv, filteredProductsTv;
+            deliveryFeeTv, addressTv, filteredProductsTv, cartCountTv;
     private ImageButton callBtn, mapBtn,cartBtn,backBtn,filterProductsBtn;
     private EditText searchProductEt;
     private RecyclerView productsRv;
@@ -59,6 +59,8 @@ public class ShopDetailsActivity extends AppCompatActivity {
 
     private ArrayList<ModelCartItem> cartItemsList;
     private AdapterCartItem adapterCartItem;
+
+    private EasyDB easyDB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,12 +84,26 @@ public class ShopDetailsActivity extends AppCompatActivity {
         filterProductsBtn = findViewById ( R.id.filterProductsBtn );
         filteredProductsTv = findViewById ( R.id.filteredProductsTv );
         productsRv = findViewById ( R.id.productsRv );
+        cartCountTv = findViewById(R.id.cartCountTv);
 
         shopUid = getIntent ().getStringExtra ( "shopUid" );
         firebaseAuth = FirebaseAuth.getInstance ();
         loadMyInfo();
         loadShopDetails();
         loadShopProducts();
+
+        easyDB = EasyDB.init(this,"ITEMS_DB")
+                .setTableName("ITEMS_TABLE")
+                .addColumn(new Column("Item_Id", new String[]{"text","unique"}))
+                .addColumn(new Column("Item_PId", new String[]{"text","not null"}))
+                .addColumn(new Column("Item_Name", new String[]{"text","not null"}))
+                .addColumn(new Column("Item_Price_Each", new String[]{"text","not null"}))
+                .addColumn(new Column("Item_Price", new String[]{"text","not null"}))
+                .addColumn(new Column("Item_Quantity", new String[]{"text","not null"}))
+                .doneTableColumn();
+
+        deleteCartData();
+        cartCount();
 
         searchProductEt.addTextChangedListener ( new TextWatcher ( ) {
             @Override
@@ -144,27 +160,41 @@ public class ShopDetailsActivity extends AppCompatActivity {
         filterProductsBtn.setOnClickListener ( new View.OnClickListener ( ) {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder (ShopDetailsActivity.this );
-                builder.setTitle ( "Choose Category:" )
-                        .setItems ( Constants.productCategories , new DialogInterface.OnClickListener ( ) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(ShopDetailsActivity.this);
+                builder.setTitle("Choose Category:")
+                        .setItems(Constants.productCategories, new DialogInterface.OnClickListener() {
                             @Override
-                            public void onClick(DialogInterface dialog , int which) {
+                            public void onClick(DialogInterface dialog, int which) {
                                 //get selected item
                                 String selected = Constants.productCategories1[which];
-                                filteredProductsTv.setText ( (selected) );
-                                if(selected.equals ( "All" )) {
-                                    loadShopProducts ();
-                                }
-                                else {
+                                filteredProductsTv.setText((selected));
+                                if (selected.equals("All")) {
+                                    loadShopProducts();
+                                } else {
                                     // load filtered
-                                    adapterProductUser.getFilter ().filter ( selected );
+                                    adapterProductUser.getFilter().filter(selected);
                                 }
                             }
-                        } ).show ();
-
+                        }).show();
             }
-        } );
+            } );
     }
+
+    private void deleteCartData(){
+
+        easyDB.deleteAllDataFromTable();
+
+    }
+    public void cartCount(){
+          int count = easyDB.getAllData().getCount();
+          if(count<=0){
+              cartCountTv.setVisibility(View.GONE);
+          }else{
+              cartCountTv.setVisibility(View.VISIBLE);
+              cartCountTv.setText(""+count);
+          }
+    }
+
 
     public double allTotalPrice = 0.00;
     public TextView sTotalTv, dFeeTv, allTotalPriceTv;

@@ -243,6 +243,7 @@ public class AdapterProductUser extends RecyclerView.Adapter< AdapterProductUser
 
         Toast.makeText ( context , "Added to Cart" , Toast.LENGTH_SHORT ).show ( );
 
+        ((shopDetailsActivity)context).cartCount();
     }
 
     @Override
