@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorGray00"
+    android:background="@color/colorGray"
     android:padding="5dp">
 
     <TextView
@@ -36,7 +36,7 @@
             android:textColor="@color/colorBlack"/>
 
         <TextView
-            android:id="@+id/itemQuantity"
+            android:id="@+id/itemQuantityTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -48,7 +48,7 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/itemRemoveIv"
+        android:id="@+id/itemRemoveTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/itemTitleIv"
@@ -61,7 +61,7 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="4dp"
-        android:layout_below="@id/itemRemoveIv"
+        android:layout_below="@id/itemRemoveTv"
         android:background="@color/colorGreen"/>
 
 

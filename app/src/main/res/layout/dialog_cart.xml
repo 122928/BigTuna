@@ -41,7 +41,7 @@
             android:id="@+id/cartItemsRv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layoutmanager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:padding="5dp"
             tools:listitem="@layout/row_cartitem"/>
 
@@ -118,7 +118,7 @@
         </RelativeLayout>
 
         <Button
-            android:id="@+id/checkBtn"
+            android:id="@+id/checkoutBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary"

@@ -8,4 +8,8 @@
     <string name="category">category</string>
     <string name="quantity">quantity</string>
     <string name="ksh_10">ksh.10</string>
+    <string name="_29_01_2022">29/01/2022</string>
+    <string name="dasani">Dasani</string>
+    <string name="total_amount_ksh_100">Total Amount: Ksh 100</string>
+    <string name="in_progress">In Progress</string>
 </resources>

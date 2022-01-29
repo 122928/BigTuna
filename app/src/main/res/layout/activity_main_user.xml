@@ -109,6 +109,7 @@
         android:id="@+id/shopsRl"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:visibility="gone"
         android:layout_below="@id/toolbarRl">
 
         <androidx.recyclerview.widget.RecyclerView
@@ -125,6 +126,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/toolbarRl">
+        <!--recyclerview show orders-->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/ordersRv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/row_order_user"/>
+
 
     </RelativeLayout>
 

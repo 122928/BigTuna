@@ -1,5 +1,6 @@
 package com.kanyi.bigtuna.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,9 +13,13 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.kanyi.bigtuna.R;
+import com.kanyi.bigtuna.activities.ShopDetailsActivity;
 import com.kanyi.bigtuna.models.ModelCartItem;
 
 import java.util.ArrayList;
+
+import p32929.androideasysql_library.Column;
+import p32929.androideasysql_library.EasyDB;
 
 public class AdapterCartItem extends RecyclerView.Adapter<AdapterCartItem.HolderCartItem>{
 
@@ -34,7 +39,8 @@ public class AdapterCartItem extends RecyclerView.Adapter<AdapterCartItem.Holder
     }
 
     @Override
-    public void onBindViewHolder(@NonNull HolderCartItem holder, int position) {
+    public void onBindViewHolder(@NonNull HolderCartItem holder, @SuppressLint("RecyclerView") int position) {
+
 
         ModelCartItem modelCartItem = cartItems.get(position);
         String id = modelCartItem.getId();
@@ -46,21 +52,21 @@ public class AdapterCartItem extends RecyclerView.Adapter<AdapterCartItem.Holder
 
         holder.itemTitleIv.setText(""+title);
         holder.itemPriceIv.setText(""+cost);
-        holder.itemQuantityIv.setText("["+quantity+"]");
+        holder.itemQuantityTv.setText("["+quantity+"]");
         holder.itemPriceEachIv.setText(""+price);
 
-        holder.itemRemoveIv.setOnClickListener(new View.OnClickListener() {
+        holder.itemRemoveTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                EasyDB easyDB = new EasyDB.init(context,"")
+                EasyDB easyDB =  EasyDB.init(context,"ITEMS_DB")
                         .setTableName("ITEMS_TABLE")
-                        .addColumn(new Column("Item_Id", new String(){"text","unique"}))
-                        .addColumn(new Column("Item_PID", new String(){"text","not null"}))
-                        .addColumn(new Column("Item_Name", new String(){"text","not null"}))
-                        .addColumn(new Column("Item_Price_Each", new String(){"text","not null"}))
-                        .addColumn(new Column("Item_Price", new String(){"text","not null"}))
-                        .addColumn(new Column("Item_Quantity", new String(){"text","not null"}))
+                        .addColumn(new Column("Item_Id", new String[]{"text","unique"}))
+                        .addColumn(new Column("Item_PID", new String[]{"text","not null"}))
+                        .addColumn(new Column("Item_Name", new String[]{"text","not null"}))
+                        .addColumn(new Column("Item_Price_Each", new String[]{"text","not null"}))
+                        .addColumn(new Column("Item_Price", new String[]{"text","not null"}))
+                        .addColumn(new Column("Item_Quantity", new String[]{"text","not null"}))
                         .doneTableColumn();
 
                 easyDB.deleteRow(1,id);
@@ -69,6 +75,17 @@ public class AdapterCartItem extends RecyclerView.Adapter<AdapterCartItem.Holder
                 cartItems.remove(position);
                 notifyItemChanged(position);
                 notifyDataSetChanged();
+
+                double tx = Double.parseDouble((((ShopDetailsActivity)context).allTotalPriceTv.getText().toString().trim().replace("Ksh", "")));
+                double totalPrice = tx - Double.parseDouble(cost.replace("Ksh",""));
+                double deliveryFee =  Double.parseDouble((((ShopDetailsActivity)context).deliveryFee.replace("Ksh", "")));
+                double sTotalPrice = Double.parseDouble(String.format("Ksh.2f", totalPrice)) - Double.parseDouble(String.format("%.2f", deliveryFee));
+                ((ShopDetailsActivity)context).allTotalPrice=0.00;
+                ((ShopDetailsActivity)context).sTotalTv.setText("Ksh"+String.format("%.2f", sTotalPrice));
+                ((ShopDetailsActivity)context).allTotalPriceTv.setText("Ksh"+String.format("%.2f", Double.parseDouble(String.format("%.2f", totalPrice))));
+
+
+
             }
         });
     }
@@ -80,7 +97,7 @@ public class AdapterCartItem extends RecyclerView.Adapter<AdapterCartItem.Holder
 
     class  HolderCartItem extends RecyclerView.ViewHolder{
 
-        private TextView itemTitleIv, itemPriceIv, itemPriceEachIv, itemQuantityIv, itemRemoveIv;
+        private TextView itemTitleIv, itemPriceIv, itemPriceEachIv, itemQuantityTv, itemRemoveTv;
 
 
         public HolderCartItem(@NonNull View itemView) {
@@ -89,7 +106,8 @@ public class AdapterCartItem extends RecyclerView.Adapter<AdapterCartItem.Holder
             itemTitleIv = itemView.findViewById(R.id.itemTitleIv);
             itemPriceIv = itemView.findViewById(R.id.itemPriceIv);
             itemPriceEachIv = itemView.findViewById(R.id.itemPriceEachIv);
-            itemQuantityIv = itemView.findViewById(R.id.itemQuantityIv);
+            itemQuantityTv = itemView.findViewById(R.id.itemQuantityTv);
+            itemRemoveTv = itemView.findViewById(R.id.itemRemoveTv);
 
         }
     }
