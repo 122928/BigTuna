@@ -82,6 +82,7 @@
             android:layout_margin="5dp"
             android:hint="Category"
             android:textColorHint="@color/colorGray"
+            android:textColor="@color/colorPrimary"
             android:drawableEnd="@drawable/ic_down_gray"
             android:background="@drawable/shape_rect02"
             android:drawableStart="@drawable/ic_categories_gray"

@@ -292,8 +292,8 @@ public class ProfileEditSellerActivity extends AppCompatActivity implements Loca
                             String phone = "" + ds.child("phone").getValue();
                             String profileImage = "" + ds.child("profileImage").getValue();
                             String timestamp = "" + ds.child("timestamp").getValue();
-                            String companyName = "" + ds.child("companyName ").getValue();
-                            String companyOpen = "" + ds.child("companyOpen ").getValue();
+                            String companyName = "" + ds.child("companyName").getValue();
+                            String companyOpen = "" + ds.child("companyOpen").getValue();
                             String uid = "" + ds.child("uid ").getValue();
 
                             nameEt.setText(name);

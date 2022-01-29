@@ -152,7 +152,7 @@ public class MainSellerActivity extends AppCompatActivity {
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder (MainSellerActivity.this );
                 builder.setTitle ( "Choose Category:" )
-                        .setItems ( Constants.productCategories , new DialogInterface.OnClickListener ( ) {
+                        .setItems ( Constants.productCategories1 , new DialogInterface.OnClickListener ( ) {
                             @Override
                             public void onClick(DialogInterface dialog , int which) {
                                 //get selected item
