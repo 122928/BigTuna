@@ -11,8 +11,6 @@
         <entry key="..\:/Users/NelsonLobor/AndroidStudioProjects/BigTuna/app/src/main/res/layout/activity_edit_product.xml" value="0.184375" />
         <entry key="..\:/Users/NelsonLobor/AndroidStudioProjects/BigTuna/app/src/main/res/layout/activity_main_seller.xml" value="0.1" />
         <entry key="..\:/Users/NelsonLobor/AndroidStudioProjects/BigTuna/app/src/main/res/layout/activity_main_user.xml" value="0.1925925925925926" />
-        <entry key="..\:/Users/NelsonLobor/AndroidStudioProjects/BigTuna/app/src/main/res/layout/activity_profile_edit_seller.xml" value="0.2" />
-        <entry key="..\:/Users/NelsonLobor/AndroidStudioProjects/BigTuna/app/src/main/res/layout/activity_profile_edit_user.xml" value="0.2" />
         <entry key="..\:/Users/NelsonLobor/AndroidStudioProjects/BigTuna/app/src/main/res/layout/activity_shop_details.xml" value="0.1" />
         <entry key="..\:/Users/NelsonLobor/AndroidStudioProjects/BigTuna/app/src/main/res/layout/dialog_quantity.xml" value="0.1" />
         <entry key="..\:/Users/NelsonLobor/AndroidStudioProjects/BigTuna/app/src/main/res/layout/row_product_seller.xml" value="0.25" />
@@ -31,6 +29,15 @@
         <entry key="..\:/Users/Sidney Kanyi/AndroidStudioProjects/BigTuna/app/src/main/res/layout/activity_register_user.xml" value="0.1" />
         <entry key="..\:/Users/Sidney Kanyi/AndroidStudioProjects/BigTuna/app/src/main/res/layout/activity_splash.xml" value="0.1" />
         <entry key="..\:/Users/Sidney Kanyi/AndroidStudioProjects/BigTuna/app/src/main/res/layout/bs_product_details_seller.xml" value="0.22" />
+        <entry key="..\:/Users/yegon/AndroidStudioProjects/BigTuna/app/src/main/res/layout/activity_add_product.xml" value="0.1" />
+        <entry key="..\:/Users/yegon/AndroidStudioProjects/BigTuna/app/src/main/res/layout/activity_edit_product.xml" value="0.1" />
+        <entry key="..\:/Users/yegon/AndroidStudioProjects/BigTuna/app/src/main/res/layout/activity_forgot_password.xml" value="0.21145833333333333" />
+        <entry key="..\:/Users/yegon/AndroidStudioProjects/BigTuna/app/src/main/res/layout/activity_login.xml" value="0.21145833333333333" />
+        <entry key="..\:/Users/yegon/AndroidStudioProjects/BigTuna/app/src/main/res/layout/activity_main_seller.xml" value="0.21145833333333333" />
+        <entry key="..\:/Users/yegon/AndroidStudioProjects/BigTuna/app/src/main/res/layout/activity_main_user.xml" value="0.1" />
+        <entry key="..\:/Users/yegon/AndroidStudioProjects/BigTuna/app/src/main/res/layout/activity_order_details_users.xml" value="0.10833333333333334" />
+        <entry key="..\:/Users/yegon/AndroidStudioProjects/BigTuna/app/src/main/res/layout/activity_shop_details.xml" value="0.1" />
+        <entry key="..\:/Users/yegon/AndroidStudioProjects/BigTuna/app/src/main/res/layout/row_ordereditem.xml" value="0.20092592592592592" />
       </map>
     </option>
   </component>

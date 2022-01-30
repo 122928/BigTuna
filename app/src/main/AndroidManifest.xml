@@ -17,9 +17,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BigTuna.NoActionBar">
         <activity
-            android:name=".activities.ShopDetailsActivity"
-            android:windowSoftInputMode="stateHidden"
+            android:name=".activities.OrderDetailsUsersActivity"
             android:exported="false" />
+        <activity
+            android:name=".activities.ShopDetailsActivity"
+            android:exported="false"
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".activities.AddProductActivity"
             android:exported="false" />

@@ -73,10 +73,8 @@ public class RegisterSellerActivity extends AppCompatActivity implements Locatio
 
     private LocationManager locationManager;
 
-
     private FirebaseAuth firebaseAuth;
     private ProgressDialog progressDialog;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -127,7 +125,6 @@ public class RegisterSellerActivity extends AppCompatActivity implements Locatio
                 } else {
                     //not allowed, request
                     requestLocationPermission ( );
-
 
                 }
 
@@ -327,7 +324,6 @@ public class RegisterSellerActivity extends AppCompatActivity implements Locatio
                                                 finish();
                                             }
                                         } );
-
                             }
                         }
                     } )
@@ -379,8 +375,6 @@ public class RegisterSellerActivity extends AppCompatActivity implements Locatio
                     }
                 } )
                 .show ( );
-
-
     }
 
     private void pickFromGallery() {
@@ -401,9 +395,7 @@ public class RegisterSellerActivity extends AppCompatActivity implements Locatio
         intent.putExtra ( MediaStore.EXTRA_OUTPUT , image_uri );
         startActivityForResult ( intent , IMAGE_PICK_CAMERA_CODE );
 
-
     }
-
 
     private void detectLocation() {
         Toast.makeText ( this , "Please wait..." , Toast.LENGTH_LONG ).show ( );
@@ -487,7 +479,6 @@ public class RegisterSellerActivity extends AppCompatActivity implements Locatio
 
     }
 
-
     @Override
     public void onLocationChanged(Location location) {
         //location detected
@@ -496,9 +487,7 @@ public class RegisterSellerActivity extends AppCompatActivity implements Locatio
 
         findAddress ( );
 
-
     }
-
 
     @Override
     public void onStatusChanged(String provider , int status , Bundle extras) {

@@ -104,7 +104,6 @@ public class RegisterUserActivity extends AppCompatActivity implements LocationL
         progressDialog.setTitle ( "Please Wait..." );
         progressDialog.setCanceledOnTouchOutside ( false );
 
-
          // permissions
         locationPermissions = new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
         cameraPermissions = new String[]{Manifest.permission.CAMERA , Manifest.permission.WRITE_EXTERNAL_STORAGE};

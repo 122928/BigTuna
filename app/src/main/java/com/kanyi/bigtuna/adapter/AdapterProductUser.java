@@ -29,7 +29,6 @@ import p32929.androideasysql_library.EasyDB;
 
 public class AdapterProductUser extends RecyclerView.Adapter< AdapterProductUser.HolderProductUser > implements Filterable {
 
-
     private Context context;
     public ArrayList< ModelProduct > productsList, filterList;
     private FilterProductUser filter;
@@ -198,7 +197,6 @@ public class AdapterProductUser extends RecyclerView.Adapter< AdapterProductUser
 
                 }
 
-
             }
         } );
 
@@ -206,12 +204,12 @@ public class AdapterProductUser extends RecyclerView.Adapter< AdapterProductUser
             @Override
             public void onClick(View v) {
                 String title = titleTv.getText ().toString ().trim ();
-                String priceEach = originalPriceTv.getText ().toString ().trim ().replace("Ksh","");
-                String price = finalPriceTv.getText ().toString ().trim ().replace ( "Ksh","" );
+                String priceEach = price;
+                String totalPrice = finalPriceTv.getText ().toString ().trim ().replace ( "Ksh","" );
                 String quantity = quantityTv.getText ().toString ().trim ();
 
                 // add to SQLLite Db
-                addToCart(productId,title,priceEach,price,quantity);
+                addToCart(productId,title,priceEach,totalPrice,quantity);
 
                 dialog.dismiss ();
             }
@@ -243,6 +241,7 @@ public class AdapterProductUser extends RecyclerView.Adapter< AdapterProductUser
 
         Toast.makeText ( context , "Added to Cart" , Toast.LENGTH_SHORT ).show ( );
 
+        ((shopDetailsActivity)context).cartCount();
     }
 
     @Override
@@ -279,8 +278,6 @@ public class AdapterProductUser extends RecyclerView.Adapter< AdapterProductUser
             addToCartTv = itemView.findViewById ( R.id.addToCartTv );
             discountedPriceTv = itemView.findViewById ( R.id.discountedPriceTv );
             originalPriceTv = itemView.findViewById ( R.id.originalPriceTv );
-
-
 
         }
     }

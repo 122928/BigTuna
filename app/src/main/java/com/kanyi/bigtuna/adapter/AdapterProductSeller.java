@@ -112,9 +112,6 @@ public class AdapterProductSeller extends RecyclerView.Adapter<AdapterProductSel
         //set view to bottom sheet
         bottomSheetDialog.setContentView(view);
 
-
-
-
         //init views of bottom sheet
         ImageButton backBtn = view.findViewById(R.id.backBtn);
         ImageButton deleteBtn = view.findViewById(R.id.deleteBtn);
@@ -198,7 +195,6 @@ public class AdapterProductSeller extends RecyclerView.Adapter<AdapterProductSel
                                 //delete
                                 deleteProduct(id);//product id
 
-
                             }
                         })
                         .setNegativeButton("NO", new DialogInterface.OnClickListener() {
@@ -210,7 +206,6 @@ public class AdapterProductSeller extends RecyclerView.Adapter<AdapterProductSel
                             }
                         })
                         .show();
-
             }
         });
         //back click
@@ -222,9 +217,6 @@ public class AdapterProductSeller extends RecyclerView.Adapter<AdapterProductSel
 
             }
         });
-
-
-
 
     }
 
