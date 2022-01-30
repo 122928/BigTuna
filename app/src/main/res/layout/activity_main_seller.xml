@@ -39,11 +39,17 @@
             android:id="@+id/addProductBtn"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:src="@drawable/ic_shopping_cart_white"
             android:layout_toStartOf="@id/editProfileBtn"
-            android:background="@null" />
+            android:background="@null"
+            android:src="@drawable/ic_shopping_cart_white" />
 
-
+        <ImageButton
+            android:id="@+id/reviewsBtn"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_star_white"
+            android:background="@null"
+            android:layout_toStartOf="@+id/addProductBtn"/>
 
         <com.blogspot.atifsoftwares.circularimageview.CircularImageView
             android:layout_width="70dp"
