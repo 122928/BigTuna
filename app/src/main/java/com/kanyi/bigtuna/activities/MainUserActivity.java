@@ -37,7 +37,7 @@ public class MainUserActivity extends AppCompatActivity {
 
     private TextView nameTv, emailTv,phoneTv,tabShopsTv, tabOrdersTv;
     private RelativeLayout shopsRl, ordersRl;
-    private ImageButton logoutBtn,editProfileBtn;
+    private ImageButton logoutBtn,editProfileBtn, settingsBtn;
     private ImageView profileIv;
     private RecyclerView shopsRv, ordersRv;
 
@@ -67,6 +67,7 @@ public class MainUserActivity extends AppCompatActivity {
         ordersRl = findViewById(R.id.ordersRl);
         shopsRv = findViewById(R.id.shopsRv);
         ordersRv = findViewById(R.id.ordersRv);
+        settingsBtn = findViewById(R.id.settingsBtn);
 
         firebaseAuth = FirebaseAuth.getInstance ();
         progressDialog = new ProgressDialog ( this );
@@ -109,7 +110,15 @@ public class MainUserActivity extends AppCompatActivity {
                 // show shops
                 showOrdersUI ();
             }
-        } );
+        });
+
+        //start settings screen
+        settingsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainUserActivity.this, SettingsActivity.class));
+            }
+        });
     }
 
     private void showShopsUI() {

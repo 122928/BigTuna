@@ -43,7 +43,7 @@ public class MainSellerActivity extends AppCompatActivity {
 
     private TextView nameTv, companyNameTv, emailTv, tabProductsTv, tabOrdersTv,filteredProductsTv, filteredOrdersTv;
     private EditText searchProductEt;
-    private ImageButton logoutBtn,editProfileBtn, addProductBtn,filterProductsBtn,filterOrderBtn, reviewsBtn ;
+    private ImageButton logoutBtn,editProfileBtn, addProductBtn,filterProductsBtn,filterOrderBtn, reviewsBtn, settingsBtn;
     private ImageView profileIv;
     private RelativeLayout productsRl,ordersRl;
     private RecyclerView productsRv, ordersRv;
@@ -81,6 +81,7 @@ public class MainSellerActivity extends AppCompatActivity {
         filterOrderBtn = findViewById(R.id.filterOrderBtn);
         ordersRv = findViewById(R.id.ordersRv);
         reviewsBtn= findViewById(R.id.reviewsBtn);
+        settingsBtn = findViewById(R.id.settingsBtn);
 
         firebaseAuth = FirebaseAuth.getInstance ();
         progressDialog = new ProgressDialog ( this );
@@ -217,6 +218,14 @@ public class MainSellerActivity extends AppCompatActivity {
 
             }
         });
+
+        //start settings screen
+        settingsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainSellerActivity.this, SettingsActivity.class));
+            }
+        });
     }
 
     private void loadAllOrders() {
@@ -226,7 +235,7 @@ public class MainSellerActivity extends AppCompatActivity {
         ref.child ( firebaseAuth.getUid () ).child ( "Orders" )
                 .addValueEventListener(new ValueEventListener() {
                     @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                         orderShopArrayList.clear();
                         for(DataSnapshot ds: dataSnapshot.getChildren()){
