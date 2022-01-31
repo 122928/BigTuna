@@ -83,7 +83,7 @@
 
     <Button
         android:id="@+id/loginBtn"
-        style="@style/Widget.AppCompat.Button.Colored"
+        android:backgroundTint="@color/colorPrimaryDark"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/forgotTv"
@@ -95,10 +95,13 @@
         android:id="@+id/noAccountTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:text="Don't have an account? Register"
+       android:layout_below="@id/loginBtn"
         android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
-        android:textColor="@color/colorBlack"/>
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp"
+        android:text="Don't have an account? Register"
+        android:textColor="@color/colorBlack" />
 
 </RelativeLayout>

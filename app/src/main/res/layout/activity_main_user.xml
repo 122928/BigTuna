@@ -41,7 +41,6 @@
             android:layout_toStartOf="@id/editProfileBtn"/>
 
 
-
         <com.blogspot.atifsoftwares.circularimageview.CircularImageView
             android:id="@+id/profileIv"
             android:layout_width="70dp"

@@ -101,7 +101,7 @@
             android:background="@drawable/shape_rect02"
             android:drawableStart="@drawable/ic_location_gray"
             android:drawablePadding="5dp"
-            android:hint="Country"
+            android:hint="County"
             android:textColorHint="@color/colorGray"
             android:textColor="@color/colorPrimary"
             android:inputType="textPostalAddress"
@@ -117,7 +117,7 @@
             android:background="@drawable/shape_rect02"
             android:drawableStart="@drawable/ic_location_gray"
             android:drawablePadding="5dp"
-            android:hint="State"
+            android:hint="District"
             android:textColorHint="@color/colorGray"
             android:textColor="@color/colorPrimary"
             android:inputType="textPostalAddress"
@@ -133,7 +133,7 @@
             android:background="@drawable/shape_rect02"
             android:drawableStart="@drawable/ic_location_gray"
             android:drawablePadding="5dp"
-            android:hint="City"
+            android:hint="Location"
             android:textColorHint="@color/colorGray"
             android:textColor="@color/colorPrimary"
             android:inputType="textPostalAddress"
@@ -165,11 +165,11 @@
 
     <Button
         android:id="@+id/updateBtn"
-        style="@style/Widget.AppCompat.Button.Colored"
+        android:backgroundTint="@color/colorPrimaryDark"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/addressEt"
         android:layout_centerHorizontal="true"
-        android:text="Update"/>
+        android:text="Update" />
 
 </RelativeLayout>

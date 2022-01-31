@@ -74,7 +74,8 @@
         <!--register service to allow to run in background-->
 
         <service
-            android:name=".models.MyFirebaseMessaging">
+            android:name=".models.MyFirebaseMessaging"
+            android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
             </intent-filter>

@@ -222,7 +222,7 @@
             android:layout_marginEnd="5dp"
             android:background="@null"
             android:scaleType="fitXY"
-            android:src="@drawable/ic_dashboard_gray"/>
+            android:src="@drawable/ic_dashboard_gray" />
 
         <!-- show filtered products titles-->
         <TextView

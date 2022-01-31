@@ -42,7 +42,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/emailTv"
-            android:text="Total Amount: $32.33"
+            android:text="Total Amount: Ksh 32.33"
             android:textColor="@color/colorGray02" />
 
         <TextView
