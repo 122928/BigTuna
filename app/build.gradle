@@ -50,3 +50,4 @@ dependencies {
     //sql lite
     implementation 'com.github.p32929:AndroidEasySQL-Library:1.4.1'
 }
+

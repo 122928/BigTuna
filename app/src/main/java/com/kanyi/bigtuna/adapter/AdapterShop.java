@@ -12,6 +12,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.kanyi.bigtuna.R;
 import com.kanyi.bigtuna.activities.ShopDetailsActivity;
 import com.kanyi.bigtuna.models.ModelShop;
@@ -59,6 +64,8 @@ public class AdapterShop extends RecyclerView.Adapter<AdapterShop.HolderShop>{
         String profileImage = modelShop.getProfileImage();
         String companyName = modelShop.getCompanyName();
 
+        loadReviews(modelShop,holder);
+
         holder.companyNameTv.setText(companyName);
         holder.phoneTv.setText(phone);
         holder.addressTv.setText(address);
@@ -92,11 +99,43 @@ public class AdapterShop extends RecyclerView.Adapter<AdapterShop.HolderShop>{
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent ( context, ShopDetailsActivity.class );
-                intent.putExtra ( "shopUid",uid );
+                intent.putExtra ( "companyUid",uid );
                 context.startActivity ( intent );
             }
         } );
 
+    }
+
+    private float ratingSum =0;
+    private void loadReviews(ModelShop modelShop , HolderShop holder) {
+
+        String companyUid = modelShop.getUid ( );
+
+        DatabaseReference ref = FirebaseDatabase.getInstance ().getReference ("Users");
+        ref.child ( companyUid ).child ( "Ratings" )
+                .addValueEventListener ( new ValueEventListener ( ) {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        // clear list before adding data into it
+                        ratingSum=0;
+                        for(DataSnapshot ds: dataSnapshot.getChildren ()){
+                            float rating = Float.parseFloat ( ""+ds.child ( "ratings" ).getValue () );
+                            ratingSum = ratingSum+rating;
+
+
+                        }
+                        long numberOfReviews = dataSnapshot.getChildrenCount ();
+                        float avgRating = ratingSum/numberOfReviews;
+
+                        holder.ratingBar.setRating ( avgRating );
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                } );
     }
 
     @Override

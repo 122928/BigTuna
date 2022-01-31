@@ -20,6 +20,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,8 +37,10 @@ import com.kanyi.bigtuna.Constants;
 import com.kanyi.bigtuna.R;
 import com.kanyi.bigtuna.adapter.AdapterCartItem;
 import com.kanyi.bigtuna.adapter.AdapterProductUser;
+import com.kanyi.bigtuna.adapter.AdapterReview;
 import com.kanyi.bigtuna.models.ModelCartItem;
 import com.kanyi.bigtuna.models.ModelProduct;
+import com.kanyi.bigtuna.models.ModelReview;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -52,17 +55,19 @@ public class ShopDetailsActivity extends AppCompatActivity {
 
     private ImageView shopIv;
     private TextView companyNameTv, phoneTv,emailTv, openClosedTv,
-            deliveryFeeTv, addressTv, filteredProductsTv;
-    private ImageButton callBtn, mapBtn,cartBtn,backBtn,filterProductsBtn;
+            deliveryFeeTv, addressTv, filteredProductsTv, cartCountTv;
+    private ImageButton callBtn, mapBtn,cartBtn,backBtn,filterProductsBtn,reviewBtn;
     private EditText searchProductEt;
     private RecyclerView productsRv;
+    private RatingBar ratingBar;
 
-    private String shopUid;
+    private String companyUid;
     private String myLatitude, myLongitude, myPhone;
     private String companyName, shopEmail, shopPhone, shopAddress, shopLatitude, shopLongitude;
     public String deliveryFee;
 
     private FirebaseAuth firebaseAuth;
+    private EasyDB easyDB;
 
     //progress dialog
     private ProgressDialog progressDialog;
@@ -94,21 +99,36 @@ public class ShopDetailsActivity extends AppCompatActivity {
         filterProductsBtn = findViewById ( R.id.filterProductsBtn );
         filteredProductsTv = findViewById ( R.id.filteredProductsTv );
         productsRv = findViewById ( R.id.productsRv );
+        cartCountTv = findViewById ( R.id.cartCountTv );
+        reviewBtn = findViewById ( R.id.reviewBtn );
+        ratingBar = findViewById ( R.id.ratingBar );
 
         //init progress dialog
         progressDialog = new ProgressDialog(this);
         progressDialog.setTitle("Please wait");
         progressDialog.setCanceledOnTouchOutside(false);
 
-        shopUid = getIntent ().getStringExtra ( "shopUid" );
+        companyUid = getIntent ().getStringExtra ( "companyUid" );
         firebaseAuth = FirebaseAuth.getInstance ();
         loadMyInfo();
         loadShopDetails();
         loadShopProducts();
+        loadReviews(); 
+
+                 easyDB =  EasyDB.init(this,"ITEMS_DB")
+                .setTableName("ITEMS_TABLE")
+                .addColumn(new Column("Item_Id", new String[]{"text","unique"}))
+                .addColumn(new Column("Item_PID", new String[]{"text","not null"}))
+                .addColumn(new Column("Item_Name", new String[]{"text","not null"}))
+                .addColumn(new Column("Item_Price_Each", new String[]{"text","not null"}))
+                .addColumn(new Column("Item_Price", new String[]{"text","not null"}))
+                .addColumn(new Column("Item_Quantity", new String[]{"text","not null"}))
+                .doneTableColumn();
 
         //each shop has its own products and orders so if user add items to cart and go back and open cart in different shop then cart should be different
         //so delete cart data whenever user opens this activity
         deleteCartData();
+        cartCount ();
 
         searchProductEt.addTextChangedListener ( new TextWatcher ( ) {
             @Override
@@ -185,21 +205,69 @@ public class ShopDetailsActivity extends AppCompatActivity {
 
             }
         } );
+
+        //handle review button click, open review activity
+
+        reviewBtn.setOnClickListener ( new View.OnClickListener ( ) {
+            @Override
+            public void onClick(View v) {
+                // pass company uid to show its reviews
+                Intent intent = new Intent(ShopDetailsActivity.this,ShopReviewsActivity.class);
+                intent.putExtra ("companyUid",companyUid  );
+                startActivity ( intent );
+            }
+        } );
     }
 
+    private float ratingSum =0;
+    private void loadReviews() {
+
+        DatabaseReference ref = FirebaseDatabase.getInstance ().getReference ("Users");
+        ref.child ( companyUid ).child ( "Ratings" )
+                .addValueEventListener ( new ValueEventListener ( ) {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        // clear list before adding data into it
+                        ratingSum=0;
+                        for(DataSnapshot ds: dataSnapshot.getChildren ()){
+                            float rating = Float.parseFloat ( ""+ds.child ( "ratings" ).getValue () );
+                            ratingSum = ratingSum+rating;
+
+
+                        }
+                        long numberOfReviews = dataSnapshot.getChildrenCount ();
+                        float avgRating = ratingSum/numberOfReviews;
+
+                        ratingBar.setRating ( avgRating );
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                } );
+    }
+
+
     private void deleteCartData() {
-        EasyDB easyDB =  EasyDB.init(this,"ITEMS_DB")
-                .setTableName("ITEMS_TABLE")
-                .addColumn(new Column("Item_Id", new String[]{"text","unique"}))
-                .addColumn(new Column("Item_PID", new String[]{"text","not null"}))
-                .addColumn(new Column("Item_Name", new String[]{"text","not null"}))
-                .addColumn(new Column("Item_Price_Each", new String[]{"text","not null"}))
-                .addColumn(new Column("Item_Price", new String[]{"text","not null"}))
-                .addColumn(new Column("Item_Quantity", new String[]{"text","not null"}))
-                .doneTableColumn();
+
         easyDB.deleteAllDataFromTable();//delete all records from cart
 
     }
+
+    public void cartCount(){
+
+        int count = easyDB.getAllData ( ).getCount ();
+        if (count<=0){
+            cartCountTv.setVisibility ( View.GONE );
+        }
+        else {
+            cartCountTv.setVisibility ( View.VISIBLE );
+            cartCountTv.setText ( ""+count );
+        }
+    }
+
 
     public double allTotalPrice = 0.00;
     public TextView sTotalTv, dFeeTv, allTotalPriceTv;
@@ -210,7 +278,7 @@ public class ShopDetailsActivity extends AppCompatActivity {
 
         View view = LayoutInflater.from(this).inflate(R.layout.dialog_cart, null);
 
-        TextView shopNameTv = view.findViewById(R.id.shopNameTv);
+        TextView companyNameTv = view.findViewById(R.id.companyNameTv);
         RecyclerView cartItemsRv = view.findViewById(R.id.cartItemsRv);
         sTotalTv = view.findViewById(R.id.sTotalTv);
         dFeeTv = view.findViewById(R.id.dFeeTv);
@@ -222,7 +290,7 @@ public class ShopDetailsActivity extends AppCompatActivity {
         //set view to dialog
         builder.setView(view);
 
-        shopNameTv.setText(companyName);
+        companyNameTv.setText(companyName);
 
         EasyDB easyDB =  EasyDB.init(this,"ITEMS_DB")
                 .setTableName("ITEMS_TABLE")
@@ -316,12 +384,12 @@ public class ShopDetailsActivity extends AppCompatActivity {
         hashMap.put("orderStatus", "In Progress");
         hashMap.put("orderCost", ""+cost);
         hashMap.put("orderBy", ""+firebaseAuth.getUid());
-        hashMap.put("orderTo", ""+shopUid);
+        hashMap.put("orderTo", ""+companyUid);
         hashMap.put("latitude", ""+myLatitude);
         hashMap.put("longitude", ""+myLongitude);
 
         //add to db
-        final DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users").child(shopUid).child("Orders");
+        final DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users").child(companyUid).child("Orders");
         ref.child(timestamp).setValue(hashMap)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
@@ -349,7 +417,7 @@ public class ShopDetailsActivity extends AppCompatActivity {
                         Toast.makeText(ShopDetailsActivity.this, "Order Placed Successfully...", Toast.LENGTH_SHORT).show();
 
                         Intent intent = new Intent(ShopDetailsActivity.this, OrderDetailsUsersActivity.class);
-                        intent.putExtra("orderTo", shopUid);
+                        intent.putExtra("orderTo", companyUid);
                         intent.putExtra("orderId", timestamp);
                         startActivity(intent);
                     }
@@ -407,7 +475,7 @@ public class ShopDetailsActivity extends AppCompatActivity {
     private void loadShopDetails() {
 
         DatabaseReference ref = FirebaseDatabase.getInstance ().getReference ("Users");
-        ref.child ( shopUid ).addValueEventListener ( new ValueEventListener ( ) {
+        ref.child ( companyUid ).addValueEventListener ( new ValueEventListener ( ) {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
@@ -458,7 +526,7 @@ public class ShopDetailsActivity extends AppCompatActivity {
         productsList = new ArrayList <> (  );
 
         DatabaseReference reference = FirebaseDatabase.getInstance ().getReference ("Users");
-        reference.child ( shopUid ).child ( "Products" )
+        reference.child ( companyUid).child ( "Products" )
                 .addValueEventListener ( new ValueEventListener ( ) {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {

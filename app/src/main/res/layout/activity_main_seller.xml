@@ -112,8 +112,6 @@
                 android:text="Orders"
                 android:textColor="@color/colorWhite"/>
 
-
-
         </LinearLayout>
 
     </RelativeLayout>
@@ -124,7 +122,7 @@
         android:id="@+id/productsRl"
         android:layout_below="@id/toolbarRl"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
         <!--SearchView-->
         <EditText
             android:id="@+id/searchProductEt"
@@ -164,13 +162,13 @@
             android:layout_marginBottom="5dp"/>
 
         <!-- RecyclerView: show products -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/productsRv"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/filteredProductsTv"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/row_product_seller"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/productsRv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/filteredProductsTv"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/row_product_seller" />
 
 
     </RelativeLayout>

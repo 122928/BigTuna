@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -44,9 +45,9 @@ public class AdapterOrderedItem extends RecyclerView.Adapter<AdapterOrderedItem.
         String price = modelOrderedItem.getPrice();
         String quantity = modelOrderedItem.getQuantity();
 
-        holder.itemTitleTv.setText(name);
-        holder.itemPriceEachTv.setText("$"+price);
-        holder.itemPriceTv.setText("$"+cost);
+        holder.itemTitleTv.setText (""+ name );
+        holder.itemPriceEachTv.setText("Ksh"+price);
+        holder.itemPriceTv.setText("Ksh"+cost);
         holder.itemQuantityTv.setText("["+quantity+"]");
 
     }
@@ -58,7 +59,7 @@ public class AdapterOrderedItem extends RecyclerView.Adapter<AdapterOrderedItem.
 
     class HolderOrderedItem extends RecyclerView.ViewHolder{
 
-        private Text itemTitleTv, itemPriceTv, itemPriceEachTv, itemQuantityTv;
+        private TextView itemTitleTv, itemPriceTv, itemPriceEachTv, itemQuantityTv;
 
         public HolderOrderedItem(@NonNull View itemView) {
             super(itemView);

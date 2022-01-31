@@ -2,6 +2,7 @@ package com.kanyi.bigtuna.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +20,6 @@ import com.kanyi.bigtuna.R;
 import com.kanyi.bigtuna.activities.OrderDetailsUsersActivity;
 import com.kanyi.bigtuna.models.ModelOrderUser;
 
-import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -71,9 +71,9 @@ public class AdapterOrderUser extends RecyclerView.Adapter<AdapterOrderUser.Hold
         }
 
         //convert timestamp to proper format
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(Long.parseLong(orderTime));
-        String formatDate = DateFormat.getDateInstance().format("dd/MM/yyyy").toString();
+        Calendar calendar = Calendar.getInstance ();
+        calendar.setTimeInMillis ( Long.parseLong ( orderTime ) );
+        String formatDate = DateFormat.format ( "dd/MM/yyyy",calendar ).toString ();
 
         holder.dateTv.setText(formatDate);
 
@@ -96,8 +96,8 @@ public class AdapterOrderUser extends RecyclerView.Adapter<AdapterOrderUser.Hold
         ref.child(modelOrderUser.getOrderTo()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-               String shopName = ""+dataSnapshot.child("shopName").getValue();
-               holder.shopNameTv.setText(shopName);
+               String companyName = ""+dataSnapshot.child("companyName").getValue();
+               holder.companyNameTv.setText(companyName);
 
             }
 
@@ -117,14 +117,14 @@ public class AdapterOrderUser extends RecyclerView.Adapter<AdapterOrderUser.Hold
     class HolderOrderUser extends RecyclerView.ViewHolder{
 
         //views of layout
-        private TextView orderIdTv, dateTv, shopNameTv, amountTv, statusTv;
+        private TextView orderIdTv, dateTv, companyNameTv, amountTv, statusTv;
 
         public HolderOrderUser(@NonNull View itemView) {
             super(itemView);
 
             orderIdTv = itemView.findViewById(R.id.orderIdTv);
             dateTv = itemView.findViewById(R.id.dateTv);
-            shopNameTv = itemView.findViewById(R.id.shopNameTv );
+            companyNameTv = itemView.findViewById(R.id.companyNameTv );
             amountTv = itemView.findViewById(R.id.amountTv);
             statusTv = itemView.findViewById(R.id.statusTv);
         }
