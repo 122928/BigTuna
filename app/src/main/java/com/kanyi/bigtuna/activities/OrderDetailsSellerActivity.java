@@ -30,6 +30,7 @@ import com.kanyi.bigtuna.adapter.AdapterOrderedItem;
 import com.kanyi.bigtuna.models.ModelOrderedItem;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -106,7 +107,7 @@ public class OrderDetailsSellerActivity extends AppCompatActivity {
 
         String[] options = {"In progress", "Completed", "Cancelled"};
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(MainSellerActivity.this);
+        AlertDialog.Builder builder = new AlertDialog.Builder (OrderDetailsSellerActivity.this );
         builder.setTitle("Edit Order Status:")
                 .setItems(options, new DialogInterface.OnClickListener() {
                     @Override
@@ -152,7 +153,7 @@ public class OrderDetailsSellerActivity extends AppCompatActivity {
         ref.child(firebaseAuth.getUid()).child("Orders").child(orderId)
                 .addValueEventListener(new ValueEventListener() {
                     @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                         String orderBy = ""+dataSnapshot.child("orderBy").getValue();
                         String orderCost = ""+dataSnapshot.child("orderCost").getValue();
@@ -164,9 +165,9 @@ public class OrderDetailsSellerActivity extends AppCompatActivity {
                         String latitude = ""+dataSnapshot.child("latitude").getValue();
                         String longitude = ""+dataSnapshot.child("longitude").getValue();
 
-                        Calender calender = Calender.getInstance();
-                        calender.setTimeInMillis(long.parseLong(orderTime));
-                        String dateformated = DateFormat.format("dd/mm/yyyy", calender).toString();
+                        Calendar calender = Calendar.getInstance();
+                        calender.setTimeInMillis(Long.parseLong(orderTime));
+                        String dateFormatted = DateFormat.format("dd/mm/yyyy", calender).toString();
 
                         if (orderStatus.equals("In Progress")){
                             orderStatusTv.setTextColor(getResources().getColor(R.color.colorPrimary));
@@ -181,7 +182,7 @@ public class OrderDetailsSellerActivity extends AppCompatActivity {
                         orderIdTv.setText(orderId);
                         orderStatusTv.setText(orderStatus);
                         amountTv.setText("$"+orderCost+"[Including delivery fee $"+deliveryFee+"]");
-                        dateTv.setText(dateformated);
+                        dateTv.setText(dateFormatted);
 
                         findAddress(latitude,longitude);
                     }
@@ -218,7 +219,7 @@ public class OrderDetailsSellerActivity extends AppCompatActivity {
         ref.child(firebaseAuth.getUid()).child("Orders").child("Items")
                 .addValueEventListener(new ValueEventListener() {
                     @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                         orderedItemArrayList.clear();
                         for (DataSnapshot ds: dataSnapshot.getChildren()){
@@ -251,7 +252,7 @@ public class OrderDetailsSellerActivity extends AppCompatActivity {
         ref.child(firebaseAuth.getUid())
                 .addValueEventListener(new ValueEventListener() {
                     @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                         sourceLatitude =""+dataSnapshot.child("latitude").getValue();
                         sourceLongitude =""+dataSnapshot.child("longitude").getValue();
@@ -269,7 +270,7 @@ public class OrderDetailsSellerActivity extends AppCompatActivity {
         ref.child(orderBy)
                 .addValueEventListener(new ValueEventListener() {
                     @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                         destinationLatitude =""+dataSnapshot.child("latitude").getValue();
                         destinationLongitude =""+dataSnapshot.child("longitude").getValue();

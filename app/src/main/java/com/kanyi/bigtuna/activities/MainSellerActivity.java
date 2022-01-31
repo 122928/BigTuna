@@ -86,6 +86,7 @@ public class MainSellerActivity extends AppCompatActivity {
         progressDialog = new ProgressDialog ( this );
         progressDialog.setTitle ( "Please Wait" );
         progressDialog.setCanceledOnTouchOutside ( false );
+
         checkUser();
         loadAllProducts();
         loadAllOrders();
@@ -226,7 +227,7 @@ public class MainSellerActivity extends AppCompatActivity {
         ref.child ( firebaseAuth.getUid () ).child ( "Orders" )
                 .addValueEventListener(new ValueEventListener() {
                     @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                         orderShopArrayList.clear();
                         for(DataSnapshot ds: dataSnapshot.getChildren()){
