@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.kanyi.bigtuna.FilterProductUser;
 import com.kanyi.bigtuna.R;
+import com.kanyi.bigtuna.activities.ShopDetailsActivity;
 import com.kanyi.bigtuna.models.ModelProduct;
 import com.squareup.picasso.Picasso;
 
@@ -241,7 +242,7 @@ public class AdapterProductUser extends RecyclerView.Adapter< AdapterProductUser
 
         Toast.makeText ( context , "Added to Cart" , Toast.LENGTH_SHORT ).show ( );
 
-        ((shopDetailsActivity)context).cartCount();
+        ((ShopDetailsActivity)context).cartCount();
     }
 
     @Override

@@ -38,6 +38,7 @@ import com.kanyi.bigtuna.models.ModelOrderedItem;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -115,7 +116,7 @@ public class OrderDetailsSellerActivity extends AppCompatActivity {
 
         String[] options = {"In progress", "Completed", "Cancelled"};
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(MainSellerActivity.this);
+        AlertDialog.Builder builder = new AlertDialog.Builder (OrderDetailsSellerActivity.this );
         builder.setTitle("Edit Order Status:")
                 .setItems(options, new DialogInterface.OnClickListener() {
                     @Override
@@ -176,9 +177,9 @@ public class OrderDetailsSellerActivity extends AppCompatActivity {
                         String latitude = ""+dataSnapshot.child("latitude").getValue();
                         String longitude = ""+dataSnapshot.child("longitude").getValue();
 
-                        Calender calender = Calender.getInstance();
-                        calender.setTimeInMillis(long.parseLong(orderTime));
-                        String dateformated = DateFormat.format("dd/mm/yyyy", calender).toString();
+                        Calendar calender = Calendar.getInstance();
+                        calender.setTimeInMillis(Long.parseLong(orderTime));
+                        String dateFormatted = DateFormat.format("dd/mm/yyyy", calender).toString();
 
                         if (orderStatus.equals("In Progress")){
                             orderStatusTv.setTextColor(getResources().getColor(R.color.colorPrimary));
@@ -193,7 +194,7 @@ public class OrderDetailsSellerActivity extends AppCompatActivity {
                         orderIdTv.setText(orderId);
                         orderStatusTv.setText(orderStatus);
                         amountTv.setText("$"+orderCost+"[Including delivery fee $"+deliveryFee+"]");
-                        dateTv.setText(dateformated);
+                        dateTv.setText(dateFormatted);
 
                         findAddress(latitude,longitude);
                     }

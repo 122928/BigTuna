@@ -7,6 +7,9 @@
     android:orientation="vertical"
     tools:context=".activities.OrderDetailsUsersActivity">
 
+    <!--Add option to write a review so if user has made an order-->
+
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -27,6 +30,14 @@
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold" />
+
+        <ImageButton
+            android:id="@+id/writeReviewBtn"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentEnd="true"
+            android:background="@null"
+            android:src="@drawable/ic_rate_white"/>
 
     </RelativeLayout>
 
@@ -115,7 +126,7 @@
                     android:textStyle="bold"/>
 
                 <TextView
-                    android:id="@+id/shopNameTv"
+                    android:id="@+id/companyNameTv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"

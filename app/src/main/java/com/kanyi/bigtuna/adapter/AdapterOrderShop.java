@@ -2,6 +2,7 @@ package com.kanyi.bigtuna.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,14 +23,14 @@ import com.kanyi.bigtuna.R;
 import com.kanyi.bigtuna.activities.OrderDetailsSellerActivity;
 import com.kanyi.bigtuna.models.ModelOrderShop;
 
-import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class AdapterOrderShop extends RecyclerView.Adapter<AdapterOrderShop.HolderOrderShop> implements Filterable {
 
     private Context context;
     public ArrayList<ModelOrderShop> orderShopArrayList, filterList;
-    private filterOrderShop filter;
+    private FilterOrderShop filter;
 
     public AdapterOrderShop(Context context, ArrayList<ModelOrderShop> orderShopArrayList){
         this.context = context;
@@ -76,11 +77,11 @@ public class AdapterOrderShop extends RecyclerView.Adapter<AdapterOrderShop.Hold
 
         }
 
-        Calender calender = Calender.getInstance();
-        calender.setTimeInMillis(long.parselong(orderTime));
-        String formatedDate = DateFormat.format("dd/MM/yyyy",calender).toString();
+        Calendar calendar = Calendar.getInstance ();
+        calendar.setTimeInMillis ( Long.parseLong ( orderTime ) );
+        String formattedDate = DateFormat.format ( "dd/MM/yyyy",calendar ).toString ();
 
-        holder.orderDateTv.setText(formatedDate);
+        holder.orderDateTv.setText(formattedDate);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,7 +102,7 @@ public class AdapterOrderShop extends RecyclerView.Adapter<AdapterOrderShop.Hold
         ref.child(modelOrderShop.getOrderBy())
                 .addValueEventListener(new ValueEventListener() {
                     @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                         String email = ""+dataSnapshot.child("email").getValue();
                         holder.emailTv.setText(email);

@@ -87,6 +87,7 @@ public class MainSellerActivity extends AppCompatActivity {
         progressDialog = new ProgressDialog ( this );
         progressDialog.setTitle ( "Please Wait" );
         progressDialog.setCanceledOnTouchOutside ( false );
+
         checkUser();
         loadAllProducts();
         loadAllOrders();

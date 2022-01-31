@@ -57,7 +57,7 @@ public class ModelShop {
         return companyName;
     }
 
-    public void setShopName(String companyName) {
+    public void setCompanyName(String companyName) {
         this.companyName = companyName;
     }
 
