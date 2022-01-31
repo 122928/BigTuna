@@ -17,6 +17,11 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -25,14 +30,18 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.kanyi.bigtuna.Constants;
 import com.kanyi.bigtuna.R;
 import com.kanyi.bigtuna.adapter.AdapterOrderedItem;
 import com.kanyi.bigtuna.models.ModelOrderedItem;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 public class OrderDetailsSellerActivity extends AppCompatActivity {
 
@@ -130,9 +139,12 @@ public class OrderDetailsSellerActivity extends AppCompatActivity {
         ref.child(firebaseAuth.getUid()).child("Orders").child(orderId)
                 .updateChildren(hashMap)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    String message = "Order is now"+selectedOption;
                     @Override
                     public void onSuccess(Void unused) {
-                        Toast.makeText(OrderDetailsSellerActivity.this, "Order is now"+selectedOption,Toast.LENGTH_SHORT);
+                        Toast.makeText(OrderDetailsSellerActivity.this, message,Toast.LENGTH_SHORT);
+
+                        prepareNotificationMessage(orderId, message);
 
                     }
                 })
@@ -152,7 +164,7 @@ public class OrderDetailsSellerActivity extends AppCompatActivity {
         ref.child(firebaseAuth.getUid()).child("Orders").child(orderId)
                 .addValueEventListener(new ValueEventListener() {
                     @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                         String orderBy = ""+dataSnapshot.child("orderBy").getValue();
                         String orderCost = ""+dataSnapshot.child("orderCost").getValue();
@@ -218,7 +230,7 @@ public class OrderDetailsSellerActivity extends AppCompatActivity {
         ref.child(firebaseAuth.getUid()).child("Orders").child("Items")
                 .addValueEventListener(new ValueEventListener() {
                     @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                         orderedItemArrayList.clear();
                         for (DataSnapshot ds: dataSnapshot.getChildren()){
@@ -251,7 +263,7 @@ public class OrderDetailsSellerActivity extends AppCompatActivity {
         ref.child(firebaseAuth.getUid())
                 .addValueEventListener(new ValueEventListener() {
                     @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                         sourceLatitude =""+dataSnapshot.child("latitude").getValue();
                         sourceLongitude =""+dataSnapshot.child("longitude").getValue();
@@ -269,7 +281,7 @@ public class OrderDetailsSellerActivity extends AppCompatActivity {
         ref.child(orderBy)
                 .addValueEventListener(new ValueEventListener() {
                     @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                         destinationLatitude =""+dataSnapshot.child("latitude").getValue();
                         destinationLongitude =""+dataSnapshot.child("longitude").getValue();
@@ -285,5 +297,71 @@ public class OrderDetailsSellerActivity extends AppCompatActivity {
 
                     }
                 });
+    }
+
+    private void prepareNotificationMessage(String orderId, String message){
+        //when user seller changes order status InProgress/Cancelled/Completed, send notification to buyer
+
+        //prepare data for notification
+        String NOTIFICATION_TOPIC = "/topics" + Constants.FCM_TOPIC;//must be same as subscribed by user
+        String NOTIFICATION_TITLE = "Your Order "+ orderId;
+        String NOTIFICATIONS_MESSAGE = "" + message;
+        String NOTIFICATION_TYPE = "OrderStatusChanged";
+
+        //prepare json (what to send and where to send)
+        JSONObject notificationsJo = new JSONObject();
+        JSONObject notificationBodyJo = new JSONObject();
+        try {
+            //what to send
+            notificationBodyJo.put("notificationType", NOTIFICATION_TYPE);
+            notificationBodyJo.put("buyerUid", orderBy);//current user uid is buyer uid
+            notificationBodyJo.put("sellerUid", firebaseAuth.getUid());
+            notificationBodyJo.put("orderId", orderId);
+            notificationBodyJo.put("notificationTitle", NOTIFICATION_TITLE);
+            notificationBodyJo.put("notificationMessage", NOTIFICATIONS_MESSAGE);
+            //where to send
+            notificationsJo.put("to", NOTIFICATION_TOPIC);//to all who subscribed to this topic
+            notificationsJo.put("data", notificationBodyJo);
+
+
+        }
+        catch (Exception e){
+            Toast.makeText(this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+
+        }
+
+        sendFcmNotification(notificationsJo);
+    }
+
+    private void sendFcmNotification(JSONObject notificationsJo) {
+        //send volley request
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest("https://fcm.googleapis.com/fcm/send", notificationsJo, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                //notification sent
+
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                //notification failed
+
+            }
+        }){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+
+                //put required headers
+                Map<String, String> headers = new HashMap<>();
+                headers.put("Content-Type","application/json");
+                headers.put("Authorization","key=" +Constants.FCM_KEY);
+
+                return headers;
+            }
+        };
+
+        //enquire the volley request
+        Volley.newRequestQueue(this).add(jsonObjectRequest);
     }
 }
