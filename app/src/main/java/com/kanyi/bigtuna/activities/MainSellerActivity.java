@@ -30,7 +30,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.kanyi.bigtuna.Constants;
 import com.kanyi.bigtuna.R;
+import com.kanyi.bigtuna.adapter.AdapterOrderShop;
 import com.kanyi.bigtuna.adapter.AdapterProductSeller;
+import com.kanyi.bigtuna.models.ModelOrderShop;
 import com.kanyi.bigtuna.models.ModelProduct;
 import com.squareup.picasso.Picasso;
 
@@ -39,18 +41,21 @@ import java.util.HashMap;
 
 public class MainSellerActivity extends AppCompatActivity {
 
-    private TextView nameTv, companyNameTv, emailTv, tabProductsTv, tabOrdersTv,filteredProductsTv;
+    private TextView nameTv, companyNameTv, emailTv, tabProductsTv, tabOrdersTv,filteredProductsTv, filteredOrdersTv;
     private EditText searchProductEt;
-    private ImageButton logoutBtn,editProfileBtn, addProductBtn,filterProductsBtn ;
+    private ImageButton logoutBtn,editProfileBtn, addProductBtn,filterProductsBtn,filterOrderBtn, reviewsBtn ;
     private ImageView profileIv;
     private RelativeLayout productsRl,ordersRl;
-    private RecyclerView productsRv;
+    private RecyclerView productsRv, ordersRv;
 
     private FirebaseAuth firebaseAuth;
     private ProgressDialog progressDialog;
 
     private ArrayList<ModelProduct> productList;
     private AdapterProductSeller adapterProductSeller;
+
+    private ArrayList<ModelOrderShop> orderShopArrayList;
+    private AdapterOrderShop adapterOrderShop;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +77,10 @@ public class MainSellerActivity extends AppCompatActivity {
         productsRl = findViewById(R.id.productsRl);
         ordersRl = findViewById(R.id.ordersRl);
         productsRv = findViewById(R.id.productsRv);
+        filteredOrdersTv = findViewById(R.id.filteredOrdersTv);
+        filterOrderBtn = findViewById(R.id.filterOrderBtn);
+        ordersRv = findViewById(R.id.ordersRv);
+        reviewsBtn= findViewById(R.id.reviewsBtn);
 
         firebaseAuth = FirebaseAuth.getInstance ();
         progressDialog = new ProgressDialog ( this );
@@ -79,6 +88,7 @@ public class MainSellerActivity extends AppCompatActivity {
         progressDialog.setCanceledOnTouchOutside ( false );
         checkUser();
         loadAllProducts();
+        loadAllOrders();
 
         showProductsUI ();
 
@@ -169,6 +179,73 @@ public class MainSellerActivity extends AppCompatActivity {
                         } ).show ();
             }
         } );
+        filterOrderBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String[] options = {"All", "In progress", "Completed", "Cancelled"};
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainSellerActivity.this);
+                builder.setTitle("Filter Orders:")
+                        .setItems(options, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                                if (which==0){
+
+                                    filteredOrdersTv.setText("Showing All Orders");
+                                    adapterOrderShop.getFilter().filter("");
+                                }
+                                else{
+                                    String optionClicked = options[which];
+                                    filteredOrdersTv.setText("showing"+optionClicked+"Orders");
+                                    adapterOrderShop.getFilter().filter(optionClicked);
+                                }
+                            }
+                        })
+                .show();
+
+            }
+        });
+
+        reviewsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(MainSellerActivity.this, ShopReviewsActivity.class);
+                intent.putExtra("shopUid",""+firebaseAuth.getUid());
+                startActivity(intent);
+
+            }
+        });
+    }
+
+    private void loadAllOrders() {
+        orderShopArrayList = new ArrayList();
+
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
+        ref.child ( firebaseAuth.getUid () ).child ( "Orders" )
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                        orderShopArrayList.clear();
+                        for(DataSnapshot ds: dataSnapshot.getChildren()){
+                            ModelOrderShop modelOrderShop = ds.getValue(ModelOrderShop.class);
+
+                            orderShopArrayList.add(modelOrderShop);
+
+                        }
+                        adapterOrderShop = new AdapterOrderShop(MainSellerActivity.this,orderShopArrayList);
+
+                        ordersRv.setAdapter(adapterOrderShop);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
     }
 
     private void loadFilteredProducts(String selected) {
@@ -321,8 +398,6 @@ public class MainSellerActivity extends AppCompatActivity {
                                 profileIv.setImageResource(R.drawable.ic_store_gray);
 
                             }
-
-
                         }
                     }
 
