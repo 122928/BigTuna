@@ -133,6 +133,8 @@ public class OrderDetailsUsersActivity extends AppCompatActivity {
                         String latitude =""+dataSnapshot.child("latitude").getValue();
                         String longitude =""+dataSnapshot.child("longitude").getValue();
 
+
+
                         Calendar calendar = Calendar.getInstance ();
                         calendar.setTimeInMillis(Long.parseLong ( orderTime ));
                         String formattedDate =  DateFormat.format ( "dd/MM/yyyy hh:mm a",calendar ).toString ();
@@ -151,7 +153,8 @@ public class OrderDetailsUsersActivity extends AppCompatActivity {
 
                     orderIdTv.setText(orderId);
                     orderStatusTv.setText(orderStatus);
-                    amountTv.setText("Ksh"+orderCost+"[Including delivery fee Ksh"+ deliveryFee+"]");
+                    //include delivery fee later
+                    amountTv.setText("Ksh"+orderCost);
                     dateTv.setText(formattedDate);
 
                     findAddress(latitude,longitude);
