@@ -48,6 +48,8 @@
             app:c_border="true"
             app:c_border_color="@color/colorPrimaryDark"
             app:c_border_width="1dp"/>
+
+
         <EditText
             android:id="@+id/titleEt"
             android:layout_width="match_parent"
@@ -168,6 +170,7 @@
             android:layout_height="wrap_content"
             android:minWidth="150dp"
             android:layout_marginTop="5dp"/>
+
     </RelativeLayout>
 
 </LinearLayout>

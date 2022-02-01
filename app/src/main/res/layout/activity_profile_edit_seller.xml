@@ -76,7 +76,7 @@
         android:padding="10dp" />
 
     <EditText
-        android:id="@+id/companyNameEt"
+        android:id="@+id/shopNameEt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/nameEt"
@@ -90,7 +90,7 @@
         android:drawableStart="@drawable/ic_store_gray"
         android:drawableLeft="@drawable/ic_store_gray"
         android:drawablePadding="5dp"
-        android:hint="Company Name"
+        android:hint="shop Name"
         android:textColorHint="@color/colorGray"
         android:textColor="@color/colorPrimary"
         android:inputType="textPersonName|textCapWords"
@@ -100,7 +100,7 @@
         android:id="@+id/phoneEt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/companyNameEt"
+        android:layout_below="@id/shopNameEt"
         android:layout_marginStart="5dp"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="5dp"
@@ -217,7 +217,7 @@
         android:padding="10dp" />
 
     <androidx.appcompat.widget.SwitchCompat
-        android:id="@+id/companyOpenSwitch"
+        android:id="@+id/shopOpenSwitch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/addressEt"
@@ -229,7 +229,7 @@
         android:backgroundTint="@color/colorPrimaryDark"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/companyOpenSwitch"
+        android:layout_below="@id/shopOpenSwitch"
         android:layout_centerHorizontal="true"
         android:text="Update" />
 

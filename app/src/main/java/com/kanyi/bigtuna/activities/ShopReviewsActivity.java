@@ -30,7 +30,7 @@ public class ShopReviewsActivity extends AppCompatActivity {
 
     private ImageButton backBtn;
     private ImageView profileIv;
-    private TextView companyNameTv,ratingsTv;
+    private TextView shopNameTv,ratingsTv;
     private RatingBar ratingBar;
     private RecyclerView reviewsRv;
 
@@ -40,7 +40,7 @@ public class ShopReviewsActivity extends AppCompatActivity {
     private ArrayList< ModelReview > reviewArrayList;
     private AdapterReview adapterReview;
 
-    private String companyUid;
+    private String shopUid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +51,7 @@ public class ShopReviewsActivity extends AppCompatActivity {
 
         backBtn = findViewById ( R.id.backBtn );
         profileIv = findViewById ( R.id.profileIv );
-        companyNameTv = findViewById ( R.id.companyNameTv );
+        shopNameTv = findViewById ( R.id.shopNameTv );
         ratingsTv = findViewById ( R.id.ratingsTv );
         ratingBar = findViewById ( R.id.ratingBar );
         reviewsRv = findViewById ( R.id.reviewsRv );
@@ -59,7 +59,7 @@ public class ShopReviewsActivity extends AppCompatActivity {
 
 
 
-        companyUid = getIntent ().getStringExtra ( "companyUid" );
+        shopUid = getIntent ().getStringExtra ( "shopUid" );
 
 
         firebaseAuth = FirebaseAuth.getInstance ();
@@ -81,7 +81,7 @@ public class ShopReviewsActivity extends AppCompatActivity {
         //init list
         reviewArrayList = new ArrayList <> (  );
         DatabaseReference ref = FirebaseDatabase.getInstance ().getReference ("Users");
-        ref.child ( companyUid ).child ( "Ratings" )
+        ref.child ( shopUid ).child ( "Ratings" )
                 .addValueEventListener ( new ValueEventListener ( ) {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -118,14 +118,14 @@ public class ShopReviewsActivity extends AppCompatActivity {
 
     private void loadShopDetails() {
         DatabaseReference ref = FirebaseDatabase.getInstance ().getReference ("Users");
-        ref.child ( companyUid )
+        ref.child ( shopUid )
                 .addValueEventListener ( new ValueEventListener ( ) {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        String companyName = ""+dataSnapshot.child ( "companyName" ).getValue ();
+                        String shopName = ""+dataSnapshot.child ( "shopName" ).getValue ();
                         String profileImage = ""+dataSnapshot.child ( "profileImage" ).getValue (  );
 
-                        companyNameTv.setText ( companyName );
+                        shopNameTv.setText ( shopName );
 
                         try{
                             Picasso.get ().load(profileImage).placeholder ( R.drawable.ic_store_gray ).into ( profileIv );

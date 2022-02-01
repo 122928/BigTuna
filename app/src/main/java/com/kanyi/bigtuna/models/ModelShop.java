@@ -2,18 +2,16 @@ package com.kanyi.bigtuna.models;
 
 public class ModelShop {
 
-    private String uid,email,name,companyName,phone,deliveryFee, country,city,state,address,latitude,longitude,timestamp,accountType,online,companyOpen,profileImage;
+    private String uid,email,name,shopName,phone,deliveryFee,country,city,state,address,latitude,longitude,timestamp,accountType,online,shopOpen,profileImage;
 
     public ModelShop() {
-
-
     }
 
-    public ModelShop(String uid, String email, String name, String companyName, String phone, String deliveryFee, String country, String city, String state, String address, String latitude, String longitude, String timestamp, String accountType, String online, String companyOpen, String profileImage) {
+    public ModelShop(String uid , String email , String name , String shopName , String phone , String deliveryFee , String country , String city , String state , String address , String latitude , String longitude , String timestamp , String accountType , String online , String shopOpen , String profileImage) {
         this.uid = uid;
         this.email = email;
         this.name = name;
-        this.companyName = companyName;
+        this.shopName = shopName;
         this.phone = phone;
         this.deliveryFee = deliveryFee;
         this.country = country;
@@ -25,7 +23,7 @@ public class ModelShop {
         this.timestamp = timestamp;
         this.accountType = accountType;
         this.online = online;
-        this.companyOpen = companyOpen;
+        this.shopOpen = shopOpen;
         this.profileImage = profileImage;
     }
 
@@ -53,12 +51,12 @@ public class ModelShop {
         this.name = name;
     }
 
-    public String getCompanyName() {
-        return companyName;
+    public String getShopName() {
+        return shopName;
     }
 
-    public void setCompanyName(String companyName) {
-        this.companyName = companyName;
+    public void setShopName(String shopName) {
+        this.shopName = shopName;
     }
 
     public String getPhone() {
@@ -149,12 +147,12 @@ public class ModelShop {
         this.online = online;
     }
 
-    public String getCompanyOpen() {
-        return companyOpen;
+    public String getShopOpen() {
+        return shopOpen;
     }
 
-    public void setCompanyOpen(String companyOpen) {
-        this.companyOpen = companyOpen;
+    public void setShopOpen(String shopOpen) {
+        this.shopOpen = shopOpen;
     }
 
     public String getProfileImage() {

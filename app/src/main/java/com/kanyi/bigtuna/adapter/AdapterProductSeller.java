@@ -188,7 +188,7 @@ public class AdapterProductSeller extends RecyclerView.Adapter<AdapterProductSel
                 //show delete confirm dialog
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
                 builder.setTitle("Delete")
-                        .setMessage("Are you sure you want to delete product"+title+"?")
+                        .setMessage("Are you sure you want to delete product "+title+"?")
                         .setPositiveButton("DELETE", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {

@@ -34,7 +34,7 @@ public class OrderDetailsUsersActivity extends AppCompatActivity {
     private String orderTo, orderId;
 
     private ImageButton backBtn,writeReviewBtn;
-    private TextView orderIdTv, dateTv, orderStatusTv, companyNameTv, totalItemsTv, amountTv, addressTv;
+    private TextView orderIdTv, dateTv, orderStatusTv, shopNameTv, totalItemsTv, amountTv, addressTv;
     private RecyclerView itemsRv;
 
     private FirebaseAuth firebaseAuth;
@@ -51,7 +51,7 @@ public class OrderDetailsUsersActivity extends AppCompatActivity {
         orderIdTv = findViewById(R.id.orderIdTv);
         dateTv = findViewById(R.id.dateTv);
         orderStatusTv = findViewById(R.id.orderStatusTv);
-        companyNameTv = findViewById(R.id.companyNameTv);
+        shopNameTv = findViewById(R.id.shopNameTv);
         totalItemsTv = findViewById(R.id.totalItemsTv);
         amountTv = findViewById(R.id.amountTv);
         addressTv = findViewById(R.id.addressTv);
@@ -80,7 +80,7 @@ public class OrderDetailsUsersActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent1 = new Intent(OrderDetailsUsersActivity.this,WriteReviewActivity.class);
-                intent1.putExtra ( "companyUid", orderTo ); //to write review we must have companyUid of the shop
+                intent1.putExtra ( "shopUid", orderTo ); //to write review we must have shopUid of the shop
                 startActivity ( intent1 );
             }
         } );
@@ -151,7 +151,7 @@ public class OrderDetailsUsersActivity extends AppCompatActivity {
 
                     orderIdTv.setText(orderId);
                     orderStatusTv.setText(orderStatus);
-                    amountTv.setText("$"+orderCost+"[Including delivery fee $"+ deliveryFee+"]");
+                    amountTv.setText("Ksh"+orderCost+"[Including delivery fee Ksh"+ deliveryFee+"]");
                     dateTv.setText(formattedDate);
 
                     findAddress(latitude,longitude);
@@ -174,8 +174,8 @@ public class OrderDetailsUsersActivity extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                        String companyName = "" + dataSnapshot.child("companyName").getValue();
-                        companyNameTv.setText(companyName);
+                        String shopName = "" + dataSnapshot.child("shopName").getValue();
+                        shopNameTv.setText(shopName);
                     }
 
                     @Override

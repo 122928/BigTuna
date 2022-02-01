@@ -193,7 +193,7 @@ public class OrderDetailsSellerActivity extends AppCompatActivity {
                         }
                         orderIdTv.setText(orderId);
                         orderStatusTv.setText(orderStatus);
-                        amountTv.setText("$"+orderCost+"[Including delivery fee $"+deliveryFee+"]");
+                        amountTv.setText("Ksh"+orderCost+"[Including delivery fee Ksh"+deliveryFee+"]");
                         dateTv.setText(dateFormatted);
 
                         findAddress(latitude,longitude);

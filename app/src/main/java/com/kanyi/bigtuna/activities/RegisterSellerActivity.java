@@ -51,7 +51,7 @@ public class RegisterSellerActivity extends AppCompatActivity implements Locatio
 
     private ImageButton backBtn, gpsBtn;
     private ImageView profileIv;
-    private EditText nameEt, companyNameEt, phoneEt, deliveryFeeEt, countryEt, stateEt, cityEt, addressEt, emailEt, passwordEt, cPasswordEt;
+    private EditText nameEt, shopNameEt, phoneEt, deliveryFeeEt, countryEt, stateEt, cityEt, addressEt, emailEt, passwordEt, cPasswordEt;
     private Button registerBtn;
 
     //permission constants
@@ -85,7 +85,7 @@ public class RegisterSellerActivity extends AppCompatActivity implements Locatio
         gpsBtn = findViewById ( R.id.gpsBtn );
         profileIv = findViewById ( R.id.profileIv );
         nameEt = findViewById ( R.id.nameEt );
-        companyNameEt = findViewById ( R.id.companyNameEt );
+        shopNameEt = findViewById ( R.id.shopNameEt );
         phoneEt = findViewById ( R.id.phoneEt );
         deliveryFeeEt = findViewById ( R.id.deliveryFeeEt );
         countryEt = findViewById ( R.id.countryEt );
@@ -147,12 +147,12 @@ public class RegisterSellerActivity extends AppCompatActivity implements Locatio
         } );
     }
 
-    private String fullName, companyName, phoneNumber, deliveryFee, country, state, city, address, email, password, confirmPassword;
+    private String fullName, shopName, phoneNumber, deliveryFee, country, state, city, address, email, password, confirmPassword;
 
     private void inputData() {
         //input data
         fullName = nameEt.getText ( ).toString ( ).trim ( );
-        companyName = companyNameEt.getText ( ).toString ( ).trim ( );
+        shopName = shopNameEt.getText ( ).toString ( ).trim ( );
         phoneNumber = phoneEt.getText ( ).toString ( ).trim ( );
         deliveryFee = deliveryFeeEt.getText ( ).toString ( ).trim ( );
         country = countryEt.getText ( ).toString ( ).trim ( );
@@ -168,8 +168,8 @@ public class RegisterSellerActivity extends AppCompatActivity implements Locatio
         if (TextUtils.isEmpty ( fullName )) {
             Toast.makeText ( this , "Enter name..." , Toast.LENGTH_SHORT ).show ( );
         }
-        if (TextUtils.isEmpty ( companyName )) {
-            Toast.makeText ( this , " Enter company name..." , Toast.LENGTH_SHORT ).show ( );
+        if (TextUtils.isEmpty ( shopName )) {
+            Toast.makeText ( this , " Enter shop name..." , Toast.LENGTH_SHORT ).show ( );
         }
 
         if (TextUtils.isEmpty ( phoneNumber )) {
@@ -229,7 +229,7 @@ public class RegisterSellerActivity extends AppCompatActivity implements Locatio
             hashMap.put ( "uid" , "" + firebaseAuth.getUid ( ) );
             hashMap.put ( "email" , "" + email );
             hashMap.put ( "name" , "" + fullName );
-            hashMap.put ( "companyName" , "" + companyName );
+            hashMap.put ( "shopName" , "" + shopName );
             hashMap.put ( "phone" , "" + phoneNumber );
             hashMap.put ( "deliveryFee" , "" + deliveryFee );
             hashMap.put ( "country" , "" + country );
@@ -241,7 +241,7 @@ public class RegisterSellerActivity extends AppCompatActivity implements Locatio
             hashMap.put ( "timestamp" , "" + timestamp );
             hashMap.put ( "accountType" , "Seller" );
             hashMap.put ( "online" , "true" );
-            hashMap.put ( "companyOpen" , "true" );
+            hashMap.put ( "shopOpen" , "true" );
             hashMap.put ( "profileImage" , "" );
 
             // save to db
@@ -288,7 +288,7 @@ public class RegisterSellerActivity extends AppCompatActivity implements Locatio
                                 hashMap.put ( "uid" , "" + firebaseAuth.getUid ( ) );
                                 hashMap.put ( "email" , "" + email );
                                 hashMap.put ( "name" , "" + fullName );
-                                hashMap.put ( "companyName" , "" + companyName );
+                                hashMap.put ( "shopName" , "" + shopName );
                                 hashMap.put ( "phone" , "" + phoneNumber );
                                 hashMap.put ( "deliveryFee" , "" + deliveryFee );
                                 hashMap.put ( "country" , "" + country );
@@ -300,7 +300,7 @@ public class RegisterSellerActivity extends AppCompatActivity implements Locatio
                                 hashMap.put ( "timestamp" , "" + timestamp );
                                 hashMap.put ( "accountType" , "Seller" );
                                 hashMap.put ( "online" , "true" );
-                                hashMap.put ( "companyOpen" , "true" );
+                                hashMap.put ( "shopOpen" , "true" );
                                 hashMap.put ( "profileImage" , ""+downloadImageUri );
 
                                 // save to db

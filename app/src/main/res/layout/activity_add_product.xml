@@ -47,20 +47,25 @@
             app:c_border="true"
             app:c_border_color="@color/colorPrimaryDark"
             app:c_border_width="1dp"/>
+
+
         <EditText
             android:id="@+id/titleEt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:hint="Title"
-            android:textColorHint="@color/colorGray"
-            android:textColor="@color/colorPrimary"
+            android:layout_below="@+id/productIconIv"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
             android:background="@drawable/shape_rect02"
             android:drawableStart="@drawable/ic_title_gray"
             android:drawablePadding="10dp"
+            android:hint="Title"
             android:inputType="textPersonName|textCapWords"
             android:padding="10dp"
-            android:layout_below="@+id/productIconIv"/>
+            android:textColor="@color/colorPrimary"
+            android:textColorHint="@color/colorGray" />
         <EditText
             android:id="@+id/descriptionEt"
             android:layout_width="match_parent"
@@ -167,6 +172,7 @@
             android:layout_height="wrap_content"
             android:minWidth="150dp"
             android:layout_marginTop="5dp"/>
+
     </RelativeLayout>
 
 </LinearLayout>

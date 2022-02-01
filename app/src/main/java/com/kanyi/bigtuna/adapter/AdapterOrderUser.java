@@ -96,8 +96,8 @@ public class AdapterOrderUser extends RecyclerView.Adapter<AdapterOrderUser.Hold
         ref.child(modelOrderUser.getOrderTo()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-               String companyName = ""+dataSnapshot.child("companyName").getValue();
-               holder.companyNameTv.setText(companyName);
+               String shopName = ""+dataSnapshot.child("shopName").getValue();
+               holder.shopNameTv.setText(shopName);
 
             }
 
@@ -117,14 +117,14 @@ public class AdapterOrderUser extends RecyclerView.Adapter<AdapterOrderUser.Hold
     class HolderOrderUser extends RecyclerView.ViewHolder{
 
         //views of layout
-        private TextView orderIdTv, dateTv, companyNameTv, amountTv, statusTv;
+        private TextView orderIdTv, dateTv, shopNameTv, amountTv, statusTv;
 
         public HolderOrderUser(@NonNull View itemView) {
             super(itemView);
 
             orderIdTv = itemView.findViewById(R.id.orderIdTv);
             dateTv = itemView.findViewById(R.id.dateTv);
-            companyNameTv = itemView.findViewById(R.id.companyNameTv );
+            shopNameTv = itemView.findViewById(R.id.shopNameTv );
             amountTv = itemView.findViewById(R.id.amountTv);
             statusTv = itemView.findViewById(R.id.statusTv);
         }

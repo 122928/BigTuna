@@ -126,7 +126,7 @@
                     android:textStyle="bold"/>
 
                 <TextView
-                    android:id="@+id/companyNameTv"
+                    android:id="@+id/shopNameTv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"

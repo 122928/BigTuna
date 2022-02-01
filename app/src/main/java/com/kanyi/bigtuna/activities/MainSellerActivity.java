@@ -41,7 +41,7 @@ import java.util.HashMap;
 
 public class MainSellerActivity extends AppCompatActivity {
 
-    private TextView nameTv, companyNameTv, emailTv, tabProductsTv, tabOrdersTv,filteredProductsTv, filteredOrdersTv;
+    private TextView nameTv, shopNameTv, emailTv, tabProductsTv, tabOrdersTv,filteredProductsTv, filteredOrdersTv;
     private EditText searchProductEt;
     private ImageButton logoutBtn,editProfileBtn, addProductBtn,filterProductsBtn,filterOrderBtn, reviewsBtn, settingsBtn;
     private ImageView profileIv;
@@ -63,7 +63,7 @@ public class MainSellerActivity extends AppCompatActivity {
         setContentView ( R.layout.activity_main_seller );
 
         nameTv = findViewById ( R.id.nameTv );
-        companyNameTv = findViewById ( R.id.companyNameTv);
+        shopNameTv = findViewById ( R.id.shopNameTv);
         emailTv = findViewById ( R.id.emailTv );
         tabProductsTv = findViewById ( R.id.tabProductsTv );
         tabOrdersTv = findViewById ( R.id.tabOrdersTv );
@@ -394,12 +394,12 @@ public class MainSellerActivity extends AppCompatActivity {
                             String name = ""+ds.child ( "name" ).getValue ();
                             String accountType = ""+ds.child ( "accountType" ).getValue ();
                             String email = ""+ds.child ( "email" ).getValue ();
-                            String companyName = ""+ds.child ( "companyName" ).getValue ();
+                            String shopName = ""+ds.child ( "shopName" ).getValue ();
                             String profileImage = ""+ds.child ( "profileImage" ).getValue ();
 
                             //set data to UI
                             nameTv.setText (name);
-                            companyNameTv.setText(companyName);
+                            shopNameTv.setText(shopName);
                             emailTv.setText(email);
                             try {
                                 Picasso.get().load(profileImage).placeholder(R.drawable.ic_store_gray).into(profileIv);

@@ -54,16 +54,16 @@ public class ShopDetailsActivity extends AppCompatActivity {
     // declare UI views
 
     private ImageView shopIv;
-    private TextView companyNameTv, phoneTv,emailTv, openClosedTv,
+    private TextView shopNameTv, phoneTv,emailTv, openClosedTv,
             deliveryFeeTv, addressTv, filteredProductsTv, cartCountTv;
     private ImageButton callBtn, mapBtn,cartBtn,backBtn,filterProductsBtn,reviewBtn;
     private EditText searchProductEt;
     private RecyclerView productsRv;
     private RatingBar ratingBar;
 
-    private String companyUid;
+    private String shopUid;
     private String myLatitude, myLongitude, myPhone;
-    private String companyName, shopEmail, shopPhone, shopAddress, shopLatitude, shopLongitude;
+    private String shopName, shopEmail, shopPhone, shopAddress, shopLatitude, shopLongitude;
     public String deliveryFee;
 
     private FirebaseAuth firebaseAuth;
@@ -85,7 +85,7 @@ public class ShopDetailsActivity extends AppCompatActivity {
         //init UI views
 
         shopIv = findViewById ( R.id.shopIv );
-        companyNameTv = findViewById ( R.id.companyNameTv );
+        shopNameTv = findViewById ( R.id.shopNameTv );
         phoneTv = findViewById ( R.id.phoneTv );
         emailTv = findViewById ( R.id.emailTv );
         openClosedTv = findViewById ( R.id.openClosedTv );
@@ -108,7 +108,7 @@ public class ShopDetailsActivity extends AppCompatActivity {
         progressDialog.setTitle("Please wait");
         progressDialog.setCanceledOnTouchOutside(false);
 
-        companyUid = getIntent ().getStringExtra ( "companyUid" );
+        shopUid = getIntent ().getStringExtra ( "shopUid" );
         firebaseAuth = FirebaseAuth.getInstance ();
         loadMyInfo();
         loadShopDetails();
@@ -211,9 +211,9 @@ public class ShopDetailsActivity extends AppCompatActivity {
         reviewBtn.setOnClickListener ( new View.OnClickListener ( ) {
             @Override
             public void onClick(View v) {
-                // pass company uid to show its reviews
+                // pass shop uid to show its reviews
                 Intent intent = new Intent(ShopDetailsActivity.this,ShopReviewsActivity.class);
-                intent.putExtra ("companyUid",companyUid  );
+                intent.putExtra ("shopUid",shopUid  );
                 startActivity ( intent );
             }
         } );
@@ -223,7 +223,7 @@ public class ShopDetailsActivity extends AppCompatActivity {
     private void loadReviews() {
 
         DatabaseReference ref = FirebaseDatabase.getInstance ().getReference ("Users");
-        ref.child ( companyUid ).child ( "Ratings" )
+        ref.child ( shopUid ).child ( "Ratings" )
                 .addValueEventListener ( new ValueEventListener ( ) {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -278,7 +278,7 @@ public class ShopDetailsActivity extends AppCompatActivity {
 
         View view = LayoutInflater.from(this).inflate(R.layout.dialog_cart, null);
 
-        TextView companyNameTv = view.findViewById(R.id.companyNameTv);
+        TextView shopNameTv = view.findViewById(R.id.shopNameTv);
         RecyclerView cartItemsRv = view.findViewById(R.id.cartItemsRv);
         sTotalTv = view.findViewById(R.id.sTotalTv);
         dFeeTv = view.findViewById(R.id.dFeeTv);
@@ -290,7 +290,7 @@ public class ShopDetailsActivity extends AppCompatActivity {
         //set view to dialog
         builder.setView(view);
 
-        companyNameTv.setText(companyName);
+        shopNameTv.setText(shopName);
 
         EasyDB easyDB =  EasyDB.init(this,"ITEMS_DB")
                 .setTableName("ITEMS_TABLE")
@@ -384,12 +384,12 @@ public class ShopDetailsActivity extends AppCompatActivity {
         hashMap.put("orderStatus", "In Progress");
         hashMap.put("orderCost", ""+cost);
         hashMap.put("orderBy", ""+firebaseAuth.getUid());
-        hashMap.put("orderTo", ""+companyUid);
+        hashMap.put("orderTo", ""+shopUid);
         hashMap.put("latitude", ""+myLatitude);
         hashMap.put("longitude", ""+myLongitude);
 
         //add to db
-        final DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users").child(companyUid).child("Orders");
+        final DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users").child(shopUid).child("Orders");
         ref.child(timestamp).setValue(hashMap)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
@@ -417,7 +417,7 @@ public class ShopDetailsActivity extends AppCompatActivity {
                         Toast.makeText(ShopDetailsActivity.this, "Order Placed Successfully...", Toast.LENGTH_SHORT).show();
 
                         Intent intent = new Intent(ShopDetailsActivity.this, OrderDetailsUsersActivity.class);
-                        intent.putExtra("orderTo", companyUid);
+                        intent.putExtra("orderTo", shopUid);
                         intent.putExtra("orderId", timestamp);
                         startActivity(intent);
                     }
@@ -475,12 +475,12 @@ public class ShopDetailsActivity extends AppCompatActivity {
     private void loadShopDetails() {
 
         DatabaseReference ref = FirebaseDatabase.getInstance ().getReference ("Users");
-        ref.child ( companyUid ).addValueEventListener ( new ValueEventListener ( ) {
+        ref.child ( shopUid ).addValueEventListener ( new ValueEventListener ( ) {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 String name = "" + snapshot.child ( "name" ).getValue ( );
-                companyName = "" + snapshot.child ( "companyName" ).getValue ( );
+                shopName = "" + snapshot.child ( "shopName" ).getValue ( );
                 shopEmail = "" + snapshot.child ( "email" ).getValue ( );
                 shopPhone = "" + snapshot.child ( "phone" ).getValue ( );
                 shopAddress = "" + snapshot.child ( "address" ).getValue ( );
@@ -488,17 +488,17 @@ public class ShopDetailsActivity extends AppCompatActivity {
                 shopLongitude = "" + snapshot.child ( "longitude" ).getValue ( );
                 deliveryFee = "" + snapshot.child ( "deliveryFee" ).getValue ( );
                 String profileImage = "" + snapshot.child ( "profileImage" ).getValue ( );
-                String companyOpen = "" + snapshot.child ( "companyOpen" ).getValue ( );
+                String shopOpen = "" + snapshot.child ( "shopOpen" ).getValue ( );
 
                 // set data
 
-                companyNameTv.setText ( companyName );
+                shopNameTv.setText ( shopName );
                 emailTv.setText ( shopEmail );
                 phoneTv.setText ( shopPhone );
                 deliveryFeeTv.setText ( "Delivery Fee: Ksh"+deliveryFee );
                 addressTv.setText ( shopAddress );
 
-                if(companyOpen.equals ( "true" )){
+                if(shopOpen.equals ( "true" )){
                     openClosedTv.setText ( "Open" );
                 }
                 else {
@@ -526,7 +526,7 @@ public class ShopDetailsActivity extends AppCompatActivity {
         productsList = new ArrayList <> (  );
 
         DatabaseReference reference = FirebaseDatabase.getInstance ().getReference ("Users");
-        reference.child ( companyUid).child ( "Products" )
+        reference.child ( shopUid).child ( "Products" )
                 .addValueEventListener ( new ValueEventListener ( ) {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {

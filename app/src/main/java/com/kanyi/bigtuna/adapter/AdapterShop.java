@@ -59,14 +59,14 @@ public class AdapterShop extends RecyclerView.Adapter<AdapterShop.HolderShop>{
         String phone = modelShop.getPhone();
         final String uid = modelShop.getUid();
         String timestamp = modelShop.getTimestamp();
-        String companyOpen = modelShop.getCompanyOpen();
+        String shopOpen = modelShop.getShopOpen();
         String state = modelShop.getState();
         String profileImage = modelShop.getProfileImage();
-        String companyName = modelShop.getCompanyName();
+        String shopName = modelShop.getShopName();
 
         loadReviews(modelShop,holder);
 
-        holder.companyNameTv.setText(companyName);
+        holder.shopNameTv.setText(shopName);
         holder.phoneTv.setText(phone);
         holder.addressTv.setText(address);
         if (online.equals("true")){
@@ -76,7 +76,7 @@ public class AdapterShop extends RecyclerView.Adapter<AdapterShop.HolderShop>{
         else{
             holder.onlineIv.setVisibility(View.GONE);
         }
-        if(companyOpen.equals("true")){
+        if(shopOpen.equals("true")){
             holder.shopClosedTv.setVisibility(View.GONE);
 
         }
@@ -99,7 +99,7 @@ public class AdapterShop extends RecyclerView.Adapter<AdapterShop.HolderShop>{
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent ( context, ShopDetailsActivity.class );
-                intent.putExtra ( "companyUid",uid );
+                intent.putExtra ( "shopUid",uid );
                 context.startActivity ( intent );
             }
         } );
@@ -109,10 +109,10 @@ public class AdapterShop extends RecyclerView.Adapter<AdapterShop.HolderShop>{
     private float ratingSum =0;
     private void loadReviews(ModelShop modelShop , HolderShop holder) {
 
-        String companyUid = modelShop.getUid ( );
+        String shopUid = modelShop.getUid ( );
 
         DatabaseReference ref = FirebaseDatabase.getInstance ().getReference ("Users");
-        ref.child ( companyUid ).child ( "Ratings" )
+        ref.child ( shopUid ).child ( "Ratings" )
                 .addValueEventListener ( new ValueEventListener ( ) {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -146,7 +146,7 @@ public class AdapterShop extends RecyclerView.Adapter<AdapterShop.HolderShop>{
     class HolderShop extends RecyclerView.ViewHolder{
 
         private ImageView shopIv,onlineIv;
-        private TextView shopClosedTv, companyNameTv, phoneTv,addressTv;
+        private TextView shopClosedTv, shopNameTv, phoneTv,addressTv;
         private RatingBar ratingBar;
 
         public HolderShop(@NonNull View itemView) {
@@ -155,7 +155,7 @@ public class AdapterShop extends RecyclerView.Adapter<AdapterShop.HolderShop>{
             shopIv = itemView.findViewById(R.id.shopIv);
             onlineIv = itemView.findViewById(R.id.onlineIv);
             shopClosedTv = itemView.findViewById(R.id.shopClosedTv);
-            companyNameTv = itemView.findViewById(R.id.companyNameTv);
+            shopNameTv = itemView.findViewById(R.id.shopNameTv);
             phoneTv = itemView.findViewById(R.id.phoneTv);
             addressTv = itemView.findViewById(R.id.addressTv);
             ratingBar = itemView.findViewById(R.id.ratingBar);

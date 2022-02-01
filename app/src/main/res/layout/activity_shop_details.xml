@@ -31,7 +31,7 @@
             android:padding="10dp">
 
             <TextView
-                android:id="@+id/companyNameTv"
+                android:id="@+id/shopNameTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/TextAppearance.AppCompat.Title"
@@ -44,7 +44,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Phone"
-                android:layout_below="@id/companyNameTv"
+                android:layout_below="@id/shopNameTv"
                 android:textColor="@color/colorWhite"
                 android:layout_marginStart="3dp"/>
 

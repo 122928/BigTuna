@@ -22,7 +22,7 @@
             android:gravity="center_horizontal" />
 
         <TextView
-            android:id="@+id/companyNameTv"
+            android:id="@+id/shopNameTv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/colorBlack"
@@ -40,7 +40,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/cartItemsRv"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:padding="5dp"
             tools:listitem="@layout/row_cartitem"/>

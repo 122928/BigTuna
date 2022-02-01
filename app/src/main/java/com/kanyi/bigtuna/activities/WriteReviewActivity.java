@@ -33,12 +33,12 @@ public class WriteReviewActivity extends AppCompatActivity {
     private ImageButton backBtn;
     private ImageView profileIv;
     private EditText reviewEt;
-    private TextView companyNameTv;
+    private TextView shopNameTv;
     private RatingBar ratingBar;
     private FloatingActionButton submitBtn;
 
 
-    private String companyUid;
+    private String shopUid;
     private FirebaseAuth firebaseAuth;
 
     @Override
@@ -50,16 +50,16 @@ public class WriteReviewActivity extends AppCompatActivity {
 
         backBtn = findViewById ( R.id.backBtn );
         profileIv = findViewById ( R.id.profileIv );
-        companyNameTv = findViewById ( R.id.companyNameTv );
+        shopNameTv = findViewById ( R.id.shopNameTv );
         ratingBar = findViewById ( R.id.ratingBar );
         submitBtn = findViewById ( R.id.submitBtn );
         reviewEt = findViewById ( R.id.reviewEt );
 
 
 
-        //get company Uid form intent
+        //get shop Uid form intent
 
-        companyUid = getIntent ().getStringExtra ( "companyUid" );
+        shopUid = getIntent ().getStringExtra ( "shopUid" );
 
         firebaseAuth = FirebaseAuth.getInstance ();
         // load shop image and name
@@ -91,19 +91,19 @@ public class WriteReviewActivity extends AppCompatActivity {
 
     private void loadShopInfo() {
         DatabaseReference ref = FirebaseDatabase.getInstance ().getReference ("Users");
-        ref.child(companyUid).addValueEventListener ( new ValueEventListener ( ) {
+        ref.child(shopUid).addValueEventListener ( new ValueEventListener ( ) {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 // get shop info
-                String companyName = ""+dataSnapshot.child ( "companyName" ).getValue ();
-                String companyImage = ""+dataSnapshot.child ( "profileImage" ).getValue ();
+                String shopName = ""+dataSnapshot.child ( "shopName" ).getValue ();
+                String shopImage = ""+dataSnapshot.child ( "profileImage" ).getValue ();
 
                 //load into ui
 
-                companyNameTv.setText ( companyName );
+                shopNameTv.setText ( shopName );
                 try{
-                    Picasso.get ().load(companyImage).placeholder ( R.drawable.ic_store_gray ).into ( profileIv );
+                    Picasso.get ().load(shopImage).placeholder ( R.drawable.ic_store_gray ).into ( profileIv );
                 }
                 catch(Exception e) {
                     profileIv.setImageResource ( R.drawable.ic_store_gray );
@@ -119,7 +119,7 @@ public class WriteReviewActivity extends AppCompatActivity {
 
     private void loadMyReview() {
         DatabaseReference ref = FirebaseDatabase.getInstance ().getReference ("Users");
-        ref.child ( companyUid ).child ( "Ratings" ).child ( firebaseAuth.getUid () )
+        ref.child ( shopUid ).child ( "Ratings" ).child ( firebaseAuth.getUid () )
                 .addValueEventListener ( new ValueEventListener ( ) {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -164,7 +164,7 @@ public class WriteReviewActivity extends AppCompatActivity {
 
         //put to db
         DatabaseReference ref = FirebaseDatabase.getInstance ().getReference ("Users");
-        ref.child ( companyUid ).child ( "Ratings" ).child ( firebaseAuth.getUid () ).updateChildren ( hashMap )
+        ref.child ( shopUid ).child ( "Ratings" ).child ( firebaseAuth.getUid () ).updateChildren ( hashMap )
                 .addOnSuccessListener ( new OnSuccessListener < Void > ( ) {
                     @Override
                     //review added to db
