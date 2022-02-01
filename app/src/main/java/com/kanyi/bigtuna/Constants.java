@@ -7,19 +7,25 @@ public class Constants {
 
     //product categories
     public static final String[] productCategories = {
-            "Domestic(3000L-5000L)",
-            "Functions/Events",
-            "Dispensed Water",
-            "Other related products"
+            "500ml-1L",
+            "1L-100L",
+            "100L-500L",
+            "500L-1000L",
+            "1000L-2000L",
+            "2000L-5000L",
+            "5000L-10000L"
 
     };
 
     public static final String[] productCategories1 = {
             "All",
-            "Domestic(3000L-5000L)",
-            "Functions/Events",
-            "Dispensed Water",
-            "Other related products"
+            "500ml-1L",
+            "1L-100L",
+            "100L-500L",
+            "500L-1000L",
+            "1000L-2000L",
+            "2000L-5000L",
+            "5000L-10000L"
 
     };
 
