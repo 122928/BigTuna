@@ -12,4 +12,5 @@
     <string name="dasani">Dasani</string>
     <string name="total_amount_ksh_100">Total Amount: Ksh 100</string>
     <string name="in_progress">In Progress</string>
+    <string name="order_12345">Order: 12345</string>
 </resources>

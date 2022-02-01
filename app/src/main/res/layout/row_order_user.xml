@@ -16,7 +16,7 @@
             android:id="@+id/orderIdTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Order: 12345"
+            android:text="@string/order_12345"
             android:textColor="@color/colorBlack"
             android:textStyle="bold"/>
 
@@ -25,8 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toStartOf="@+id/nextIv"
-            android:text="@string/_29_01_2022"
-            android:layout_toLeftOf="@+id/nextIv" />
+            android:text="@string/_29_01_2022" />
         <TextView
             android:id="@+id/shopNameTv"
             android:layout_width="wrap_content"
@@ -47,8 +46,7 @@
             android:layout_marginTop="5dp"
             android:layout_toStartOf="@id/nextIv"
             android:text="@string/in_progress"
-            android:textColor="@color/colorGreen"
-            android:layout_toLeftOf="@id/nextIv" />
+            android:textColor="@color/colorGreen" />
 
 
         <ImageView

@@ -51,6 +51,7 @@
 
         <!--notification status: enabled/disabled-->
         <TextView
+            android:id="@+id/notificationStatusTv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorWhite"

@@ -82,16 +82,20 @@
 
     <EditText
         android:id="@+id/reviewEt"
-        android:layout_below="@id/ratingBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/ratingBar"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
         android:background="@drawable/shape_rect02"
-        android:hint="Type Review"
         android:gravity="top"
-        android:textColorHint="@color/colorGray"
+        android:hint="Type Review"
         android:minHeight="10dp"
         android:padding="10dp"
-        android:layout_margin="20dp"/>
+        android:textColorHint="@color/colorGray"
+        android:textColor="@color/colorBlack"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/submitBtn"

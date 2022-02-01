@@ -237,7 +237,7 @@ public class MainUserActivity extends AppCompatActivity {
                     ref.orderByChild("orderBy").equalTo(firebaseAuth.getUid())
                             .addValueEventListener(new ValueEventListener() {
                                 @Override
-                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                     if (dataSnapshot.exists()){
                                         for (DataSnapshot ds: dataSnapshot.getChildren()){
                                             ModelOrderUser modelOrderUser = ds.getValue(ModelOrderUser.class);
@@ -285,9 +285,9 @@ public class MainUserActivity extends AppCompatActivity {
 
                     String shopCity = ""+ds.child("city").getValue();
 
-                    if (shopCity.equals(myCity)){
+                  //  if (shopCity.equals(myCity)){
                         shopsList.add(modelShop);
-                    }
+                   // }
 
                     // if you want to see all shops, skip the if statement and this
                     // shopsList.add(modelShop);

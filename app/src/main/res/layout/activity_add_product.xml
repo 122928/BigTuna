@@ -151,16 +151,19 @@
             android:id="@+id/discountedNoteEt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:hint="Discount Note e.g. 10% Off"
-            android:textColorHint="@color/colorGray"
-            android:textColor="@color/colorPrimary"
+            android:layout_below="@+id/discountedPriceEt"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
             android:background="@drawable/shape_rect02"
             android:drawableStart="@drawable/ic_cart_gray"
             android:drawablePadding="10dp"
-            android:inputType="numberDecimal"
+            android:hint="Discount Note e.g. 10% Off"
+            android:inputType="textCapSentences"
             android:padding="10dp"
-            android:layout_below="@+id/discountedPriceEt"/>
+            android:textColor="@color/colorPrimary"
+            android:textColorHint="@color/colorGray" />
 
         <Button
             android:id="@+id/addProductBtn"
