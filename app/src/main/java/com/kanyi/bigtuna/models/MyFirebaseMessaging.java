@@ -44,6 +44,7 @@ public class MyFirebaseMessaging extends FirebaseMessagingService {
         //get data from notification
         String notificationType = remoteMessage.getData().get("notificationType");
         if (notificationType.equals("NewOrder")){
+
             String buyerUid = remoteMessage.getData().get("buyerUid");
             String sellerUid = remoteMessage.getData().get("sellerUid");
             String orderId = remoteMessage.getData().get("orderId");
@@ -58,6 +59,7 @@ public class MyFirebaseMessaging extends FirebaseMessagingService {
 
         }
         if (notificationType.equals("OrderStatusChanged")){
+
             String buyerUid = remoteMessage.getData().get("buyerUid");
             String sellerUid = remoteMessage.getData().get("sellerUid");
             String orderId = remoteMessage.getData().get("orderId");
