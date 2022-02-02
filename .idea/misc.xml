@@ -3,7 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/NelsonLobor/AndroidStudioProjects/BigTuna/app/src/main/res/layout/activity_add_product.xml" value="0.1925925925925926" />
+        <entry key="..\:/Users/NelsonLobor/AndroidStudioProjects/BigTuna/app/src/main/res/layout/activity_edit_product.xml" value="0.1925925925925926" />
         <entry key="..\:/Users/NelsonLobor/AndroidStudioProjects/BigTuna/app/src/main/res/layout/activity_main_seller.xml" value="0.1925925925925926" />
+        <entry key="..\:/Users/NelsonLobor/AndroidStudioProjects/BigTuna/app/src/main/res/layout/activity_profile_edit_seller.xml" value="0.2" />
+        <entry key="..\:/Users/NelsonLobor/AndroidStudioProjects/BigTuna/app/src/main/res/layout/activity_register_seller.xml" value="0.1925925925925926" />
         <entry key="..\:/Users/NelsonLobor/AndroidStudioProjects/BigTuna/app/src/main/res/layout/activity_shop_details.xml" value="0.1925925925925926" />
         <entry key="..\:/Users/NelsonLobor/AndroidStudioProjects/BigTuna/app/src/main/res/layout/row_order_user.xml" value="0.1925925925925926" />
         <entry key="..\:/Users/Sidney Kanyi/AndroidStudioProjects/BigTuna/app/src/main/res/drawable/shape_circle01.xml" value="0.1" />

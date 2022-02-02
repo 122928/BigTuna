@@ -9,6 +9,7 @@
 
     <!--toolbar-->
     <RelativeLayout
+        android:id="@+id/toolbarRl"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:background="@drawable/shape_rect01">
@@ -31,7 +32,10 @@
             android:textStyle="bold" />
 
     </RelativeLayout>
-
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbarRl">
     <!--form to input data-->
     <RelativeLayout
         android:layout_width="match_parent"
@@ -177,6 +181,8 @@
             android:layout_marginTop="5dp"/>
 
     </RelativeLayout>
+
+    </ScrollView>
 
 </LinearLayout>
 

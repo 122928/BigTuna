@@ -199,7 +199,7 @@ public class ProfileEditSellerActivity extends AppCompatActivity implements Loca
                         }
                     });
         }else{
-            String filePathAndName = "profile_image/"+""+ firebaseAuth.getUid();
+            String filePathAndName = "profile_images/"+""+ firebaseAuth.getUid();
 
             StorageReference storageReference = FirebaseStorage.getInstance().getReference(filePathAndName);
             storageReference.putFile(image_uri)
@@ -329,7 +329,7 @@ public class ProfileEditSellerActivity extends AppCompatActivity implements Loca
     }
 
     private void showImagePickDialog() {
-        String[] options = {"camera","Gallery"};
+        String[] options = {"Camera","Gallery"};
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Pick Image:")

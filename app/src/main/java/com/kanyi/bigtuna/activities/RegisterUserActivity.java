@@ -318,7 +318,6 @@ public class RegisterUserActivity extends AppCompatActivity implements LocationL
                                                 finish();
                                             }
                                         } );
-
                             }
                         }
                     } )
