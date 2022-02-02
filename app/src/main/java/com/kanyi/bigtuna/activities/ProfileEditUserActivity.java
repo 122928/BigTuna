@@ -210,6 +210,7 @@ public class ProfileEditUserActivity extends AppCompatActivity implements Locati
                                 hashMap.put("address",""+address);
                                 hashMap.put("latitude",""+latitude);
                                 hashMap.put("longitude",""+longitude);
+                                hashMap.put ( "profileImage" , ""+downloadImageUri );
 
                                 DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
                                 ref.child(firebaseAuth.getUid()).updateChildren(hashMap)
